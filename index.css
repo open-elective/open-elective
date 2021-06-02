@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
  body{
      margin: 0px;
-     font-family: 'Popins',sans-serif;
+     font-family: 'Popins',sans-serif; 
  }
  small{
      color: gray;
  }
-
- .card.white{
+label{
+    font-weight: 500;
+}
+.card.white{
     padding: 10px;
     padding-left: 0px;
     border-radius: 20px;
@@ -28,11 +30,30 @@
 }
 #adminemail{
     padding-left: 10px;
+    border:1px solid #1d72bc;   
+}
+#signinemail{
+    padding-left: 10px;
     border:1px solid #1d72bc;
+} 
+#signinPRN{
+    padding-left: 10px;
+    border:1px solid #1d72bc; 
+}
+#signinpassword{
+    padding-left: 10px;
+    border:1px solid #1d72bc; 
 }
 .btn{
-    border-radius: 10px;   
+    border-radius: 10px; 
+    padding-left: 20px;
+    padding-right: 20px;  
 }
+
+.card.white.admin-login{
+    padding:0;
+}
+
 
  @media screen and (min-width: 861px) {
   .login-card {
