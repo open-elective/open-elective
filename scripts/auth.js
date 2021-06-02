@@ -12,7 +12,8 @@ async function signup(e) {
         }
         var progress = document.getElementById("signinprogress");
         var btn = document.getElementById("signinbtn");
-        progress.style.display="block";
+        progress.style.visibility = "visible";
+        btn.style.visibility = "hidden";
         const result = await firebase.auth().createUserWithEmailAndPassword(email.value , password.value)
         sendVerificationEmail()
         await result.user.updateProfile({
@@ -21,16 +22,16 @@ async function signup(e) {
         PRN.value = ""
         email.value = ""
         password.value = ""
-        progress.style.display="none";
-        btn.style.display="block";
+        progress.style.visibility = "hidden";
+        btn.style.visibility = "visible";
     }
     catch (err) {
         if (err.code == "auth/email-already-in-use") {
             err.message = "Email already exist"
         }
         window.alert(err.message);
-        progress.style.display="none";
-        btn.style.display="block";
+        progress.style.visibility = "hidden";
+        btn.style.visibility = "visible";
     }
 }
 const sendVerificationEmail = () => {
