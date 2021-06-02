@@ -1,16 +1,22 @@
-body{
-    background: url(assets/campus.jpg);
-    background-size: cover;
-   
-    
-   
-    
+
+ @media screen and (min-width: 861px) {
+  .login-card {
+    margin: auto;
+    width: 40%;
+    margin-top: 15%;
+   }
 }
-
-
-.login-card {
-  margin: auto;
-  width: 40%;
-  padding: 10px;
-  margin-top: 15%;
- }
+@media screen and (max-width: 860px) {
+  .login-card {
+    margin: auto;
+    width: 70%;
+    margin-top: 15%;
+   }
+}
+@media screen and (max-width: 560px) {
+  .login-card {
+    margin: auto;
+    width: 90%;
+    margin-top: 15%;
+   }
+}
