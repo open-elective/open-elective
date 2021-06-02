@@ -17,9 +17,7 @@
  small{
      color: gray;
  }
-label{
-    font-weight: 500;
-}
+ 
 .card.white{
     padding: 10px;
     padding-left: 0px;
@@ -29,8 +27,8 @@ label{
 .card .card-content{
     padding: 0;
     padding-top: 10px;
-    padding-left: 15px;
-    padding-right: 20px;
+    padding-left: 25px;
+    padding-right: 30px;
     padding-bottom: 15px;
  } 
 #studpassword{
@@ -65,12 +63,22 @@ label{
 }
 .btn{
     border-radius: 10px; 
-    padding-left: 20px;
-    padding-right: 20px;  
+    padding-left: 40px;
+    padding-right: 40px; 
+    text-transform: none;
+    margin-top: 10px; 
+    font-weight: bold;
 }
 
 .card.white.admin-login{
     padding:0;
+}
+
+h4{
+    font-weight: bold;
+}
+h5{
+    font-weight: bold;
 }
 
  @media screen and (min-width: 861px) {
