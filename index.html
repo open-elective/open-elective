@@ -33,6 +33,15 @@
           <a class="waves-effect waves-light btn blue darken-2" id="studlogin" onclick="studlogin(event)">Login</a>
         </div>
       </div>
+      <div class="progress blue lighten-4" id="loginprogress">
+        <div class="indeterminate blue darken-2"></div>
+    </div>
+    <style>
+      .progress{
+        visibility: hidden;
+       margin-left: 5px;
+      }
+    </style>
     </div>
     <br>
 
@@ -77,6 +86,7 @@
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
   </script>
+  <script src="scripts/auth.js"></script>
 </body>
 
 </html>
