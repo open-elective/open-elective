@@ -7,6 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="index.css">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
 </head>
 <body>
   <div class="login-card">
@@ -19,7 +21,7 @@
                 <small>Enter Official Mail-ID</small>
               </div>
             <div class="input-field col s12">
-                <input id="signinpassword" type="number" class="validate">
+                <input id="signinPRN" type="number" class="validate">
                 <label for="password">PRN</label>
             </div>
 
@@ -27,7 +29,7 @@
             <a href="index.html">Login</a>
           </div>
           <div class="center">
-          <a class="waves-effect waves-light btn ">Sign Up</a>
+          <a class="waves-effect waves-light btn " onclick="signup(event)">Sign Up</a>
         </div>
       </div>
     </div>
@@ -62,6 +64,7 @@
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-</script>    
+</script> 
+<script src="scripts/auth.js"></script>   
 </body>
 </html>
