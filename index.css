@@ -1,8 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
  body{
-     margin: 0px;
-     font-family: 'Popins',sans-serif; 
+    background: url(assets/campus.jpg) no-repeat center center fixed;
+    background-size: cover;
+    margin: 0px;
+    font-family: 'Popins',sans-serif; 
  }
+ .home-overlay {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    position: absolute;
+    top: 0;
+    opacity: .5;
+}
+
  small{
      color: gray;
  }
@@ -14,6 +25,14 @@ label{
     padding-left: 0px;
     border-radius: 20px;
  }
+
+.card .card-content{
+    padding: 0;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 20px;
+    padding-bottom: 15px;
+ } 
 #studpassword{
     padding-left: 10px;
     border:1px solid #1d72bc;
@@ -53,7 +72,6 @@ label{
 .card.white.admin-login{
     padding:0;
 }
-
 
  @media screen and (min-width: 861px) {
   .login-card {
