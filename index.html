@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Elective Allocation Portal</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
@@ -24,13 +24,13 @@
           <input id="studpassword" type="password" placeholder="Password" >
         </div>
         <div id="bottom-text" class="center">
-          <a href="#">Forgot Password</a>
+          <a href="reset.html">Forgot Password</a>
         </div>
         <div class="center">
           <a href="signup.html">Sign Up</a>
         </div>
         <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2">Login</a>
+          <a class="waves-effect waves-light btn blue darken-2" id="studlogin" onclick="studlogin(event)">Login</a>
         </div>
       </div>
     </div>
