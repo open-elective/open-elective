@@ -1,77 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="index.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
   <div class="login-card">
     <div class="card white">
-        <div class="card-content black-text">
-            <span class="card-title center">Login</span>
-            <div class="input-field col s12">
-                <input id="studemail" type="email" class="validate">
-                <label for="email">Email</label>
-                <small>Enter Official Mail-ID</small>
-              </div>
-            <div class="input-field col s12">
-                <input id="studpassword" type="password" class="validate">
-                <label for="password">Password</label>
-            </div>
-          <div class="center">
-            <a href="#">Forgot Password</a>
-          </div>
-          <div class="center">
-            <a href="signup.html">Sign Up</a>
-          </div>
-          <div class="center">
-          <a class="waves-effect waves-light btn ">Login</a>
+      <div class="card-content black-text">
+        <span class="card-title center">Login</span>
+        <div class="input-field col s12 ">
+          <input id="studemail" type="email" class="validate">
+          <label class="top-text" for="email">Email</label>
+          <small>Enter Official Mail-ID</small>
+        </div>
+        <div class="input-field col s12">
+          <input id="studpassword" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+        <div class="center">
+          <a href="#">Forgot Password</a>
+        </div>
+        <div class="center">
+          <a href="signup.html">Sign Up</a>
+        </div>
+        <br>
+        <div class="center">
+          <a class="waves-effect waves-light btn blue darken-2">Login</a>
+        </div>
+      </div>
+    </div>
+    <br>
+
+
+    <div class="card white">
+      <div class="card-content black-text">
+        <span class="card-title center">Admin Login</span>
+        <div class="center">
+          <a class="waves-effect waves-light btn blue darken-2" href="adminlogin.html">Login</a>
         </div>
       </div>
     </div>
 
-    <div class="card white">
-      <div class="card-content black-text">
-          <span class="card-title center">Admin Login</span>
-        <div class="center">
-        <a class="waves-effect waves-light btn" href="adminlogin.html">Login</a>
-      </div>
-    </div>
   </div>
 
-</div>
- 
 
-  
-   
- <!-- Compiled and minified JavaScript -->
+
+
+  <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-<!--Firebase Connection-->
+  <!--Firebase Connection-->
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
-<!-- TODO: Add SDKs for Firebase products that you want to use
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyD9BHz-HTQl518KmUr1GHHx0IXJGj7bJP8",
-    authDomain: "openelectiveallocation.firebaseapp.com",
-    projectId: "openelectiveallocation",
-    storageBucket: "openelectiveallocation.appspot.com",
-    messagingSenderId: "953116708866",
-    appId: "1:953116708866:web:69c0de0ba08dda4efc971b"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-</script>    
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyD9BHz-HTQl518KmUr1GHHx0IXJGj7bJP8",
+      authDomain: "openelectiveallocation.firebaseapp.com",
+      projectId: "openelectiveallocation",
+      storageBucket: "openelectiveallocation.appspot.com",
+      messagingSenderId: "953116708866",
+      appId: "1:953116708866:web:69c0de0ba08dda4efc971b"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </body>
+
 </html>

@@ -1,22 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+ body{
+     margin: 0px;
+     font-family: 'Popins',sans-serif;
+ }
+ small{
+     color: gray;
+ }
+
+ .card.white{
+    padding: 10px;
+    padding-left: 0px;
+    border-radius: 20px;
+ }
+#studpassword{
+    padding-left: 10px;
+    border:1px solid #1d72bc;
+}
+#studemail{
+    padding-left: 10px;
+    border:1px solid #1d72bc;
+    
+}
+#adminpassword{
+    padding-left: 10px;
+    border:1px solid #1d72bc;
+
+}
+#adminemail{
+    padding-left: 10px;
+    border:1px solid #1d72bc;
+}
+.btn{
+    border-radius: 10px;   
+}
 
  @media screen and (min-width: 861px) {
   .login-card {
     margin: auto;
-    width: 40%;
-    margin-top: 15%;
+    width: 30%;
+    margin-top: 6%;
    }
 }
 @media screen and (max-width: 860px) {
   .login-card {
     margin: auto;
     width: 70%;
-    margin-top: 15%;
+    margin-top: 11%;
    }
 }
 @media screen and (max-width: 560px) {
   .login-card {
     margin: auto;
     width: 90%;
-    margin-top: 15%;
+    margin-top: 20%;
    }
 }
