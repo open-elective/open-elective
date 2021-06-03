@@ -1,0 +1,207 @@
+h5 {
+  padding: 0;
+  padding: 10px;
+}
+.schedule{
+  margin-top: 40px;
+}
+.timeline {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.li {
+  transition: all 200ms ease-in;
+}
+
+.status {
+  padding: 10px 40px;
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid #D6DCE0;
+  position: relative;
+  transition: all 200ms ease-in;
+}
+.status h5 {
+  font-weight: 500;
+  font-size: 18px;
+}
+.status:before {
+  content: "";
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  position: absolute;
+  top: -15px;
+  left: 42%;
+  transition: all 200ms ease-in;
+}
+
+.li.complete .status {
+  border-top: 2px solid #1d72bc;
+}
+.li.complete .status:before {
+  background-color: #1d72bc;
+  border: none;
+  transition: all 200ms ease-in;
+}
+.li.complete .status h5 {
+  color: #1d72bc;
+}
+
+@media (min-device-width: 320px) and (max-device-width: 700px) {
+  .timeline {
+    list-style-type: none;
+    display: block;
+  }
+
+  .li {
+    transition: all 200ms ease-in;
+    display: flex;
+    width: inherit;
+  }
+
+  .timestamp {
+    width: 100px;
+  }
+
+  .status:before {
+    left: -8%;
+    top: 30%;
+    transition: all 200ms ease-in;
+  }
+}
+
+/* The browser window */
+.container {
+  margin:30px 50px;
+  min-height: 500px;
+  float: left;
+  border: 3px solid #1d72bc;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  max-width: 50%;
+  border-radius: 10px;
+}
+
+/* Container for columns and the top "toolbar" */
+.br-row {
+  padding: 10px;
+  background: #1d72bc;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+}
+
+.left {
+  width: 15%;
+}
+
+.right {
+  width: 10%;
+}
+
+.middle {
+  width: 75%;
+}
+
+/* Clear floats after the columns */
+.br-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Three dots */
+.dot {
+  margin-top: 4px;
+  height: 12px;
+  width: 12px;
+  background-color: #1d72bc;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Style the input field */
+ .br-input {
+  width: 100% !important;
+  border-radius: 3px !important;
+  border: none !important;
+  background-color: white !important;
+  height: 25px !important;
+  color: #666 !important;
+  padding: 5px !important;
+  margin-bottom: 0 !important;
+} 
+
+/* Three bars (hamburger menu) */
+.bar {
+  width: 17px;
+  height: 3px;
+  background-color: white;
+  margin: 3px 0;
+  display: block;
+}
+
+/* Page content */
+.content {
+  padding: 10px;
+}
+
+tr {
+  border-bottom: 0;
+}
+
+.stage0{
+  max-width: 40%;
+  float: left;
+  /* display: none; */
+}
+
+.stage1{
+  max-width: 40%;
+  float: left;
+  display: none; 
+}
+.stage2{
+  max-width: 40%;
+  float: left;
+  display: none;  
+}
+.stage3{
+  max-width: 40%;
+  float: left;
+  display: none; 
+}
+
+
+
+
+.card.white {
+  margin-top: 20%;
+  margin-left: 80px;
+  padding: 10px;
+  padding-left: 0px;
+  border: 1px solid #1d72bc;
+  border-radius: 20px;
+}
+#loginpassword {
+  padding-left: 10px;
+  border: 1px solid #1d72bc;
+}
+.btn {
+  border-radius: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-transform: none;
+  margin-top: 10px;
+  font-weight: bold;
+}

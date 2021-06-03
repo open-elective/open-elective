@@ -11,6 +11,7 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/adminhomepage.css">
 </head>
 
 <body>
@@ -18,56 +19,65 @@
     <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
     <h4 class="center">Schedule</h4>
   </ul>
-  
-  
+
+
   <ul id="slide-out" class="sidenav blue darken-2">
-    <li><div class="user-view">
-      <div class="background">
-        <img id="test" src="assets/bg.jpg">
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <img id="test" src="assets/bg.jpg">
+        </div>
+        <a href="#user"><img class="circle" src="assets/user.png"></a>
+        <a href="#name"><span class="black-text name" id="navname"><b>John Doe</b></span></a>
+        <a href="#email"><span class="black-text email" id="navemail">jdandturk@gmail.com</span></a>
       </div>
-      <a href="#user"><img class="circle" src="assets/user.png"></a>
-      <a href="#name"><span class="black-text name" id="navname"><b>John Doe</b></span></a>
-      <a href="#email"><span class="black-text email" id="navemail">jdandturk@gmail.com</span></a>
-    </div></li>
-    
-    <li><a href="adminhomepage.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">schedule</i>Schedule</a></li>
-    <li><a href="courses.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">book</i>Courses Setting</a></li>
-    <li><a href="allocation.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">check_box</i>Allocation</a></li>
-    <li><a href="studdata.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">data_usage</i>Student Data</a></li>
-    <li><a href="adminsettings.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">settings</i>Admin Settings</a></li>
-    <li><div class="divider white-text"></div></li>
+    </li>
+
+    <li><a href="adminhomepage.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">schedule</i>Schedule</a></li>
+    <li><a href="courses.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">book</i>Courses Setting</a></li>
+    <li><a href="allocation.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">check_box</i>Allocation</a></li>
+    <li><a href="studdata.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">data_usage</i>Student Data</a></li>
+    <li><a href="adminsettings.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">settings</i>Admin Settings</a></li>
+    <li>
+      <div class="divider white-text"></div>
+    </li>
     <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
   </ul>
-  
-  
-<div class="schedule">
-  <ul class="timeline" id="timeline">
-    <li class="li complete">
-      <div class="status">
-        <h5>Stage 1</h5>
-      </div>
-    </li>
-    <li class="li complete">
-      <div class="status">
-        <h5>Stage 2</h5>
-      </div>
-    </li>
-    <li class="li complete">
-      <div class="status">
-        <h5>Stage 3</h5>
-      </div>
-    </li>
-    <li class="li complete">
-      <div class="status">
-        <h5>Stage 4</h5>
-      </div>
-    </li>
-        <li class="li complete">
-      <div class="status">
-        <h5>Stage 5</h5>
-      </div>
-    </li>
-   </ul>  
+
+
+  <div class="schedule">
+    <ul class="timeline" id="timeline">
+      <li class="li complete">
+        <div class="status">
+          <h5>Stage 0</h5>
+        </div>
+      </li>
+      <li class="li complete">
+        <div class="status">
+          <h5>Stage 1</h5>
+        </div>
+      </li>
+      <li class="li complete">
+        <div class="status">
+          <h5>Stage 2</h5>
+        </div>
+      </li>
+      <li class="li complete">
+        <div class="status">
+          <h5>Stage 3</h5>
+        </div>
+      </li>
+      <li class="li complete">
+        <div class="status">
+          <h5>Stage 4</h5>
+        </div>
+      </li>
+    </ul>
   </div>
 
   <div class="container">
@@ -89,54 +99,91 @@
         </div>
       </div>
     </div>
-  
+
     <div class="content">
       <h5 class="center">Preference filling for Open Elective will start at ... </h5>
     </div>
   </div>
 
-<div class="set-time">
-  <div class="card white">
-    <span class="card-title center">
+  <div class="stage0">
+    <div class="card white">
+      <span class="card-title center">
         <h5 class="center">Open Portal For Student</h5>
-    </span>
-    <div class="card-content">
-        <div>
-          <input id="sdate" type="text" placeholder="Select Date" class="datepicker black-text">
-          <input id="stime" type="text" placeholder="Select Time" class="timepicker black-text">
-        </div>
+      </span>
+      <div class="card-content">
         <div class="center">
-            <a class="waves-effect waves-light btn blue darken-2" id="openportal"
-                onclick="openportal(event)">Open Portal</a>
-                <a class="waves-effect waves-light btn blue darken-2" id="addtime"
-                onclick="addtime(event)">Set Time</a>
+          <a class="waves-effect waves-light btn blue darken-2" id="openportal" onclick="openportal(event)">Open
+            Portal</a>
         </div>
+      </div>
     </div>
-</div>
-</div>
+  </div>
+
+  <div class="stage1">
+    <div class="card white">
+      <span class="card-title center">
+        <h5 class="center">Close Registration</h5>
+      </span>
+      <div class="card-content">
+        <div class="center">
+          <a class="waves-effect waves-light btn blue darken-2" id="closeportal" onclick="closeregistration(event)">Close
+            Registration</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage2">
+    <div class="card white">
+      <span class="card-title center">
+        <h5 class="center">Publish</h5>
+      </span>
+      <div class="card-content">
+        <div class="center">
+          <a class="waves-effect waves-light btn blue darken-2" id="publish" onclick="publish(event)">Publish
+            Results</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage3">
+    <div class="card white">
+      <span class="card-title center">
+        <h5 class="center">Close Portal</h5>
+      </span>
+      <div class="card-content">
+        <div class="center">
+          <a class="waves-effect waves-light btn blue darken-2" id="publish" onclick="publish(event)">Close
+            Portal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.timepicker');
-  var instances = M.Timepicker.init(elems);
-});
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems);
-  });
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.timepicker');
+      var instances = M.Timepicker.init(elems);
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.datepicker');
+      var instances = M.Datepicker.init(elems);
+    });
 
-</script>
+  </script>
 
- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
-  });
- </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems);
+    });
+  </script>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
