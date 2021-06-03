@@ -1,0 +1,38 @@
+body{
+    overflow: hidden;
+}
+
+.data{
+    margin: 20px 20px;
+}
+.database-btn a {
+    margin: 10px;
+}
+
+.progress {
+    visibility: hidden;
+    margin-left: 5px;
+}
+
+.assign{
+    margin:auto;
+    width: 40%;
+}
+
+#adminname{
+    padding-left:10px;
+    border: 1px solid #1d72bc;
+}
+
+#adminemail{
+    padding-left:10px;
+    border: 1px solid #1d72bc;
+
+}
+hr{
+    margin:20px 40px;
+}
+
+h5{
+    font-weight: bold;
+}
