@@ -6,24 +6,23 @@ async function signup(e) {
     const PRN = document.getElementById("signinPRN")
     const password = document.getElementById("signinpassword");
     try {
-        if(email.value.slice(-13) != "@mitaoe.ac.in") {
+        if (email.value.slice(-13) != "@mitaoe.ac.in") {
             throw {
-                message:  "Invalid Mail-id (Use official mail-id)",
+                message: "Invalid Mail-id (Use official mail-id)",
                 error: new Error()
             };
         }
-        if(PRN.value.length != 10)
-        {
+        if (PRN.value.length != 10) {
             throw {
-                message:  "Invalid PRN (PRN should be 10 digits)",
+                message: "Invalid PRN (PRN should be 10 digits)",
                 error: new Error()
-            }; 
+            };
         }
         var progress = document.getElementById("signinprogress");
         var btn = document.getElementById("signinbtn");
         progress.style.visibility = "visible";
         btn.style.visibility = "hidden";
-        const result = await firebase.auth().createUserWithEmailAndPassword(email.value , password.value)
+        const result = await firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
         sendVerificationEmail()
         await result.user.updateProfile({
             displayName: "User",
@@ -48,12 +47,12 @@ async function signup(e) {
 }
 const sendVerificationEmail = () => {
     firebase.auth().currentUser.sendEmailVerification()
-    .then(() => {
-        console.log('Verification Email Sent Successfully !');    
-    })
-    .catch(error => {
-        console.error(error);
-    })
+        .then(() => {
+            console.log('Verification Email Sent Successfully !');
+        })
+        .catch(error => {
+            console.error(error);
+        })
 }
 
 
@@ -61,11 +60,11 @@ const sendVerificationEmail = () => {
 
 
 
-//StudLogin
-async function studlogin(e) {
+//Login
+async function login(e) {
     e.preventDefault()
-    const email = document.getElementById("studemail");
-    const password = document.getElementById("studpassword");
+    const email = document.getElementById("loginemail");
+    const password = document.getElementById("loginpassword");
     try {
         if (email.value.slice(-13) != "@mitaoe.ac.in") {
             throw {
@@ -74,26 +73,22 @@ async function studlogin(e) {
             };
         }
         var progress = document.getElementById("loginprogress");
-        var btn = document.getElementById("studlogin");
+        var btn = document.getElementById("login");
         progress.style.visibility = "visible";
         btn.style.visibility = "hidden";
-
         const result = await firebase.auth().signInWithEmailAndPassword(email.value, password.value)
-        if(!firebase.auth().currentUser.emailVerified)
-        {
+        if (!firebase.auth().currentUser.emailVerified) {
             sendVerificationEmail()
             throw {
                 message: "Email Id not verified.\nPlease check your inbox for verification email",
                 error: new Error()
             };
         }
+        
         email.value = ""
         password.value = ""
         progress.style.visibility = "hidden";
         btn.style.visibility = "visible";
-        window.alert("login successful")
-        console.log(firebase.auth().currentUser)
-        window.location.href = "studhomepage.html";
     }
     catch (err) {
         if (err.code == "auth/wrong-password") {
@@ -107,54 +102,6 @@ async function studlogin(e) {
         btn.style.visibility = "visible";
     }
 }
-
-//AdminLogin
-async function adminlogin(e) {
-    e.preventDefault()
-    const email = document.getElementById("adminemail");
-    const password = document.getElementById("adminpassword");
-    try {
-        // if (email.value.slice(-13) != "@mitaoe.ac.in") {
-        //     throw {
-        //         message: "Invalid Mail-id (Use official mail-id)",
-        //         error: new Error()
-        //     };
-        // }
-        var progress = document.getElementById("loginprogress");
-        var btn = document.getElementById("studlogin");
-        progress.style.visibility = "visible";
-        btn.style.visibility = "hidden";
-
-        const result = await firebase.auth().signInWithEmailAndPassword(email.value, password.value)
-        if(!firebase.auth().currentUser.emailVerified)
-        {
-            sendVerificationEmail()
-            throw {
-                message: "Email Id not verified.\nPlease check your inbox for verification email",
-                error: new Error()
-            };
-        }
-        email.value = ""
-        password.value = ""
-        progress.style.visibility = "hidden";
-        btn.style.visibility = "visible";
-        window.alert("login successful")
-        console.log(firebase.auth().currentUser)
-        window.location.href = "studhomepage.html";
-    }
-    catch (err) {
-        if (err.code == "auth/wrong-password") {
-            err.message = "Incorrect Password"
-        }
-        if (err.code == "auth/user-not-found") {
-            err.message = "Email does not exist, Please sign-up"
-        }
-        window.alert(err.message)
-        progress.style.visibility = "hidden";
-        btn.style.visibility = "visible";
-    }
-}
-
 
 
 //log out
@@ -173,18 +120,25 @@ function logout() {
 
 //check if loggedin
 firebase.auth().onAuthStateChanged((user) => {
-    if (user && firebase.auth().currentUser.emailVerified ) {
-        if(window.location.href.slice(-17) != "studhomepage.html")
-        {
-            window.location.href = "studhomepage.html";
+    if (user && firebase.auth().currentUser.emailVerified) {
+        if (firebase.auth().currentUser.displayName == "User") {
+            if (window.location.href.slice(-17) != "studhomepage.html") {
+                window.location.href = "studhomepage.html";
+            }
         }
-    } 
+        else if(firebase.auth().currentUser.displayName == "Admin")
+        {
+            if (window.location.href.slice(-18) != "adminhomepage.html") {
+                window.location.href = "adminhomepage.html";
+            }
+        }
+        console.log(firebase.auth().currentUser)
+    }
 });
 
 
 //forget Password
-function forgotpass(e)
-{
+function forgotpass(e) {
     e.preventDefault()
     var auth = firebase.auth();
     var emailAddress = document.getElementById("studresetemail").value;
@@ -193,11 +147,11 @@ function forgotpass(e)
     progress.style.visibility = "visible";
     btn.style.visibility = "hidden";
 
-    auth.sendPasswordResetEmail(emailAddress).then(function() {
+    auth.sendPasswordResetEmail(emailAddress).then(function () {
         window.alert("Reset Link sent")
         progress.style.visibility = "hidden";
         btn.style.visibility = "visible";
-    }).catch(function(error) {
+    }).catch(function (error) {
         window.alert(error.message)
         progress.style.visibility = "hidden";
         btn.style.visibility = "visible";
