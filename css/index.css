@@ -33,22 +33,12 @@ small {
     padding-bottom: 15px;
 }
 
-#studpassword {
+#loginpassword {
     padding-left: 10px;
     border: 1px solid #1d72bc;
 }
 
-#studemail {
-    padding-left: 10px;
-    border: 1px solid #1d72bc;
-}
-
-#adminpassword {
-    padding-left: 10px;
-    border: 1px solid #1d72bc;
-}
-
-#adminemail {
+#loginemail {
     padding-left: 10px;
     border: 1px solid #1d72bc;
 }
