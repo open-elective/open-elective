@@ -116,3 +116,18 @@ async function closeportal() {
         console.log("Error getting document:", error);
     });
 }
+
+firebase.auth().onAuthStateChanged((user) => {
+    if (user){
+        firebase.firestore().collection("allow-users").doc(firebase.auth().currentUser.uid).set({
+            Allow:1
+        })
+           .then(() => {
+               console.log(" written!");
+           })
+           .catch((error) => {
+               console.error("Error writing document: ", error);
+           });
+        
+    }
+});
