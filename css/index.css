@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap');
 body {
     background: url(../assets/campus.jpg) no-repeat center center fixed;
     background-size: cover;
     margin: 0px;
-    font-family: 'Popins', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .home-overlay {
@@ -88,6 +88,11 @@ small {
     margin-left: 5px;
 }
 
+#resetprogress {
+    margin: 0px;
+    margin-left: 5px;
+}
+
 .btn {
     border-radius: 10px;
     padding-left: 40px;
@@ -101,16 +106,27 @@ small {
     padding: 0;
     margin-top: 30px;
 }
+.heading-card{
+    background-color: transparent;
+}
+h3{
+    color: white;
+    position: relative;
+    padding: 15px;
+    
+}
 
 h4 {
     font-weight: bold;
     margin-top: 10px;
+    font-size: 35px;
     color: #1976d2;
 }
 
 h5 {
     font-weight: bold;
     color: #1976d2;
+    font-size: 25px;
 }
 
 @media screen and (min-width: 861px) {
@@ -133,6 +149,6 @@ h5 {
     .login-card {
         margin: auto;
         width: 90%;
-        margin-top: 20%;
+        margin-top: 15%;
     }
 }

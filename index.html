@@ -2,89 +2,78 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Open Elective Allocation Portal</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" href="css/index.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Elective Allocation Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
-  <div class="home-overlay"></div>
-  <div class="login-card">
-    <div class="card white">
-      <span class="card-title center">
-        <h4>Login</h4>
-      </span>
-      <div class="card-content">
-        <div>
-          <input id="studemail" type="email" placeholder="Email ID">
-          <small>Enter Official Mail-ID</small>
+
+    <div class="home-overlay"></div>
+    <h3 class="center">Welcome to Open Elective Allocation Portal</h3>
+    <main class="login-card">
+        <div class="card white">
+            <span class="card-title center">
+                <h4>Login</h4>
+            </span>
+            <div class="card-content">
+                <div>
+                    <input id="studemail" type="email" placeholder="Email ID">
+                    <small>Enter Official Mail-ID</small>
+                </div>
+                <div>
+                    <input id="studpassword" type="password" placeholder="Password">
+                </div>
+                <div id="bottom-text" class="center">
+                    <a href="reset.html">Forgot Password</a>
+                </div>
+                <div class="center">
+                    <a href="signup.html">Sign Up</a>
+                </div>
+                <div class="center">
+                    <a class="waves-effect waves-light btn blue darken-2" id="studlogin"
+                        onclick="studlogin(event)">Login</a>
+                </div>
+            </div>
+            <div class="progress blue lighten-4" id="loginprogress">
+                <div class="indeterminate blue darken-2"></div>
+            </div>
         </div>
-        <div>
-          <input id="studpassword" type="password" placeholder="Password">
-        </div>
-        <div id="bottom-text" class="center">
-          <a href="reset.html">Forgot Password</a>
-        </div>
-        <div class="center">
-          <a href="signup.html">Sign Up</a>
-        </div>
-        <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" id="studlogin" onclick="studlogin(event)">Login</a>
-        </div>
-      </div>
-      <div class="progress blue lighten-4" id="loginprogress">
-        <div class="indeterminate blue darken-2"></div>
-      </div>
-    </div>
 
-
-
-    <div class="card white admin-login">
-      <div class="card-content black-text">
-        <span class="card-title center">
-          <h5>Admin Login</h5>
-        </span>
-
-        <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" href="adminlogin.html">Login</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
+    </main>
 
 
 
 
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  <!--Firebase Connection-->
+    <!--Firebase Connection-->
 
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
-  <!-- TODO: Add SDKs for Firebase products that you want to use
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-  <script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-      apiKey: "AIzaSyD9BHz-HTQl518KmUr1GHHx0IXJGj7bJP8",
-      authDomain: "openelectiveallocation.firebaseapp.com",
-      projectId: "openelectiveallocation",
-      storageBucket: "openelectiveallocation.appspot.com",
-      messagingSenderId: "953116708866",
-      appId: "1:953116708866:web:69c0de0ba08dda4efc971b"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-  </script>
-  <script src="scripts/auth.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyD9BHz-HTQl518KmUr1GHHx0IXJGj7bJP8",
+            authDomain: "openelectiveallocation.firebaseapp.com",
+            projectId: "openelectiveallocation",
+            storageBucket: "openelectiveallocation.appspot.com",
+            messagingSenderId: "953116708866",
+            appId: "1:953116708866:web:69c0de0ba08dda4efc971b"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="scripts/auth.js"></script>
 </body>
 
 </html>
