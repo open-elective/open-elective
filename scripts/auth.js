@@ -61,7 +61,7 @@ const sendVerificationEmail = () => {
 
 
 
-//Login
+//StudLogin
 async function studlogin(e) {
     e.preventDefault()
     const email = document.getElementById("studemail");
@@ -108,7 +108,52 @@ async function studlogin(e) {
     }
 }
 
+//AdminLogin
+async function adminlogin(e) {
+    e.preventDefault()
+    const email = document.getElementById("adminemail");
+    const password = document.getElementById("adminpassword");
+    try {
+        // if (email.value.slice(-13) != "@mitaoe.ac.in") {
+        //     throw {
+        //         message: "Invalid Mail-id (Use official mail-id)",
+        //         error: new Error()
+        //     };
+        // }
+        var progress = document.getElementById("loginprogress");
+        var btn = document.getElementById("studlogin");
+        progress.style.visibility = "visible";
+        btn.style.visibility = "hidden";
 
+        const result = await firebase.auth().signInWithEmailAndPassword(email.value, password.value)
+        if(!firebase.auth().currentUser.emailVerified)
+        {
+            sendVerificationEmail()
+            throw {
+                message: "Email Id not verified.\nPlease check your inbox for verification email",
+                error: new Error()
+            };
+        }
+        email.value = ""
+        password.value = ""
+        progress.style.visibility = "hidden";
+        btn.style.visibility = "visible";
+        window.alert("login successful")
+        console.log(firebase.auth().currentUser)
+        window.location.href = "studhomepage.html";
+    }
+    catch (err) {
+        if (err.code == "auth/wrong-password") {
+            err.message = "Incorrect Password"
+        }
+        if (err.code == "auth/user-not-found") {
+            err.message = "Email does not exist, Please sign-up"
+        }
+        window.alert(err.message)
+        progress.style.visibility = "hidden";
+        btn.style.visibility = "visible";
+    }
+}
 
 
 
