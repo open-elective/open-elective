@@ -69,8 +69,67 @@
     </li>
    </ul>  
   </div>
+
+  <div class="container">
+    <div class="br-row">
+      <div class="column left">
+        <span class="dot" style="background:#ED594A;"></span>
+        <span class="dot" style="background:#FDD800;"></span>
+        <span class="dot" style="background:#5AC05A;"></span>
+      </div>
+      <div class="column middle">
+        <input class="br-input" type="text" value="https://open-elective.github.io">
+      </div>
+      <div class="column right">
+        <div style="float:right">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="content">
+      <h3>Browser Window</h3>
+      <p>How to create a detailed browser window look with CSS.</p>
+    </div>
+  </div>
+
+<div class="set-time">
+  <div class="card white">
+    <span class="card-title center">
+        <h5 class="center">Open Portal For Student</h5>
+    </span>
+    <div class="card-content">
+        <div>
+          <input id="sdate" type="text" placeholder="Select Date" class="datepicker black-text">
+          <input id="stime" type="text" placeholder="Select Time" class="timepicker black-text">
+        </div>
+        <div class="center">
+            <a class="waves-effect waves-light btn blue darken-2" id="openportal"
+                onclick="openportal(event)">Open Portal</a>
+                <a class="waves-effect waves-light btn blue darken-2" id="addtime"
+                onclick="addtime(event)">Set Time</a>
+        </div>
+    </div>
+</div>
+</div>
+
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.timepicker');
+  var instances = M.Timepicker.init(elems);
+});
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems);
+  });
+
+</script>
 
  <script>
     document.addEventListener('DOMContentLoaded', function() {

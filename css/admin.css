@@ -119,3 +119,114 @@ h4{
     transition: all 200ms ease-in;
   }
 }
+
+/* The browser window */
+.container {
+  margin:30px 50px;
+  min-height: 500px;
+  float: left;
+  border: 3px solid #1d72bc;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  max-width: 50%;
+  border-radius: 10px;
+}
+
+/* Container for columns and the top "toolbar" */
+.br-row {
+  padding: 10px;
+  background: #1d72bc;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+}
+
+.left {
+  width: 15%;
+}
+
+.right {
+  width: 10%;
+}
+
+.middle {
+  width: 75%;
+}
+
+/* Clear floats after the columns */
+.br-row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Three dots */
+.dot {
+  margin-top: 4px;
+  height: 12px;
+  width: 12px;
+  background-color: #1d72bc;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Style the input field */
+ .br-input {
+  width: 100% !important;
+  border-radius: 3px !important;
+  border: none !important;
+  background-color: white !important;
+  height: 25px !important;
+  color: #666 !important;
+  padding: 5px !important;
+  margin-bottom: 0 !important;
+} 
+
+/* Three bars (hamburger menu) */
+.bar {
+  width: 17px;
+  height: 3px;
+  background-color: white;
+  margin: 3px 0;
+  display: block;
+}
+
+/* Page content */
+.content {
+  padding: 10px;
+}
+
+tr {
+  border-bottom: 0;
+}
+
+.set-time{
+  max-width: 40%;
+  float: left;
+  
+}
+
+.card.white {
+  margin-top: 20%;
+  margin-left: 80px;
+  padding: 10px;
+  padding-left: 0px;
+  border: 1px solid #1d72bc;
+  border-radius: 20px;
+}
+#loginpassword {
+  padding-left: 10px;
+  border: 1px solid #1d72bc;
+}
+.btn {
+  border-radius: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
+  text-transform: none;
+  margin-top: 10px;
+  font-weight: bold;
+}
