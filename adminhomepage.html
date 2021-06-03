@@ -8,6 +8,8 @@
   <title>Admin Console</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
   <link rel="stylesheet" href="css/admin.css">
 </head>
 
@@ -24,8 +26,8 @@
         <img id="test" src="assets/bg.jpg">
       </div>
       <a href="#user"><img class="circle" src="assets/user.png"></a>
-      <a href="#name"><span class="black-text name"><b>John Doe</b></span></a>
-      <a href="#email"><span class="black-text  email">jdandturk@gmail.com</span></a>
+      <a href="#name"><span class="black-text name" id="navname"><b>John Doe</b></span></a>
+      <a href="#email"><span class="black-text email" id="navemail">jdandturk@gmail.com</span></a>
     </div></li>
     
     <li><a href="adminhomepage.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">schedule</i>Schedule</a></li>
@@ -38,7 +40,35 @@
   </ul>
   
   
-
+<div class="schedule">
+  <ul class="timeline" id="timeline">
+    <li class="li complete">
+      <div class="status">
+        <h5>Stage 1</h5>
+      </div>
+    </li>
+    <li class="li complete">
+      <div class="status">
+        <h5>Stage 2</h5>
+      </div>
+    </li>
+    <li class="li complete">
+      <div class="status">
+        <h5>Stage 3</h5>
+      </div>
+    </li>
+    <li class="li complete">
+      <div class="status">
+        <h5>Stage 4</h5>
+      </div>
+    </li>
+        <li class="li complete">
+      <div class="status">
+        <h5>Stage 5</h5>
+      </div>
+    </li>
+   </ul>  
+  </div>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 

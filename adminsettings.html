@@ -24,8 +24,8 @@
         <img id="test" src="assets/bg.jpg">
       </div>
       <a href="#user"><img class="circle" src="assets/user.png"></a>
-      <a href="#name"><span class="black-text name"><b>John Doe</b></span></a>
-      <a href="#email"><span class="black-text  email">jdandturk@gmail.com</span></a>
+      <a href="#name"><span class="black-text name" id="navname"><b>John Doe</b></span></a>
+      <a href="#email"><span class="black-text email" id="navemail">jdandturk@gmail.com</span></a>
     </div></li>
     
     <li><a href="adminhomepage.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">schedule</i>Schedule</a></li>
@@ -47,6 +47,10 @@
   <div class="center">
     <a class="waves-effect waves-light btn blue darken-2" id="addadmin"
         onclick="addadmin(event)">Login</a>
+</div>
+
+<div class="progress blue lighten-4" id="addadminprogress">
+  <div class="indeterminate blue darken-2"></div>
 </div>
   
 
