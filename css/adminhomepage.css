@@ -78,7 +78,7 @@ h5 {
 
 /* The browser window */
 .container {
-  margin:30px 50px;
+  margin: 0 50px;
   min-height: 500px;
   float: left;
   border: 3px solid #1d72bc;
@@ -163,7 +163,7 @@ tr {
 .stage0{
   max-width: 40%;
   float: left;
-  /* display: none; */
+  display: none;
 }
 
 .stage1{

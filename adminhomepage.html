@@ -52,29 +52,24 @@
 
   <div class="schedule">
     <ul class="timeline" id="timeline">
-      <li class="li complete">
+      <li class="li">
         <div class="status">
-          <h5>Stage 0</h5>
+          <h5>Closed State</h5>
         </div>
       </li>
-      <li class="li complete">
+      <li class="li">
         <div class="status">
-          <h5>Stage 1</h5>
+          <h5>Open Portal</h5>
         </div>
       </li>
-      <li class="li complete">
+      <li class="li">
         <div class="status">
-          <h5>Stage 2</h5>
+          <h5>Close Registration</h5>
         </div>
       </li>
-      <li class="li complete">
+      <li class="li">
         <div class="status">
-          <h5>Stage 3</h5>
-        </div>
-      </li>
-      <li class="li complete">
-        <div class="status">
-          <h5>Stage 4</h5>
+          <h5>Publish</h5>
         </div>
       </li>
     </ul>
@@ -101,7 +96,7 @@
     </div>
 
     <div class="content">
-      <h5 class="center">Preference filling for Open Elective will start at ... </h5>
+      <h5 class="center" id="studviewtext"></h5>
     </div>
   </div>
 
@@ -112,7 +107,7 @@
       </span>
       <div class="card-content">
         <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" id="openportal" onclick="openportal(event)">Open
+          <a class="waves-effect waves-light btn blue darken-2" id="openportal" onclick="openportal()">Open
             Portal</a>
         </div>
       </div>
@@ -126,7 +121,7 @@
       </span>
       <div class="card-content">
         <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" id="closeportal" onclick="closeregistration(event)">Close
+          <a class="waves-effect waves-light btn blue darken-2" id="closeregistration" onclick="closeregistration()">Close
             Registration</a>
         </div>
       </div>
@@ -140,7 +135,7 @@
       </span>
       <div class="card-content">
         <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" id="publish" onclick="publish(event)">Publish
+          <a class="waves-effect waves-light btn blue darken-2" id="publish" onclick="publish()">Publish
             Results</a>
         </div>
       </div>
@@ -154,7 +149,7 @@
       </span>
       <div class="card-content">
         <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" id="publish" onclick="publish(event)">Close
+          <a class="waves-effect waves-light btn blue darken-2" id="closeportal" onclick="closeportal()">Close
             Portal</a>
         </div>
       </div>
@@ -206,6 +201,7 @@
     firebase.initializeApp(firebaseConfig);
   </script>
   <script src="scripts/adminconsole.js"></script>
+  <script src="scripts/adminhomepage.js"></script>
 </body>
 
 </html>

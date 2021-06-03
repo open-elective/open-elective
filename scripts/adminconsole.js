@@ -17,4 +17,8 @@ firebase.auth().onAuthStateChanged((user) => {
     if (user && document.getElementById("navname").innerHTML!=""){
         getData();
     }
+    else if(!user)
+    {
+        window.location.href = "index.html";
+    }
 });
