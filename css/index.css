@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
- body{
+body {
     background: url(../assets/campus.jpg) no-repeat center center fixed;
     background-size: cover;
     margin: 0px;
-    font-family: 'Popins',sans-serif; 
- }
- .home-overlay {
+    font-family: 'Popins', sans-serif;
+}
+
+.home-overlay {
     width: 100%;
     height: 100%;
     background: #000;
@@ -14,95 +15,124 @@
     opacity: .5;
 }
 
- small{
-     color: gray;
- }
- 
-.card.white{
+small {
+    color: gray;
+}
+
+.card.white {
     padding: 10px;
     padding-left: 0px;
     border-radius: 20px;
- }
+}
 
-.card .card-content{
+.card .card-content {
     padding: 0;
     padding-top: 10px;
     padding-left: 25px;
     padding-right: 30px;
     padding-bottom: 15px;
- } 
-#studpassword{
-    padding-left: 10px;
-    border:1px solid #1d72bc;
 }
-#studemail{
-    padding-left: 10px;
-    border:1px solid #1d72bc;
-    
-}
-#adminpassword{
-    padding-left: 10px;
-    border:1px solid #1d72bc;
 
-}
-#adminemail{
+#studpassword {
     padding-left: 10px;
-    border:1px solid #1d72bc;   
+    border: 1px solid #1d72bc;
 }
-#signinemail{
+
+#studemail {
     padding-left: 10px;
-    border:1px solid #1d72bc;
-} 
-#signinPRN{
-    padding-left: 10px;
-    border:1px solid #1d72bc; 
+    border: 1px solid #1d72bc;
 }
-#signinpassword{
+
+#adminpassword {
     padding-left: 10px;
-    border:1px solid #1d72bc;     
+    border: 1px solid #1d72bc;
 }
-#studresetemail{
+
+#adminemail {
     padding-left: 10px;
-    border:1px solid #1d72bc;
+    border: 1px solid #1d72bc;
 }
-.btn{
-    border-radius: 10px; 
+
+#signinemail {
+    padding-left: 10px;
+    border: 1px solid #1d72bc;
+}
+
+#signinPRN {
+    padding-left: 10px;
+    border: 1px solid #1d72bc;
+}
+
+#signinpassword {
+    padding-left: 10px;
+    border: 1px solid #1d72bc;
+}
+
+#studresetemail {
+    padding-left: 10px;
+    border: 1px solid #1d72bc;
+}
+
+.progress {
+    visibility: hidden;
+    margin-left: 5px;
+}
+
+#loginprogress {
+    margin: 0px;
+    margin-left: 5px;
+}
+
+#signinprogress {
+    margin: 0px;
+    margin-left: 5px;
+}
+
+.btn {
+    border-radius: 10px;
     padding-left: 40px;
-    padding-right: 40px; 
+    padding-right: 40px;
     text-transform: none;
-    margin-top: 10px; 
+    margin-top: 10px;
     font-weight: bold;
 }
 
-.card.white.admin-login{
-    padding:0;
+.card.white.admin-login {
+    padding: 0;
+    margin-top: 30px;
 }
 
-h4{
+h4 {
     font-weight: bold;
-}
-h5{
-    font-weight: bold;
+    margin-top: 10px;
+    color: #1976d2;
 }
 
- @media screen and (min-width: 861px) {
-  .login-card {
-    margin: auto;
-    width: 30%;
-    margin-top: 6%;
-   }
+h5 {
+    font-weight: bold;
+    color: #1976d2;
 }
+
+@media screen and (min-width: 861px) {
+    .login-card {
+        margin: auto;
+        width: 30%;
+        margin-top: 6%;
+    }
+}
+
 @media screen and (max-width: 860px) {
-  .login-card {
-    margin: auto;
-    width: 70%;
-    margin-top: 11%;
-   }
+    .login-card {
+        margin: auto;
+        width: 70%;
+        margin-top: 11%;
+    }
 }
+
 @media screen and (max-width: 560px) {
-  .login-card {
-    margin: auto;
-    width: 90%;
-    margin-top: 20%;
-   }
+    .login-card {
+        margin: auto;
+        width: 90%;
+        margin-top: 20%;
+    }
 }
