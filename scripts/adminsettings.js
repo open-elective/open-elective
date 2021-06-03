@@ -4,21 +4,21 @@ async function addadmin(e)
     const email = document.getElementById("adminemail")
     const Name = document.getElementById("adminname")
     try {
-        // if (email.value.slice(-13) != "@mitaoe.ac.in") {
-        //     throw {
-        //         message: "Invalid Mail-id (Use official mail-id)",
-        //         error: new Error()
-        //     };
-        // }
-        // if (PRN.value.length != 10) {
-        //     throw {
-        //         message: "Invalid PRN (PRN should be 10 digits)",
-        //         error: new Error()
-        //     };
-        // }
-        //var progress = document.getElementById("addadmin");
+        if(Name.value.length == 0) {
+            throw {
+                message: "Please Enter Name",
+                error: new Error()
+            };
+        }
+        if (email.value.slice(-13) != "@mitaoe.ac.in") {
+            throw {
+                message: "Invalid Mail-id (Use official mail-id)",
+                error: new Error()
+            };
+        }
+        var progress = document.getElementById("addadminprogress");
         var btn = document.getElementById("addadmin");
-        //progress.style.visibility = "visible";
+        progress.style.visibility = "visible";
         btn.style.visibility = "hidden";
         const result = await firebase.auth().createUserWithEmailAndPassword(email.value, "open_elective")
         sendVerificationEmail()
@@ -28,7 +28,7 @@ async function addadmin(e)
         });
         Name.value = ""
         email.value = ""
-        //progress.style.visibility = "hidden";
+        progress.style.visibility = "hidden";
         btn.style.visibility = "visible";
         window.alert("Admin Added Successfully. (Please check inbox for verification)")
         logout()
@@ -38,7 +38,7 @@ async function addadmin(e)
             err.message = "Email already exist"
         }
         window.alert(err.message);
-        //progress.style.visibility = "hidden";
+        progress.style.visibility = "hidden";
         btn.style.visibility = "visible";
     }
 }
