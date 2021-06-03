@@ -136,6 +136,9 @@ h5 {
 }
 
 @media screen and (max-width: 560px) {
+    h3{
+        font-size: 33px;
+    }
     .login-card {
         margin: auto;
         width: 90%;
