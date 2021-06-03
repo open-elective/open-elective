@@ -173,7 +173,7 @@ function logout() {
 
 //check if loggedin
 firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
+    if (user && firebase.auth().currentUser.emailVerified ) {
         if(window.location.href.slice(-17) != "studhomepage.html")
         {
             window.location.href = "studhomepage.html";
