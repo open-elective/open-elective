@@ -1,4 +1,5 @@
 var input = document.getElementById('exl');
+
 input.addEventListener('change', function () {
     readXlsxFile(input.files[0]).then(function (data) {
         console.log(data)
@@ -43,6 +44,8 @@ function checkValidity(data) {
 async function uploaddata(data)
 {
     var i;
+    var progress = document.getElementsByClassName("determinate")[0];
+    document.getElementsByClassName("progress")[0].style.visibility = "visible";
     await firebase.firestore().collection("Misc").doc("State").get().then((doc) => {
         if (doc.exists) {
             if(doc.data()["Allow"]==3)
@@ -53,7 +56,8 @@ async function uploaddata(data)
     }).catch((error) => {
         console.log("Error getting document:", error);
     });
-    for(i = 1; i < data.length; i++)
+    var len = data.length;
+    for(i = 1; i < len; i++)
     {
         console.log("in loop"); 
         await firebase.firestore().collection("studentData").doc(data[i][0].toString()).set({
@@ -67,5 +71,8 @@ async function uploaddata(data)
             .catch((error) => {
                 console.error("Error adding Data in database: ", error);
             });
+            var percent = (i*100)/(len-1)
+            progress.style="width:"+percent.toString()+"%";
     }
+    document.getElementsByClassName("progress")[0].style.visibility = "hidden";
 }
