@@ -9,45 +9,155 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/courses.css">
+
 </head>
+<!-- nav -->
 
 <body>
   <ul class="top-nav">
     <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
     <h4 class="center">Courses Setting</h4>
   </ul>
-  
-  
+
+  <!-- sidenav -->
   <ul id="slide-out" class="sidenav blue darken-2">
-    <li><div class="user-view">
-      <div class="background">
-        <img id="test" src="assets/bg.jpg">
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <img id="test" src="assets/bg.jpg">
+        </div>
+        <a href="#user"><img class="circle" src="assets/user.png"></a>
+        <a href="#name"><span class="black-text name" id="navname"><b>John Doe</b></span></a>
+        <a href="#email"><span class="black-text email" id="navemail">jdandturk@gmail.com</span></a>
       </div>
-      <a href="#user"><img class="circle" src="assets/user.png"></a>
-      <a href="#name"><span class="black-text name" id="navname"><b>John Doe</b></span></a>
-      <a href="#email"><span class="black-text email" id="navemail">jdandturk@gmail.com</span></a>
-    </div></li>
-    
-    <li><a href="adminhomepage.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">schedule</i>Schedule</a></li>
-    <li><a href="courses.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">book</i>Courses Setting</a></li>
-    <li><a href="allocation.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">check_box</i>Allocation</a></li>
-    <li><a href="studdata.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">data_usage</i>Student Data</a></li>
-    <li><a href="adminsettings.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">settings</i>Admin Settings</a></li>
-    <li><div class="divider white-text"></div></li>
+    </li>
+
+    <li><a href="adminhomepage.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">schedule</i>Schedule</a></li>
+    <li><a href="courses.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">book</i>Courses Setting</a></li>
+    <li><a href="allocation.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">check_box</i>Allocation</a></li>
+    <li><a href="studdata.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">data_usage</i>Student Data</a></li>
+    <li><a href="adminsettings.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">settings</i>Admin Settings</a></li>
+    <li>
+      <div class="divider white-text"></div>
+    </li>
     <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
   </ul>
+
+  <div class="grid">
+    <!-- Add or Edit New Course -->
+    <div id="course-input">
+      <h6>Course Name</h6>
+      <input type="text" id="cname">
+      <h6>Course Number</h6>
+      <input type="number" id="cno">
+      <h6>Internal Capacity</h6>
+      <input type="number" id="cincapa">
+      <h6>Externl Capacity</h6>
+      <input type="number" id="cextcapa">
+      <h6>Course School</h6>
+      <select id="schooldd" class="input-field col s12">
+        <option value="" disabled selected>Choose your option</option>
+        <option value="1">SCET</option>
+        <option value="2">SEE</option>
+        <option value="3">SMCE(Mechanical)</option>
+        <option value="4">SMCE(Civil)</option>
+        <option value="5">SCE</option>
+      </select>
+      <h6>Open To</h6>
+      <label>
+        <input id="c1" type="checkbox" />
+        <span>All</span>
+      </label>
+      <label>
+        <input id="c2" type="checkbox" />
+        <span>SCET</span>
+      </label>
+      <label>
+        <input id="c3" type="checkbox" />
+        <span>SEE</span>
+      </label>
+      <label>
+        <input id="c4" type="checkbox" />
+        <span>SMCE(Mechanical)</span>
+      </label>
+      <label>
+        <input id="c5" type="checkbox" />
+        <span>SMCE(Civil)</span>
+      </label>
+      <label>
+        <input id="c6" type="checkbox" />
+        <span>SCE</span>
+      </label>
+      <a class="waves-effect waves-light btn blue darken-2" id="addcourse" onclick="addcourse()">Save Changes</a>
+    </div>
+
+    <!-- Edit Course -->
+    <div id="edit">
+      <h6>Edit Course</h6>
+      <input type="text" id="cedit">
+      <a class="waves-effect waves-light btn blue darken-2" id="editcourse" onclick="editcourse()">Edit</a>
+    </div>
+
+    <!-- Course Table -->
+    
+      <table id="ctable" class="highlight centered">
+        <thead>
+          <tr>
+            <th>Course No</th>
+            <th>Course Name</th>
+            <th>Internal Capacity</th>
+            <th>Externam Capacity</th>
+            <th>Course School</th>
+            <th>Open To</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>AI & ML</td>
+            <td>60</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <td>Alan</td>
+            <td>Jellybean</td>
+            <td>$3.76</td>
+          </tr>
+          <tr>
+            <td>Jonathan</td>
+            <td>Lollipop</td>
+            <td>$7.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   
   
+
+
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
-  });
- </script>
+  <!-- side nav script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+    });
+  </script>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>

@@ -1,24 +1,24 @@
-body{
+body {
   overflow: hidden;
 }
+
 h5 {
   margin: 0;
   padding: 0;
   padding: 10px;
 }
-.grid{
+
+.grid {
   margin: 0;
-    display: grid;
-    height: 100vh;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 260px 260px;
-    grid-template-areas:
-    "browser open-portal close-reg"
-    "browser publish close-portal";
-    grid-gap: 0.3rem;
-    overflow: unset;
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 260px 260px;
+  grid-template-areas: "browser open-portal close-reg" "browser publish close-portal";
+  grid-gap: 0.3rem;
 }
-#browser{
+
+#browser {
   grid-area: browser;
   margin: 0em 2em;
   border: 3px solid #1d72bc;
@@ -26,23 +26,28 @@ h5 {
   border-top-right-radius: 4px;
   border-radius: 10px;
 }
-#open-portal{
+
+#open-portal {
   grid-area: open-portal;
 }
-#close-reg{
+
+#close-reg {
   grid-area: close-reg;
 }
-#publish{
+
+#publish {
   grid-area: publish;
 }
-#close-portal{
+
+#close-portal {
   grid-area: close-portal;
 }
 
-.schedule{
+.schedule {
   margin-top: 40px;
   position: relative;
 }
+
 .timeline {
   list-style-type: none;
   display: flex;
@@ -62,10 +67,12 @@ h5 {
   position: relative;
   transition: all 200ms ease-in;
 }
+
 .status h5 {
   font-weight: 500;
   font-size: 18px;
 }
+
 .status:before {
   content: "";
   width: 25px;
@@ -82,17 +89,19 @@ h5 {
 .li.complete .status {
   border-top: 2px solid #1d72bc;
 }
+
 .li.complete .status:before {
   background-color: #1d72bc;
   border: none;
   transition: all 200ms ease-in;
 }
+
 .li.complete .status h5 {
   color: #1d72bc;
 }
 
-
 /* Container for columns and the top "toolbar" */
+
 .br-row {
   padding: 10px;
   background: #1d72bc;
@@ -101,6 +110,7 @@ h5 {
 }
 
 /* Create three unequal columns that floats next to each other */
+
 .column {
   float: left;
 }
@@ -118,6 +128,7 @@ h5 {
 }
 
 /* Clear floats after the columns */
+
 .br-row:after {
   content: "";
   display: table;
@@ -125,6 +136,7 @@ h5 {
 }
 
 /* Three dots */
+
 .dot {
   margin-top: 4px;
   height: 12px;
@@ -135,7 +147,8 @@ h5 {
 }
 
 /* Style the input field */
- .br-input {
+
+.br-input {
   width: 100% !important;
   border-radius: 3px !important;
   border: none !important;
@@ -144,9 +157,10 @@ h5 {
   color: #666 !important;
   padding: 5px !important;
   margin-bottom: 0 !important;
-} 
+}
 
 /* Three bars (hamburger menu) */
+
 .bar {
   width: 17px;
   height: 3px;
@@ -156,6 +170,7 @@ h5 {
 }
 
 /* Page content */
+
 .content {
   padding: 10px;
 }
@@ -164,7 +179,6 @@ tr {
   border-bottom: 0;
 }
 
-
 .card.white {
   border: 1px solid #1d72bc;
   border-radius: 20px;
@@ -172,74 +186,62 @@ tr {
   padding: 2em;
 }
 
-
 @media only screen and (max-width:900px) {
-  body{
-    overflow:visible;
+  body {
+    overflow: visible;
   }
-  
-  .grid{
-  margin-top: 20px;  
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows:400px 150px 150px;
-  grid-template-areas: 
-  "browser browser"
-  "open-portal close-reg"
-  "publish close-portal";
+  .grid {
+    margin-top: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 400px 150px 150px;
+    grid-template-areas: "browser browser" "open-portal close-reg" "publish close-portal";
   }
-  .dot{
+  .dot {
     margin-top: 12px;
     height: 7px;
-  width: 7px;
+    width: 7px;
   }
-  .br-input{
+  .br-input {
     font-size: 13px !important;
     height: 18px !important;
-    
   }
   .bar {
     margin-top: 5px;
     width: 12px;
     height: 2px;
   }
-  
-
-  h4{
+  h4 {
     font-size: 25px;
   }
-  h5{
+  h5 {
     font-size: 15px;
   }
-  .card.white{
+  .card.white {
     margin: 0.5em;
-    padding: 0 ;
+    padding: 0;
   }
-  .btn{
-    margin: 0; 
-    font-size: 10px;  
+  .btn {
+    margin: 0;
+    font-size: 10px;
   }
-  .schedule{
+  .schedule {
     display: none;
   }
-  
-  
 }
+
 @media (min-device-width: 320px) and (max-device-width: 900px) {
   .timeline {
     list-style-type: none;
     display: block;
   }
-
   .li {
     transition: all 200ms ease-in;
     display: flex;
     width: inherit;
   }
-
   .timestamp {
     width: 100px;
   }
-
   .status:before {
     left: -8%;
     top: 30%;

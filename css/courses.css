@@ -1,0 +1,25 @@
+.grid {
+    margin: 0;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows:  1fr 1fr;
+    grid-template-areas: 
+    "course-input edit" 
+    "ctable ctable";
+    grid-gap: 0.3rem;
+}
+
+#course-input{
+    border: 1px solid #1d72bc;
+    grid-area: course-input;
+}
+#edit{
+    border: 1px solid #1d72bc;
+    grid-area: edit;
+}
+#ctable{
+    border: 1px solid #1d72bc;
+    grid-area: ctable;
+    
+}
