@@ -1,4 +1,4 @@
-function addcourse() {
+async function addcourse() {
     var cname = document.getElementById("cname").value;
     var cno = document.getElementById("cno").value;
     var cincapa = document.getElementById("cincapa").value;
@@ -53,6 +53,4 @@ function addcourse() {
         .catch((error) => {
             console.error("Error adding Data in database: ", error);
         });
-    var percent = (i * 100) / (len - 1)
-    progress.style = "width:" + percent.toString() + "%";
 }
