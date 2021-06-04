@@ -1,13 +1,14 @@
 
 body{
     margin-bottom: 2em;
-}/* label focus color */
-
+}
+ 
+.dropdown-content.select-dropdown li span {
+    color: #000; 
+}
 .input-field input:focus+label {
     color: #1d72bc !important;
 }
-
-/* label underline focus color */
 
 .input-field input:focus {
     border-bottom: 1px solid #1d72bc !important;
@@ -47,7 +48,7 @@ body{
     border-radius: 10px;
 }
 
-span {
+#checktext {
     padding: 0 !important;
     padding-left: 22px !important;
     padding-right: 22px !important;
@@ -91,21 +92,32 @@ span {
     h4{
         font-size: 25px;
     }
+   
 }
 
 @media screen and (max-width: 370px) {
     #course-input {
         margin: 0;
-        margin: 15px 40px 15px 15px;
+        margin: 15px;
         padding: 20px;
      }
      #edit {
          margin: 0;
-         margin: 15px 40px 15px 15px;
+         margin: 15px;
          padding: 20px;
      }
      #ctable {
+         padding: 0;
          margin: 0.3em 0.3em;
-         padding: 10px;
      }
+     th{
+        font-size: 12px;
+        font-weight: 500;
+    }
+    tr{
+        
+       font-size: 12px;
+       font-weight: 500;
+    }
+    
 }
