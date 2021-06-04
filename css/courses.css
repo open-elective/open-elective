@@ -13,13 +13,38 @@
 #course-input{
     border: 1px solid #1d72bc;
     grid-area: course-input;
+    margin: 2em;
+    border-radius: 10px;
+    padding: 20px
 }
 #edit{
     border: 1px solid #1d72bc;
     grid-area: edit;
+    margin: 2em;
+    border-radius: 10px;
+    padding: 20px;
 }
 #ctable{
     border: 1px solid #1d72bc;
     grid-area: ctable;
+    margin: 1em 1em;
+    border-radius: 10px;
+    padding: 20px;
+    
+}
+
+@media screen and (max-width: 900px) {
+    .grid {
+        margin: 0;
+        display: grid;
+        height: 100vh;
+        grid-template-columns:1fr;
+        grid-template-rows:1fr;
+        grid-template-areas: 
+        "course-input" 
+        "edit" 
+        "ctable";
+        grid-gap: 0.3rem;
+    } 
     
 }
