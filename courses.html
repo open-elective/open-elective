@@ -52,10 +52,22 @@
   <div class="grid">
     <!-- Add or Edit New Course -->
     <div id="course-input">
-      <input placeholder="Course Name" type="text" id="cname">
-      <input placeholder="Course Number" type="number" id="cno">
-      <input placeholder="Internal Capacity" type="number" id="cincapa">
-      <input placeholder="Externl Capacity" type="number" id="cextcapa">
+      <div class="input-field col s6">
+        <input id="cname" type="text" class="validate">
+        <label for="cname">Course Name</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="cno" type="text" class="validate">
+        <label for="cno">Course Number</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="cincapa" type="text" class="validate">
+        <label for="cincapa">Internal Capacity</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="cextcapa" type="text" class="validate">
+        <label for="cextcapa">Externl Capacity</label>
+      </div>
       <h6>Course School</h6>
       <select id="schooldd" class="input-field col s12">
         <option value="" disabled selected>Choose your option</option>
