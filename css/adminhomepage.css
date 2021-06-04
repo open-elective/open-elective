@@ -2,6 +2,54 @@ h5 {
   padding: 0;
   padding: 10px;
 }
+body{
+  margin: 0;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 0.4fr 0.7fr 1.5fr 1.5fr;
+    grid-template-areas:
+    "nav nav nav nav"
+    "steps steps steps steps"
+    "browser browser open-portal close-reg"
+    "browser browser publish close-portal";
+    grid-gap: 0.3rem;
+}
+#nav{
+grid-area: nav;
+}
+#steps{
+  grid-area: steps;
+}
+#browser{
+  grid-area: browser;
+}
+#open-portal{
+  grid-area: open-portal;
+}
+#close-reg{
+  grid-area: close-reg;
+}
+#publish{
+  grid-area: publish;
+}
+#close-portal{
+  grid-area: close-portal;
+}
+
+@media only screen and (max-width:560px) {
+  body{
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.4fr 0.7fr 1.8fr 1.3fr 1.3fr;
+  grid-template-areas: 
+  "nav nav"
+  "steps steps"
+  "browser browser"
+  "open-portal close-reg"
+  "publish close-portal";
+  }
+}
+
 .schedule{
   margin-top: 40px;
 }

@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <ul class="top-nav">
+  <ul id="nav" class="top-nav">
     <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
     <h4 class="center">Schedule</h4>
   </ul>
@@ -49,8 +49,8 @@
     <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
   </ul>
 
-
-  <div class="schedule">
+  <!-- Stpes Text -->
+  <div id="steps" class="schedule">
     <ul class="timeline" id="timeline">
       <li class="li">
         <div class="status">
@@ -75,7 +75,65 @@
     </ul>
   </div>
 
-  <div class="container">
+  <div id="open-portal" class="stage0">
+    <div class="card white">
+      <span class="card-title center">
+        <h5 class="center">Open Portal For Student</h5>
+      </span>
+      <div class="card-content">
+        <div class="center">
+          <a class="waves-effect waves-light btn blue darken-2" id="openportal" onclick="openportal()">Open
+            Portal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="close-reg" class="stage1">
+    <div class="card white">
+      <span class="card-title center">
+        <h5 class="center">Close Registration</h5>
+      </span>
+      <div class="card-content">
+        <div class="center">
+          <a class="waves-effect waves-light btn blue darken-2" id="closeregistration" onclick="closeregistration()">Close
+            Registration</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="publish" class="stage2">
+    <div class="card white">
+      <span class="card-title center">
+        <h5 class="center">Publish</h5>
+      </span>
+      <div class="card-content">
+        <div class="center">
+          <a class="waves-effect waves-light btn blue darken-2" id="publish" onclick="publish()">Publish
+            Results</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="close-portal" class="stage3">
+    <div class="card white">
+      <span class="card-title center">
+        <h5 class="center">Close Portal</h5>
+      </span>
+      <div class="card-content">
+        <div class="center">
+          <a class="waves-effect waves-light btn blue darken-2" id="closeportal" onclick="closeportal()">Close
+            Portal</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- browser -->
+  <div id="browser" class="container">
     <h5 class="center">Student View</h5>
     <div class="br-row">
       <div class="column left">
@@ -96,66 +154,11 @@
     </div>
 
     <div class="content">
-      <h5 class="center" id="studviewtext"></h5>
+      <h5 class="center" id="studviewtext">Hello</h5>
     </div>
   </div>
 
-  <div class="stage0">
-    <div class="card white">
-      <span class="card-title center">
-        <h5 class="center">Open Portal For Student</h5>
-      </span>
-      <div class="card-content">
-        <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" id="openportal" onclick="openportal()">Open
-            Portal</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="stage1">
-    <div class="card white">
-      <span class="card-title center">
-        <h5 class="center">Close Registration</h5>
-      </span>
-      <div class="card-content">
-        <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" id="closeregistration" onclick="closeregistration()">Close
-            Registration</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="stage2">
-    <div class="card white">
-      <span class="card-title center">
-        <h5 class="center">Publish</h5>
-      </span>
-      <div class="card-content">
-        <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" id="publish" onclick="publish()">Publish
-            Results</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="stage3">
-    <div class="card white">
-      <span class="card-title center">
-        <h5 class="center">Close Portal</h5>
-      </span>
-      <div class="card-content">
-        <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" id="closeportal" onclick="closeportal()">Close
-            Portal</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
+ 
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
