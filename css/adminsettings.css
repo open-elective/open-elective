@@ -36,3 +36,18 @@ hr{
 h5{
     font-weight: bold;
 }
+
+@media only screen and (max-width:900px) {
+    .assign{
+        width: 90%;
+        margin-left: 4%;
+        margin-right: 6%;
+    }
+    hr{
+        margin:30px 10px;
+    }
+    h4{
+        font-size: 25px;
+    }
+    
+}

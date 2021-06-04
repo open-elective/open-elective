@@ -215,7 +215,8 @@ tr {
     padding: 0 ;
   }
   .btn{
-    margin: 0;   
+    margin: 0; 
+    font-size: 10px;  
   }
   .schedule{
     display: none;
@@ -223,7 +224,7 @@ tr {
   
   
 }
-@media (min-device-width: 320px) and (max-device-width: 700px) {
+@media (min-device-width: 320px) and (max-device-width: 900px) {
   .timeline {
     list-style-type: none;
     display: block;
