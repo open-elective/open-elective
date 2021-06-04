@@ -16,47 +16,54 @@
     <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
     <h4 class="center">Student Data</h4>
   </ul>
-  
-  
+
+
   <ul id="slide-out" class="sidenav blue darken-2">
-    <li><div class="user-view">
-      <div class="background">
-        <img id="test" src="assets/bg.jpg">
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <img id="test" src="assets/bg.jpg">
+        </div>
+        <a href="#user"><img class="circle" src="assets/user.png"></a>
+        <a href="#name"><span class="black-text name" id="navname"><b>John Doe</b></span></a>
+        <a href="#email"><span class="black-text email" id="navemail">jdandturk@gmail.com</span></a>
       </div>
-      <a href="#user"><img class="circle" src="assets/user.png"></a>
-      <a href="#name"><span class="black-text name" id="navname"><b>John Doe</b></span></a>
-      <a href="#email"><span class="black-text email" id="navemail">jdandturk@gmail.com</span></a>
-    </div></li>
-    
-    <li><a href="adminhomepage.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">schedule</i>Schedule</a></li>
-    <li><a href="courses.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">book</i>Courses Setting</a></li>
-    <li><a href="allocation.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">check_box</i>Allocation</a></li>
-    <li><a href="studdata.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">data_usage</i>Student Data</a></li>
-    <li><a href="adminsettings.html" class="waves-effect waves-light white-text"><i class="material-icons white-text">settings</i>Admin Settings</a></li>
-    <li><div class="divider white-text"></div></li>
+    </li>
+
+    <li><a href="adminhomepage.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">schedule</i>Schedule</a></li>
+    <li><a href="courses.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">book</i>Courses Setting</a></li>
+    <li><a href="allocation.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">check_box</i>Allocation</a></li>
+    <li><a href="studdata.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">data_usage</i>Student Data</a></li>
+    <li><a href="adminsettings.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">settings</i>Admin Settings</a></li>
+    <li>
+      <div class="divider white-text"></div>
+    </li>
     <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
   </ul>
 
   <a class="waves-effect waves-light btn blue darken-2" id="closeportal" onclick="downloadtemp()">Download Template</a>
-    <a class="waves-effect waves-light btn blue darken-2" id="closeportal" onclick="upploaddata()">Upload Data</a>
-  
-  
+  <input type="file" id="exl">
+
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
-  });
- </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.sidenav');
+      var instances = M.Sidenav.init(elems);
+    });
+  </script>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-storage.js"></script>
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
@@ -74,7 +81,9 @@
     firebase.initializeApp(firebaseConfig);
   </script>
   <script src="scripts/studdata.js"></script>
- <script src="scripts/adminconsole.js"></script>
+  <script src="scripts/adminconsole.js"></script>
+  <script
+    src="https://unpkg.com/read-excel-file@4.1.0/bundle/read-excel-file.min.js"></script>
 </body>
 
 </html>
