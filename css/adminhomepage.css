@@ -211,23 +211,19 @@ tr {
 .stage0{
   max-width: 40%;
   float: left;
-  display: none;
 }
 
 .stage1{
   max-width: 40%;
-  float: left;
-  display: none; 
+  float: left; 
 }
 .stage2{
   max-width: 40%;
-  float: left;
-  display: none;  
+  float: left;  
 }
 .stage3{
   max-width: 40%;
-  float: left;
-  display: none; 
+  float: left; 
 }
 
 
