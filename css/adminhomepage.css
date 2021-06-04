@@ -1,28 +1,30 @@
+body{
+  overflow: hidden;
+}
 h5 {
+  margin: 0;
   padding: 0;
   padding: 10px;
 }
-body{
+.grid{
   margin: 0;
     display: grid;
     height: 100vh;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 0.4fr 0.7fr 1.5fr 1.5fr;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 260px 260px;
     grid-template-areas:
-    "nav nav nav nav"
-    "steps steps steps steps"
-    "browser browser open-portal close-reg"
-    "browser browser publish close-portal";
+    "browser open-portal close-reg"
+    "browser publish close-portal";
     grid-gap: 0.3rem;
-}
-#nav{
-grid-area: nav;
-}
-#steps{
-  grid-area: steps;
+    overflow: unset;
 }
 #browser{
   grid-area: browser;
+  margin: 0em 2em;
+  border: 3px solid #1d72bc;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-radius: 10px;
 }
 #open-portal{
   grid-area: open-portal;
@@ -37,21 +39,9 @@ grid-area: nav;
   grid-area: close-portal;
 }
 
-@media only screen and (max-width:560px) {
-  body{
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 0.4fr 0.7fr 1.8fr 1.3fr 1.3fr;
-  grid-template-areas: 
-  "nav nav"
-  "steps steps"
-  "browser browser"
-  "open-portal close-reg"
-  "publish close-portal";
-  }
-}
-
 .schedule{
   margin-top: 40px;
+  position: relative;
 }
 .timeline {
   list-style-type: none;
@@ -101,40 +91,6 @@ grid-area: nav;
   color: #1d72bc;
 }
 
-@media (min-device-width: 320px) and (max-device-width: 700px) {
-  .timeline {
-    list-style-type: none;
-    display: block;
-  }
-
-  .li {
-    transition: all 200ms ease-in;
-    display: flex;
-    width: inherit;
-  }
-
-  .timestamp {
-    width: 100px;
-  }
-
-  .status:before {
-    left: -8%;
-    top: 30%;
-    transition: all 200ms ease-in;
-  }
-}
-
-/* The browser window */
-.container {
-  margin: 0 50px;
-  min-height: 500px;
-  float: left;
-  border: 3px solid #1d72bc;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  max-width: 50%;
-  border-radius: 10px;
-}
 
 /* Container for columns and the top "toolbar" */
 .br-row {
@@ -208,44 +164,84 @@ tr {
   border-bottom: 0;
 }
 
-.stage0{
-  max-width: 40%;
-  float: left;
-}
-
-.stage1{
-  max-width: 40%;
-  float: left; 
-}
-.stage2{
-  max-width: 40%;
-  float: left;  
-}
-.stage3{
-  max-width: 40%;
-  float: left; 
-}
-
-
-
 
 .card.white {
-  margin-top: 20%;
-  margin-left: 80px;
-  padding: 10px;
-  padding-left: 0px;
   border: 1px solid #1d72bc;
   border-radius: 20px;
+  margin: 2em 3em;
+  padding: 2em;
 }
-#loginpassword {
-  padding-left: 10px;
-  border: 1px solid #1d72bc;
+
+
+@media only screen and (max-width:900px) {
+  body{
+    overflow:visible;
+  }
+  
+  .grid{
+  margin-top: 20px;  
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows:400px 150px 150px;
+  grid-template-areas: 
+  "browser browser"
+  "open-portal close-reg"
+  "publish close-portal";
+  }
+  .dot{
+    margin-top: 12px;
+    height: 7px;
+  width: 7px;
+  }
+  .br-input{
+    font-size: 13px !important;
+    height: 18px !important;
+    
+  }
+  .bar {
+    margin-top: 5px;
+    width: 12px;
+    height: 2px;
+  }
+  
+
+  h4{
+    font-size: 25px;
+  }
+  h5{
+    font-size: 15px;
+  }
+  .card.white{
+    margin: 0.5em;
+    padding: 0 ;
+  }
+  .btn{
+    margin: 0;   
+  }
+  .schedule{
+    display: none;
+  }
+  
+  
 }
-.btn {
-  border-radius: 10px;
-  padding-left: 40px;
-  padding-right: 40px;
-  text-transform: none;
-  margin-top: 10px;
-  font-weight: bold;
+@media (min-device-width: 320px) and (max-device-width: 700px) {
+  .timeline {
+    list-style-type: none;
+    display: block;
+  }
+
+  .li {
+    transition: all 200ms ease-in;
+    display: flex;
+    width: inherit;
+  }
+
+  .timestamp {
+    width: 100px;
+  }
+
+  .status:before {
+    left: -8%;
+    top: 30%;
+    transition: all 200ms ease-in;
+  }
 }

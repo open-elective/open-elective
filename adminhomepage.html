@@ -13,148 +13,143 @@
   <link rel="stylesheet" href="css/admin.css">
   <link rel="stylesheet" href="css/adminhomepage.css">
 </head>
-
+<!-- nav bar -->
 <body>
-  <ul id="nav" class="top-nav">
+  <ul class="top-nav">
     <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
     <h4 class="center">Schedule</h4>
   </ul>
-
-
-  <ul id="slide-out" class="sidenav blue darken-2">
-    <li>
-      <div class="user-view">
-        <div class="background">
-          <img id="test" src="assets/bg.jpg">
-        </div>
-        <a href="#user"><img class="circle" src="assets/user.png"></a>
-        <a href="#name"><span class="black-text name" id="navname"><b>John Doe</b></span></a>
-        <a href="#email"><span class="black-text email" id="navemail">jdandturk@gmail.com</span></a>
-      </div>
-    </li>
-
-    <li><a href="adminhomepage.html" class="waves-effect waves-light white-text"><i
-          class="material-icons white-text">schedule</i>Schedule</a></li>
-    <li><a href="courses.html" class="waves-effect waves-light white-text"><i
-          class="material-icons white-text">book</i>Courses Setting</a></li>
-    <li><a href="allocation.html" class="waves-effect waves-light white-text"><i
-          class="material-icons white-text">check_box</i>Allocation</a></li>
-    <li><a href="studdata.html" class="waves-effect waves-light white-text"><i
-          class="material-icons white-text">data_usage</i>Student Data</a></li>
-    <li><a href="adminsettings.html" class="waves-effect waves-light white-text"><i
-          class="material-icons white-text">settings</i>Admin Settings</a></li>
-    <li>
-      <div class="divider white-text"></div>
-    </li>
-    <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
-  </ul>
-
-  <!-- Stpes Text -->
-  <div id="steps" class="schedule">
-    <ul class="timeline" id="timeline">
-      <li class="li">
-        <div class="status">
-          <h5>Closed State</h5>
+  
+    <ul id="slide-out" class="sidenav blue darken-2">
+      <li>
+        <div class="user-view">
+          <div class="background">
+            <img id="test" src="assets/bg.jpg">
+          </div>
+          <a href="#user"><img class="circle" src="assets/user.png"></a>
+          <a href="#name"><span class="black-text name" id="navname"><b>John Doe</b></span></a>
+          <a href="#email"><span class="black-text email" id="navemail">jdandturk@gmail.com</span></a>
         </div>
       </li>
-      <li class="li">
-        <div class="status">
-          <h5>Open Portal</h5>
-        </div>
+      <li><a href="adminhomepage.html" class="waves-effect waves-light white-text"><i
+            class="material-icons white-text">schedule</i>Schedule</a></li>
+      <li><a href="courses.html" class="waves-effect waves-light white-text"><i
+            class="material-icons white-text">book</i>Courses Setting</a></li>
+      <li><a href="allocation.html" class="waves-effect waves-light white-text"><i
+            class="material-icons white-text">check_box</i>Allocation</a></li>
+      <li><a href="studdata.html" class="waves-effect waves-light white-text"><i
+            class="material-icons white-text">data_usage</i>Student Data</a></li>
+      <li><a href="adminsettings.html" class="waves-effect waves-light white-text"><i
+            class="material-icons white-text">settings</i>Admin Settings</a></li>
+      <li>
+        <div class="divider white-text"></div>
       </li>
-      <li class="li">
-        <div class="status">
-          <h5>Close Registration</h5>
-        </div>
-      </li>
-      <li class="li">
-        <div class="status">
-          <h5>Publish</h5>
-        </div>
-      </li>
+      <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
     </ul>
-  </div>
+    
+    <!-- Stpes Text -->
+    <div class="schedule">
+      <ul class="timeline" id="timeline">
+        <li class="li">
+          <div class="status">
+            <h5>Closed State</h5>
+          </div>
+        </li>
+        <li class="li">
+          <div class="status">
+            <h5>Open Portal</h5>
+          </div>
+        </li>
+        <li class="li">
+          <div class="status">
+            <h5>Close Registration</h5>
+          </div>
+        </li>
+        <li class="li">
+          <div class="status">
+            <h5>Publish</h5>
+          </div>
+        </li>
+      </ul>
+    </div>
 
-  <div id="open-portal" class="stage0">
-    <div class="card white">
-      <span class="card-title center">
-        <h5 class="center">Open Portal For Student</h5>
-      </span>
-      <div class="card-content">
-        <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" id="openportal" onclick="openportal()">Open
-            Portal</a>
+    <div class="grid">
+    <div id="open-portal" class="stage0">
+      <div class="card white">
+        <span class="card-title center">
+          <h5 class="center">Open Portal</h5>
+        </span>
+        <div class="card-content">
+          <div class="center">
+            <a class="waves-effect waves-light btn blue darken-2" id="openportal" onclick="openportal()">Open
+              Portal</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div id="close-reg" class="stage1">
-    <div class="card white">
-      <span class="card-title center">
-        <h5 class="center">Close Registration</h5>
-      </span>
-      <div class="card-content">
-        <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" id="closeregistration" onclick="closeregistration()">Close
-            Registration</a>
+    <div id="close-reg" class="stage1">
+      <div class="card white">
+        <span class="card-title center">
+          <h5 class="center">Close Registration</h5>
+        </span>
+        <div class="card-content">
+          <div class="center">
+            <a class="waves-effect waves-light btn blue darken-2" id="closeregistration" onclick="closeregistration()">Close
+              Registration</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div id="publish" class="stage2">
-    <div class="card white">
-      <span class="card-title center">
-        <h5 class="center">Publish</h5>
-      </span>
-      <div class="card-content">
-        <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" id="publish" onclick="publish()">Publish
-            Results</a>
+    <div id="publish" class="stage2">
+      <div class="card white">
+        <span class="card-title center">
+          <h5 class="center">Publish</h5>
+        </span>
+        <div class="card-content">
+          <div class="center">
+            <a class="waves-effect waves-light btn blue darken-2" id="publishbtn" onclick="publish()">Publish
+              Results</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div id="close-portal" class="stage3">
-    <div class="card white">
-      <span class="card-title center">
-        <h5 class="center">Close Portal</h5>
-      </span>
-      <div class="card-content">
-        <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" id="closeportal" onclick="closeportal()">Close
-            Portal</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- browser -->
-  <div id="browser" class="container">
-    <h5 class="center">Student View</h5>
-    <div class="br-row">
-      <div class="column left">
-        <span class="dot" style="background:#ED594A;"></span>
-        <span class="dot" style="background:#FDD800;"></span>
-        <span class="dot" style="background:#5AC05A;"></span>
-      </div>
-      <div class="column middle">
-        <input class="br-input" type="text" value="https://open-elective.github.io">
-      </div>
-      <div class="column right">
-        <div style="float:right">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
+    <div id="close-portal" class="stage3">
+      <div class="card white">
+        <span class="card-title center">
+          <h5 class="center">Close Portal</h5>
+        </span>
+        <div class="card-content">
+          <div class="center">
+            <a class="waves-effect waves-light btn blue darken-2" id="closeportal" onclick="closeportal()">Close
+              Portal</a>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="content">
-      <h5 class="center" id="studviewtext">Hello</h5>
+    <!-- browser -->
+    <div id="browser">
+      <h5 class="center">Student View</h5>
+      <div class="br-row">
+        <div class="column left">
+          <span class="dot" style="background:#ED594A;"></span>
+          <span class="dot" style="background:#FDD800;"></span>
+          <span class="dot" style="background:#5AC05A;"></span>
+        </div>
+        <div class="column middle">
+          <input class="br-input" type="text" value="https://open-elective.github.io">
+        </div>
+        <div class="column right">
+          <div style="float:right">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <h5 class="center" id="studviewtext">Hello</h5>
+      </div>
     </div>
   </div>
 
