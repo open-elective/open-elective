@@ -1,60 +1,111 @@
 
-/* label focus color */
-.input-field input:focus + label {
+body{
+    margin-bottom: 2em;
+}/* label focus color */
+
+.input-field input:focus+label {
     color: #1d72bc !important;
-  }
-  /* label underline focus color */
+}
+
+/* label underline focus color */
+
 .input-field input:focus {
     border-bottom: 1px solid #1d72bc !important;
     box-shadow: 0 1px 0 0 #1d72bc !important
-  }
+}
+
 .grid {
     margin: 0;
     display: grid;
     height: 100vh;
     grid-template-columns: 2fr 1fr;
-    grid-template-rows:  1fr 1fr;
-    grid-template-areas: 
-    "course-input edit" 
-    "ctable ctable";
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "course-input edit" "ctable ctable";
     grid-gap: 0.3rem;
 }
 
-#course-input{
+#course-input {
     border: 1px solid #1d72bc;
     grid-area: course-input;
-    margin: 2em;
+    margin: 2em 1em 0em 2em;
     border-radius: 10px;
     padding: 20px
 }
-#edit{
+
+#edit {
     border: 1px solid #1d72bc;
     grid-area: edit;
-    margin: 2em;
+    margin: 2em 2em 0em 1em;
     border-radius: 10px;
     padding: 20px;
 }
-#ctable{
+
+#ctable {
     border: 1px solid #1d72bc;
     grid-area: ctable;
-    margin: 1em 1em;
+    margin: 2em 2em;
     border-radius: 10px;
-    padding: 20px;
-    
+}
+
+span {
+    padding: 0 !important;
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+    color: black;
+}
+#editcourse{
+    margin-top: 10px;
+}
+#deletecourse{
+    margin-top: 10px;
+}
+#editdel{
+    margin-top: 17%;
 }
 
 @media screen and (max-width: 900px) {
+
     .grid {
         margin: 0;
         display: grid;
         height: 100vh;
-        grid-template-columns:1fr;
-        grid-template-rows:1fr;
-        grid-template-areas: 
-        "course-input" 
-        "edit" 
-        "ctable";
-        grid-gap: 0.3rem;
-    } 
-    
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "course-input" "edit" "ctable";
+        
+    }
+    #course-input {
+       margin: 0;
+       margin: 15px;
+       padding: 20px;
+    }
+    #edit {
+        margin: 0;
+        margin: 15px;
+        padding: 20px;
+    }
+    #ctable {
+        margin: 15px;
+        padding: 10px;
+    }
+    h4{
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    #course-input {
+        margin: 0;
+        margin: 15px 40px 15px 15px;
+        padding: 20px;
+     }
+     #edit {
+         margin: 0;
+         margin: 15px 40px 15px 15px;
+         padding: 20px;
+     }
+     #ctable {
+         margin: 0.3em 0.3em;
+         padding: 10px;
+     }
 }

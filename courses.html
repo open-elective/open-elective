@@ -66,7 +66,7 @@
       </div>
       <div class="input-field col s6">
         <input id="cextcapa" type="text" class="validate">
-        <label for="cextcapa">Externl Capacity</label>
+        <label for="cextcapa">External Capacity</label>
       </div>
       <h6>Course School</h6>
       <select id="schooldd" class="input-field col s12">
@@ -106,15 +106,27 @@
     </div>
 
     <!-- Edit Course -->
-    <div id="edit">
-      <h6>Edit Course</h6>
-      <input type="text" id="cedit">
-      <a class="waves-effect waves-light btn blue darken-2" id="editcourse" onclick="editcourse()">Edit</a>
+    <div id="edit"> 
+        <div id="editdel">
+          <h6>Edit Course</h6>
+          <div class="input-field col s6 center">
+          <input type="text" id="cedit">
+          <label for="cedit">Enter Course No</label>
+          <a class="waves-effect waves-light btn blue darken-2" id="editcourse" onclick="editcourse()">Edit</a>
+                </div>
+          <h6>Delete Course</h6>
+          <div class="input-field col s6 center">
+          <input type="text" id="cdelete">
+          <label for="cdelete">Enter Course No</label>
+          <a class="waves-effect waves-light btn blue darken-2" id="deletecourse" onclick="deletecourse()">Delete</a>
+                </div>
+        </div>
     </div>
 
     <!-- Course Table -->
-    
-      <table id="ctable" class="highlight centered">
+
+    <div id="ctable">
+      <table class="highlight centered">
         <thead>
           <tr>
             <th>Course No</th>
@@ -125,7 +137,6 @@
             <th>Open To</th>
           </tr>
         </thead>
-
         <tbody>
           <tr>
             <td>1</td>
@@ -146,8 +157,9 @@
         </tbody>
       </table>
     </div>
-  
-  
+  </div>
+
+
 
 
 
