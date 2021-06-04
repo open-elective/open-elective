@@ -5,21 +5,27 @@ async function checkcurrentstate() {
         const state = doc.data()["Allow"]
         hideall()
         if (state == 0) {
+            document.getElementsByClassName("btn")[1].className = "waves-effect waves-light btn blue darken-2"
             document.getElementsByClassName("li")[0].className = "li complete"
             document.getElementById("studviewtext").innerHTML = "Registration is Closed"
         }
         else if (state == 1) {
+            document.getElementsByClassName("btn")[2].className = "waves-effect waves-light btn blue darken-2"
             document.getElementsByClassName("li")[0].className = "li complete"
             document.getElementsByClassName("li")[1].className = "li complete"
             document.getElementById("studviewtext").innerHTML = "Select Preferences"
         }
         else if (state == 2) {
+            document.getElementsByClassName("btn")[1].className = "waves-effect waves-light btn blue darken-2"
+            document.getElementsByClassName("btn")[3].className = "waves-effect waves-light btn blue darken-2"
             document.getElementsByClassName("li")[0].className = "li complete"
             document.getElementsByClassName("li")[1].className = "li complete"
             document.getElementsByClassName("li")[2].className = "li complete"
             document.getElementById("studviewtext").innerHTML = "Result will be publish soon"
         }
         else if (state == 3) {
+            document.getElementsByClassName("btn")[1].className = "waves-effect waves-light btn blue darken-2"
+            document.getElementsByClassName("btn")[4].className = "waves-effect waves-light btn blue darken-2"
             document.getElementsByClassName("li")[0].className = "li complete"
             document.getElementsByClassName("li")[1].className = "li complete"
             document.getElementsByClassName("li")[2].className = "li complete"
@@ -31,6 +37,10 @@ async function checkcurrentstate() {
     });
 }
 function hideall() {
+    document.getElementsByClassName("btn")[1].className = "waves-effect waves-light btn blue darken-2 disabled"
+    document.getElementsByClassName("btn")[2].className = "waves-effect waves-light btn blue darken-2 disabled"
+    document.getElementsByClassName("btn")[3].className = "waves-effect waves-light btn blue darken-2 disabled"
+    document.getElementsByClassName("btn")[4].className = "waves-effect waves-light btn blue darken-2 disabled"
     document.getElementsByClassName("li")[0].className = "li"
     document.getElementsByClassName("li")[1].className = "li"
     document.getElementsByClassName("li")[2].className = "li"
@@ -49,6 +59,34 @@ async function openportal() {
                 .catch((error) => {
                     console.error("Error writing document: ", error);
                 });
+        }
+        if (doc.data()["Allow"] == 2) {
+            firebase.firestore().collection("Misc").doc("State").update({
+                Allow: 1
+            })
+                .then(() => {
+                    console.log("Document successfully written!");
+                    checkcurrentstate()
+                })
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                });
+        }
+        if (doc.data()["Allow"] == 3) {
+            if (confirm('Are you sure, you want to open the portal? The results will be unpublished')) {
+                firebase.firestore().collection("Misc").doc("State").update({
+                    Allow: 1
+                })
+                    .then(() => {
+                        console.log("Document successfully written!");
+                        checkcurrentstate()
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+              } else {
+                
+              }
         }
     }).catch((error) => {
         console.log("Error getting document:", error);
