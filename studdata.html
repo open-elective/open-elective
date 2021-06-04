@@ -36,6 +36,9 @@
     <li><div class="divider white-text"></div></li>
     <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
   </ul>
+
+  <a class="waves-effect waves-light btn blue darken-2" id="closeportal" onclick="downloadtemp()">Download Template</a>
+    <a class="waves-effect waves-light btn blue darken-2" id="closeportal" onclick="upploaddata()">Upload Data</a>
   
   
 
@@ -53,6 +56,7 @@
   <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-storage.js"></script>
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
@@ -69,6 +73,7 @@
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
   </script>
+  <script src="scripts/studdata.js"></script>
  <script src="scripts/adminconsole.js"></script>
 </body>
 
