@@ -1,10 +1,9 @@
-async function addadmin(e)
-{
+async function addadmin(e) {
     e.preventDefault()
     const email = document.getElementById("adminemail")
     const Name = document.getElementById("adminname")
     try {
-        if(Name.value.length == 0) {
+        if (Name.value.length == 0) {
             throw {
                 message: "Please Enter Name",
                 error: new Error()
@@ -20,12 +19,40 @@ async function addadmin(e)
         var btn = document.getElementById("addadmin");
         progress.style.visibility = "visible";
         btn.style.visibility = "hidden";
-        const result = await firebase.auth().createUserWithEmailAndPassword(email.value, "open_elective")
-        sendVerificationEmail()
+        var alreadyexist =false;
+        await firebase.firestore().collection("allow-users").doc(email.value).get().then((doc) => {
+            if (doc.exists) {
+               alreadyexist = true;
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+        if(alreadyexist)
+        {
+            throw {
+                message: "User is already admin",
+                error: new Error()
+            };
+        }
+        await firebase.firestore().collection("allow-users").doc(email.value).set({
+
+        })
+            .then(() => {
+                console.log("Added Admin in Database");
+                checkcurrentstate()
+            })
+            .catch((error) => {
+                console.error("Error adding Admin in database: ", error);
+            });
+            
+        const result = await firebase.auth().createUserWithEmailAndPassword(email.value, Math.random().toString(36).slice(2))
+        //sendVerificationEmail()
         await result.user.updateProfile({
             displayName: "Admin",
             photoURL: Name.value
         });
+
+        
         Name.value = ""
         email.value = ""
         progress.style.visibility = "hidden";
@@ -43,7 +70,7 @@ async function addadmin(e)
     }
 }
 const sendVerificationEmail = () => {
-     firebase.auth().currentUser.sendEmailVerification()
+    firebase.auth().currentUser.sendEmailVerification()
         .then(() => {
             console.log('Verification Email Sent Successfully !');
             console.log(firebase.auth().currentUser);

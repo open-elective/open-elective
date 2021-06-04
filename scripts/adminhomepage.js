@@ -5,25 +5,21 @@ async function checkcurrentstate() {
         const state = doc.data()["Allow"]
         hideall()
         if (state == 0) {
-            document.getElementsByClassName("stage0")[0].style.display = "block";
             document.getElementsByClassName("li")[0].className = "li complete"
             document.getElementById("studviewtext").innerHTML = "Registration is Closed"
         }
         else if (state == 1) {
-            document.getElementsByClassName("stage1")[0].style.display = "block";
             document.getElementsByClassName("li")[0].className = "li complete"
             document.getElementsByClassName("li")[1].className = "li complete"
             document.getElementById("studviewtext").innerHTML = "Select Preferences"
         }
         else if (state == 2) {
-            document.getElementsByClassName("stage2")[0].style.display = "block";
             document.getElementsByClassName("li")[0].className = "li complete"
             document.getElementsByClassName("li")[1].className = "li complete"
             document.getElementsByClassName("li")[2].className = "li complete"
             document.getElementById("studviewtext").innerHTML = "Result will be publish soon"
         }
         else if (state == 3) {
-            document.getElementsByClassName("stage3")[0].style.display = "block";
             document.getElementsByClassName("li")[0].className = "li complete"
             document.getElementsByClassName("li")[1].className = "li complete"
             document.getElementsByClassName("li")[2].className = "li complete"
@@ -35,10 +31,6 @@ async function checkcurrentstate() {
     });
 }
 function hideall() {
-    document.getElementsByClassName("stage0")[0].style.display = "none";
-    document.getElementsByClassName("stage1")[0].style.display = "none";
-    document.getElementsByClassName("stage2")[0].style.display = "none";
-    document.getElementsByClassName("stage3")[0].style.display = "none";
     document.getElementsByClassName("li")[0].className = "li"
     document.getElementsByClassName("li")[1].className = "li"
     document.getElementsByClassName("li")[2].className = "li"
