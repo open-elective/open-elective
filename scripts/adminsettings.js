@@ -35,7 +35,7 @@ async function addadmin(e) {
             };
         }
         await firebase.firestore().collection("allow-users").doc(email.value).set({
-
+            Name: Name.value
         })
             .then(() => {
                 console.log("Added Admin in Database");
@@ -46,7 +46,7 @@ async function addadmin(e) {
             });
             
         const result = await firebase.auth().createUserWithEmailAndPassword(email.value, Math.random().toString(36).slice(2))
-        //sendVerificationEmail()
+        sendVerificationEmail()
         await result.user.updateProfile({
             displayName: "Admin",
             photoURL: Name.value
