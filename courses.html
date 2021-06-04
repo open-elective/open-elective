@@ -57,19 +57,19 @@
         <label for="cname">Course Name</label>
       </div>
       <div class="input-field col s6">
-        <input id="cno" type="text" class="validate">
+        <input id="cno" type="number" class="validate">
         <label for="cno">Course Number</label>
       </div>
       <div class="input-field col s6">
-        <input id="cincapa" type="text" class="validate">
+        <input id="cincapa" type="number" class="validate">
         <label for="cincapa">Internal Capacity</label>
       </div>
       <div class="input-field col s6">
-        <input id="cextcapa" type="text" class="validate">
+        <input id="cextcapa" type="number" class="validate">
         <label for="cextcapa">External Capacity</label>
       </div>
       <h6>Course School</h6>
-      <select id="schooldd" class="input-field col s12">
+      <select id="schooldd" class="input-field col s12" onchange="ddchanged()">
         <option value="" disabled selected>Choose your option</option>
         <option value="1">SCET</option>
         <option value="2">SEE</option>
@@ -126,7 +126,7 @@
     <!-- Course Table -->
 
     <div id="ctable">
-      <table class="highlight centered">
+      <table id="courset" class="highlight centered">
         <thead>
           <tr>
             <th>Course No</th>
@@ -139,20 +139,12 @@
         </thead>
         <tbody>
           <tr>
-            <td>1</td>
-            <td>AI & ML</td>
-            <td>60</td>
-            <td>30</td>
-          </tr>
-          <tr>
-            <td>Alan</td>
-            <td>Jellybean</td>
-            <td>$3.76</td>
-          </tr>
-          <tr>
-            <td>Jonathan</td>
-            <td>Lollipop</td>
-            <td>$7.00</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>
