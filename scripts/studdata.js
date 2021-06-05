@@ -1,6 +1,29 @@
-getdata()
 
+window.addEventListener('DOMContentLoaded', () => getdata());
 var input = document.getElementById('exl');
+var lastdoc=null;
+
+
+async function getdata() {
+    const ref = await db.collection("studentData").startAfter(0).limit(6);
+    const data = await ref.get();
+    data.docs.forEach(doc => {
+        const data = doc.data();
+        addStudentDataTable(doc.id,data.Name,data.CGPA,data.Branch);
+    });
+    lastdoc = data.docs[data.docs.length-1]
+}
+
+
+
+
+
+
+
+
+
+
+
 input.addEventListener('change', function () {
     if (document.getElementById('exl').value.endsWith(".xlsx")) {
         readXlsxFile(input.files[0]).then(function (data) {
@@ -79,18 +102,16 @@ async function uploaddata(data) {
     }
     document.getElementsByClassName("progress")[0].style.visibility = "hidden";
 }
-async function getdata() {
-    var mydoc;
-    const myquery = await db.collection("studentData").orderBy("CGPA").limit(3)
-        .get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                mydoc = doc;
-                console.log(doc.id, " => ", doc.data());
-            });
-        })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
-    //myquery = myquery.startAt(doc);
+
+function addStudentDataTable(prn, name, cgpa, school) {
+    var table = document.getElementById("courset");
+    var row = table.insertRow(1);
+    var prnt = row.insertCell(0);
+    var namet = row.insertCell(1);
+    var cgpat = row.insertCell(2);
+    var schoolt = row.insertCell(3);
+    prnt.innerHTML = prn;
+    namet.innerHTML = name;
+    cgpat.innerHTML = cgpa;
+    schoolt.innerHTML = school;
 }

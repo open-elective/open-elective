@@ -69,8 +69,8 @@ async function addadmin(e) {
         btn.style.visibility = "visible";
     }
 }
-const sendVerificationEmail = (email) => {
-    Auth.sendPasswordResetEmail(email).then(function () {
+async function sendVerificationEmail(email){
+    await Auth.sendPasswordResetEmail(email).then(function () {
         console.log('link sent')
     }).catch(function (error) {
         window.alert(error.message)

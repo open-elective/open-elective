@@ -1,5 +1,5 @@
 hideall()
-checkcurrentstate()
+window.addEventListener('DOMContentLoaded', () => checkcurrentstate());
 async function checkcurrentstate() {
     await db.collection("Misc").doc("State").get().then((doc) => {
         const state = doc.data()["Allow"]
@@ -48,7 +48,8 @@ function hideall() {
 }
 async function openportal() {
     await db.collection("Misc").doc("State").get().then((doc) => {
-        if (doc.data()["Allow"] == 0) {
+        const data = doc.data();
+        if (data.Allow == 0) {
             db.collection("Misc").doc("State").update({
                 Allow: 1
             })
@@ -60,7 +61,7 @@ async function openportal() {
                     console.error("Error writing document: ", error);
                 });
         }
-        if (doc.data()["Allow"] == 2) {
+        if (data.Allow == 2) {
             db.collection("Misc").doc("State").update({
                 Allow: 1
             })
@@ -72,7 +73,7 @@ async function openportal() {
                     console.error("Error writing document: ", error);
                 });
         }
-        if (doc.data()["Allow"] == 3) {
+        if (data.Allow == 3) {
             if (confirm('Are you sure, you want to open the portal? The results will be unpublished')) {
                 db.collection("Misc").doc("State").update({
                     Allow: 1

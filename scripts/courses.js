@@ -1,5 +1,5 @@
+window.addEventListener('DOMContentLoaded', () => retriveCourseData());
 
-retriveCourseData()
 function retriveCourseData() {
     var rows = document.getElementById("courset").rows.length;
     for (i = 2; i < rows; i++)
@@ -9,27 +9,28 @@ function retriveCourseData() {
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 var temp = ""
-                if (doc.data()["All"]) {
+                const data = doc.data();
+                if (data.All) {
                     temp = "All"
                 }
                 else {
-                    if (doc.data()["SCET"]) {
+                    if (data.SCET) {
                         temp = temp + "SCET" + ", "
                     }
-                    if (doc.data()["SEE"]) {
+                    if (data.SEE) {
                         temp = temp + "SEE" + ", "
                     }
-                    if (doc.data()["SMCEM"]) {
+                    if (data.SMCEM) {
                         temp = temp + "SMCEM" + ", "
                     }
-                    if (doc.data()["SMCEC"]) {
+                    if (data.SMCEC) {
                         temp = temp + "SMCEC" + ", "
                     }
-                    if (doc.data()["SCE"]) {
+                    if (data.SCE) {
                         temp = temp + "SCE" + ", "
                     }
                 }
-                addCourseTable(doc.id, doc.data()["Name"], doc.data()["InternalCap"], doc.data()["ExternalCap"], doc.data()["School"], temp)
+                addCourseTable(doc.id, data.Name, data.InternalCap, data.ExternalCap, data.School, temp)
             });
         })
         .catch((error) => {
@@ -115,7 +116,8 @@ async function addcourse() {
         var edit = true;
         await db.collection("Misc").doc("State").get().then((doc) => {
             if (doc.exists) {
-                if (doc.data()["Allow"] == 3) {
+                const data = doc.data();
+                if (data.Allow == 3) {
                     if (!confirm("Result is already Published, Adding course won't affect allocation now. Do you still want to continue?")) {
                         edit = false;
                     }
@@ -221,7 +223,8 @@ async function editcourse() {
         }
         await db.collection("courseData").doc(cno.value.toString()).get().then((doc) => {
             if (doc.exists) {
-                var schooltemp = doc.data()["School"];
+                const data = doc.data();
+                var schooltemp = data.School;
                 var s = 0
                 if (schooltemp == "SCET") {
                     document.getElementById("c2").disabled = "disabled"
@@ -246,19 +249,19 @@ async function editcourse() {
                     document.getElementById("c4").disabled = "disabled"
                     s = 3
                 }
-                document.getElementById("cname").value = doc.data()["Name"];
+                document.getElementById("cname").value = data.Name;
                 document.getElementById("cno").value = doc.id;
-                document.getElementById("cincapa").value = doc.data()["InternalCap"];
-                document.getElementById("cextcapa").value = doc.data()["ExternalCap"];
+                document.getElementById("cincapa").value = data.InternalCap;
+                document.getElementById("cextcapa").value = data.ExternalCap;
                 document.getElementById("schooldd").M_FormSelect.input.value = schooltemp;
                 document.getElementById("schooldd").selectedIndex = s;
-                document.getElementById("c1").checked = doc.data()["All"];
-                document.getElementById("c2").checked = doc.data()["SCET"];
-                document.getElementById("c3").checked = doc.data()["SEE"];
-                document.getElementById("c4").checked = doc.data()["SMCEM"];
-                document.getElementById("c5").checked = doc.data()["SMCEC"];
-                document.getElementById("c6").checked = doc.data()["SCE"];
-                if (doc.data()["All"]) {
+                document.getElementById("c1").checked = data.All;
+                document.getElementById("c2").checked = data.SCET;
+                document.getElementById("c3").checked = data.SEE;
+                document.getElementById("c4").checked = data.SMCEM;
+                document.getElementById("c5").checked = data.SMCEC;
+                document.getElementById("c6").checked = data.SCE;
+                if (data.All) {
                     removeallcheck()
                     blockall("disabled")
                 }
