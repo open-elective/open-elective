@@ -4,7 +4,7 @@ function retriveCourseData() {
     var rows = document.getElementById("courset").rows.length;
     for (i = 2; i < rows; i++)
         document.getElementById("courset").deleteRow(1);
-    firebase.firestore().collection("courseData")
+    db.collection("courseData")
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -113,7 +113,7 @@ async function addcourse() {
             };
         }
         var edit = true;
-        await firebase.firestore().collection("Misc").doc("State").get().then((doc) => {
+        await db.collection("Misc").doc("State").get().then((doc) => {
             if (doc.exists) {
                 if (doc.data()["Allow"] == 3) {
                     if (!confirm("Result is already Published, Adding course won't affect allocation now. Do you still want to continue?")) {
@@ -124,7 +124,7 @@ async function addcourse() {
         }).catch((error) => {
             console.log("Error getting document:", error);
         });
-        await firebase.firestore().collection("courseData").doc(cno.toString()).get().then((doc) => {
+        await db.collection("courseData").doc(cno.toString()).get().then((doc) => {
             if (doc.exists) {
                 if (!confirm('This course already exist. Are you sure you want to edit the course data?')) {
                     edit = false;
@@ -139,7 +139,7 @@ async function addcourse() {
                 error: new Error()
             };
         }
-        await firebase.firestore().collection("courseData").doc(cno.toString()).set({
+        await db.collection("courseData").doc(cno.toString()).set({
             Name: cname.toString(),
             InternalCap: cincapa.toString(),
             ExternalCap: cextcapa.toString(),
@@ -219,7 +219,7 @@ async function editcourse() {
                 error: new Error()
             };
         }
-        await firebase.firestore().collection("courseData").doc(cno.value.toString()).get().then((doc) => {
+        await db.collection("courseData").doc(cno.value.toString()).get().then((doc) => {
             if (doc.exists) {
                 var schooltemp = doc.data()["School"];
                 var s = 0
@@ -296,7 +296,7 @@ async function deletecourse()
         }
         var isexist = true;
         var subjectname = ""
-        await firebase.firestore().collection("courseData").doc(cno.toString()).get().then((doc) => {
+        await db.collection("courseData").doc(cno.toString()).get().then((doc) => {
             if (!doc.exists) {
                 isexist = false;
             }
@@ -315,7 +315,7 @@ async function deletecourse()
             };
         }
         if (confirm('Are you sure you want to delete '+ subjectname+"?")) {
-            await firebase.firestore().collection("courseData").doc(cno.toString()).delete().then(() => {
+            await db.collection("courseData").doc(cno.toString()).delete().then(() => {
                 console.log("Document successfully deleted!");
             }).catch((error) => {
                 console.error("Error removing document: ", error);

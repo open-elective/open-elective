@@ -1,5 +1,6 @@
-var input = document.getElementById('exl');
+getdata()
 
+var input = document.getElementById('exl');
 input.addEventListener('change', function () {
     if (document.getElementById('exl').value.endsWith(".xlsx")) {
         readXlsxFile(input.files[0]).then(function (data) {
@@ -7,8 +8,7 @@ input.addEventListener('change', function () {
             checkValidity(data)
         });
     }
-    else
-    {
+    else {
         window.alert("Please Upload Excel File only. (.xlsx extenstion)")
     }
 })
@@ -51,7 +51,7 @@ async function uploaddata(data) {
     var i;
     var progress = document.getElementsByClassName("determinate")[0];
     document.getElementsByClassName("progress")[0].style.visibility = "visible";
-    await firebase.firestore().collection("Misc").doc("State").get().then((doc) => {
+    await db.collection("Misc").doc("State").get().then((doc) => {
         if (doc.exists) {
             if (doc.data()["Allow"] == 3) {
                 window.alert("Result is already Published, This upload won't affect allocation now");
@@ -63,7 +63,7 @@ async function uploaddata(data) {
     var len = data.length;
     for (i = 1; i < len; i++) {
         console.log("in loop");
-        await firebase.firestore().collection("studentData").doc(data[i][0].toString()).set({
+        await db.collection("studentData").doc(data[i][0].toString()).set({
             Name: data[i][1].toString(),
             CGPA: data[i][2],
             Branch: data[i][3].toString()
@@ -78,4 +78,19 @@ async function uploaddata(data) {
         progress.style = "width:" + percent.toString() + "%";
     }
     document.getElementsByClassName("progress")[0].style.visibility = "hidden";
+}
+async function getdata() {
+    var mydoc;
+    const myquery = await db.collection("studentData").orderBy("CGPA").limit(3)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                mydoc = doc;
+                console.log(doc.id, " => ", doc.data());
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    //myquery = myquery.startAt(doc);
 }

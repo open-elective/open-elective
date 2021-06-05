@@ -1,10 +1,11 @@
+const Auth = firebase.auth()
 async function getData()
 {
-document.getElementById("navname").innerHTML = await firebase.auth().currentUser.photoURL;
-document.getElementById("navemail").innerHTML = await firebase.auth().currentUser.email;
+document.getElementById("navname").innerHTML = await Auth.currentUser.photoURL;
+document.getElementById("navemail").innerHTML = await Auth.currentUser.email;
 }
 function logout() {
-    firebase.auth().signOut().then(() => {
+    Auth.signOut().then(() => {
         window.alert("Logout successfull")
         window.location.href = "/index.html";
     }).catch((error) => {
@@ -13,7 +14,7 @@ function logout() {
 }
 
 //auth change
-firebase.auth().onAuthStateChanged((user) => {
+Auth.onAuthStateChanged((user) => {
     if (user && document.getElementById("navname").innerHTML!=""){
         getData();
     }

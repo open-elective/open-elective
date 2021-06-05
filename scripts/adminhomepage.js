@@ -1,7 +1,7 @@
 hideall()
 checkcurrentstate()
 async function checkcurrentstate() {
-    await firebase.firestore().collection("Misc").doc("State").get().then((doc) => {
+    await db.collection("Misc").doc("State").get().then((doc) => {
         const state = doc.data()["Allow"]
         hideall()
         if (state == 0) {
@@ -47,9 +47,9 @@ function hideall() {
     document.getElementsByClassName("li")[3].className = "li"
 }
 async function openportal() {
-    await firebase.firestore().collection("Misc").doc("State").get().then((doc) => {
+    await db.collection("Misc").doc("State").get().then((doc) => {
         if (doc.data()["Allow"] == 0) {
-            firebase.firestore().collection("Misc").doc("State").update({
+            db.collection("Misc").doc("State").update({
                 Allow: 1
             })
                 .then(() => {
@@ -61,7 +61,7 @@ async function openportal() {
                 });
         }
         if (doc.data()["Allow"] == 2) {
-            firebase.firestore().collection("Misc").doc("State").update({
+            db.collection("Misc").doc("State").update({
                 Allow: 1
             })
                 .then(() => {
@@ -74,7 +74,7 @@ async function openportal() {
         }
         if (doc.data()["Allow"] == 3) {
             if (confirm('Are you sure, you want to open the portal? The results will be unpublished')) {
-                firebase.firestore().collection("Misc").doc("State").update({
+                db.collection("Misc").doc("State").update({
                     Allow: 1
                 })
                     .then(() => {
@@ -93,9 +93,9 @@ async function openportal() {
     });
 }
 async function closeregistration() {
-    await firebase.firestore().collection("Misc").doc("State").get().then((doc) => {
+    await db.collection("Misc").doc("State").get().then((doc) => {
         if (doc.data()["Allow"] == 1) {
-            firebase.firestore().collection("Misc").doc("State").update({
+            db.collection("Misc").doc("State").update({
                 Allow: 2
             })
                 .then(() => {
@@ -111,9 +111,9 @@ async function closeregistration() {
     });
 }
 async function publish() {
-    await firebase.firestore().collection("Misc").doc("State").get().then((doc) => {
+    await db.collection("Misc").doc("State").get().then((doc) => {
         if (doc.data()["Allow"] == 2) {
-            firebase.firestore().collection("Misc").doc("State").update({
+            db.collection("Misc").doc("State").update({
                 Allow: 3
             })
                 .then(() => {
@@ -129,9 +129,9 @@ async function publish() {
     });
 }
 async function closeportal() {
-    await firebase.firestore().collection("Misc").doc("State").get().then((doc) => {
+    await db.collection("Misc").doc("State").get().then((doc) => {
         if (doc.data()["Allow"] == 3) {
-            firebase.firestore().collection("Misc").doc("State").update({
+            db.collection("Misc").doc("State").update({
                 Allow: 0
             })
                 .then(() => {

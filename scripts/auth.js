@@ -1,4 +1,4 @@
-
+const Auth = firebase.auth()
 //Signup
 async function signup(e) {
     e.preventDefault()
@@ -22,7 +22,7 @@ async function signup(e) {
         var btn = document.getElementById("signinbtn");
         progress.style.visibility = "visible";
         btn.style.visibility = "hidden";
-        const result = await firebase.auth().createUserWithEmailAndPassword(email.value, password.value)
+        const result = await Auth.createUserWithEmailAndPassword(email.value, password.value)
         sendVerificationEmail()
         await result.user.updateProfile({
             displayName: "User",
@@ -46,7 +46,7 @@ async function signup(e) {
     }
 }
 const sendVerificationEmail = () => {
-    firebase.auth().currentUser.sendEmailVerification()
+    Auth.currentUser.sendEmailVerification()
         .then(() => {
             console.log('Verification Email Sent Successfully !');
         })
@@ -76,8 +76,8 @@ async function login(e) {
         var btn = document.getElementById("login");
         progress.style.visibility = "visible";
         btn.style.visibility = "hidden";
-        const result = await firebase.auth().signInWithEmailAndPassword(email.value, password.value)
-        if (!firebase.auth().currentUser.emailVerified) {
+        const result = await Auth.signInWithEmailAndPassword(email.value, password.value)
+        if (!Auth.currentUser.emailVerified) {
             sendVerificationEmail()
             throw {
                 message: "Email Id not verified.\nPlease check your inbox for verification email",
@@ -106,7 +106,7 @@ async function login(e) {
 
 //log out
 function logout() {
-    firebase.auth().signOut().then(() => {
+    Auth.signOut().then(() => {
         window.alert("Logout successfull")
         window.location.href = "/index.html";
     }).catch((error) => {
@@ -119,20 +119,20 @@ function logout() {
 
 
 //check if loggedin
-firebase.auth().onAuthStateChanged((user) => {
-    if (user && firebase.auth().currentUser.emailVerified) {
-        if (firebase.auth().currentUser.displayName == "User") {
+Auth.onAuthStateChanged((user) => {
+    if (user && Auth.currentUser.emailVerified) {
+        if (Auth.currentUser.displayName == "User") {
             if (window.location.href.slice(-17) != "studhomepage.html") {
                 window.location.href = "/student/studhomepage.html";
             }
         }
-        else if(firebase.auth().currentUser.displayName == "Admin")
+        else if(Auth.currentUser.displayName == "Admin")
         {
             if (window.location.href.slice(-18) != "adminhomepage.html") {
                 window.location.href = "/admin/adminhomepage.html";
             }
         }
-        console.log(firebase.auth().currentUser)
+        console.log(Auth.currentUser)
     }
 });
 
@@ -140,14 +140,13 @@ firebase.auth().onAuthStateChanged((user) => {
 //forget Password
 function forgotpass(e) {
     e.preventDefault()
-    var auth = firebase.auth();
     var emailAddress = document.getElementById("studresetemail").value;
     var progress = document.getElementById("resetprogress");
     var btn = document.getElementById("forgotbtn");
     progress.style.visibility = "visible";
     btn.style.visibility = "hidden";
 
-    auth.sendPasswordResetEmail(emailAddress).then(function () {
+    Auth.sendPasswordResetEmail(emailAddress).then(function () {
         window.alert("Reset Link sent")
         progress.style.visibility = "hidden";
         btn.style.visibility = "visible";

@@ -1,3 +1,4 @@
+
 async function addadmin(e) {
     e.preventDefault()
     const email = document.getElementById("adminemail")
@@ -20,7 +21,7 @@ async function addadmin(e) {
         progress.style.visibility = "visible";
         btn.style.visibility = "hidden";
         var alreadyexist =false;
-        await firebase.firestore().collection("allow-users").doc(email.value).get().then((doc) => {
+        await db.collection("allow-users").doc(email.value).get().then((doc) => {
             if (doc.exists) {
                alreadyexist = true;
             }
@@ -34,19 +35,18 @@ async function addadmin(e) {
                 error: new Error()
             };
         }
-        await firebase.firestore().collection("allow-users").doc(email.value).set({
+        await db.collection("allow-users").doc(email.value).set({
             Name: Name.value
         })
             .then(() => {
                 console.log("Added Admin in Database");
-                checkcurrentstate()
             })
             .catch((error) => {
                 console.error("Error adding Admin in database: ", error);
             });
             
-        const result = await firebase.auth().createUserWithEmailAndPassword(email.value, Math.random().toString(36).slice(2))
-        sendVerificationEmail()
+        const result = await Auth.createUserWithEmailAndPassword(email.value, Math.random().toString(36).slice(2))
+        sendVerificationEmail(email.value)
         await result.user.updateProfile({
             displayName: "Admin",
             photoURL: Name.value
@@ -57,7 +57,7 @@ async function addadmin(e) {
         email.value = ""
         progress.style.visibility = "hidden";
         btn.style.visibility = "visible";
-        window.alert("Admin Added Successfully. (Please check inbox for verification)")
+        window.alert("Admin Added Successfully. (Please tell new user to check inbox to Set Password)")
         logout()
     }
     catch (err) {
@@ -69,13 +69,18 @@ async function addadmin(e) {
         btn.style.visibility = "visible";
     }
 }
-const sendVerificationEmail = () => {
-    firebase.auth().currentUser.sendEmailVerification()
-        .then(() => {
-            console.log('Verification Email Sent Successfully !');
-            console.log(firebase.auth().currentUser);
-        })
-        .catch(error => {
-            console.error(error);
-        })
+const sendVerificationEmail = (email) => {
+    Auth.sendPasswordResetEmail(email).then(function () {
+        console.log('link sent')
+    }).catch(function (error) {
+        window.alert(error.message)
+    });
+}
+function logout() {
+    Auth.signOut().then(() => {
+        window.alert("Logout successfull")
+        window.location.href = "/index.html";
+    }).catch((error) => {
+        window.alert(error.message)
+    });
 }
