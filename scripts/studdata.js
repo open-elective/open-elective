@@ -134,7 +134,7 @@ async function uploaddata(data) {
 
 function addStudentDataTable(prn, name, cgpa, school) {
     var table = document.getElementById("studdatat");
-    var row = table.insertRow(document.getElementById("studdatat").rows.length);
+    var row = table.insertRow(document.getElementById("studdatat").rows.length-1);
     var prnt = row.insertCell(0);
     var namet = row.insertCell(1);
     var cgpat = row.insertCell(2);
