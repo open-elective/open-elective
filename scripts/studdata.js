@@ -1,28 +1,40 @@
 
 window.addEventListener('DOMContentLoaded', () => getdata());
 var input = document.getElementById('exl');
-var lastdoc=null;
+var lastdoc = null;
+var nextpg = document.getElementById('page-next');
+var pgno = 1;
 
-
-async function getdata() {
-    const ref = await db.collection("studentData").orderBy("CGPA").limit(6);
-    const data = await ref.get();
+async function getdata(b) {
+    var rows = document.getElementById("courset").rows.length;
+    var pglen = 30;
+    for (i = 2; i < rows; i++)
+        document.getElementById("courset").deleteRow(1);
+    var data = 0;
+    if (b == 1) {
+        const ref = await db.collection("studentData").orderBy("CGPA").startAfter(lastdoc || 0).limit(pglen);
+        data = await ref.get();
+        pgno++;
+        document.getElementById("page").innerHTML = "Page " + pgno.toString();
+    }
+    else {
+        const ref = await db.collection("studentData").orderBy("CGPA").startAfter(0).limit(pglen);
+        data = await ref.get();
+        pgno = 1;
+        document.getElementById("page").innerHTML = "Page " + pgno.toString();
+    }
     data.docs.forEach(doc => {
-        const data = doc.data();
-        addStudentDataTable(doc.id,data.Name,data.CGPA,data.Branch);
+        const d = doc.data();
+        addStudentDataTable(doc.id, d.Name, d.CGPA, d.Branch);
     });
-    lastdoc = data.docs[data.docs.length-1]
+    lastdoc = data.docs[data.docs.length - 1]
+    if (data.empty || data.docs.length < pglen) {
+        nextpg.className = "waves-effect waves-light btn disabled";
+    }
+    else {
+        nextpg.className = "waves-effect waves-light btn";
+    }
 }
-
-
-
-
-
-
-
-
-
-
 
 input.addEventListener('change', function () {
     if (document.getElementById('exl').value.endsWith(".xlsx")) {
@@ -42,7 +54,7 @@ function checkValidity(data) {
     try {
         var i;
         for (i = 1; i < data.length; i++) {
-            if (data[i][0].toString().length != 10) {
+            if (data[i][0].toString().length != 9) {
                 throw {
                     message: "Invalid PRN at : row(" + (i + 1).toString() + ")  {" + data[i][0].toString() + ", " + data[i][1].toString() + ", " + data[i][2].toString() + ", " + data[i][3].toString() + "}",
                     error: new Error()
@@ -86,7 +98,7 @@ async function uploaddata(data) {
     var len = data.length;
     for (i = 1; i < len; i++) {
         console.log("in loop");
-        await db.collection("studentData").doc(data[i][0].toString()).set({
+        await db.collection("studentData").doc("0" + data[i][0].toString()).set({
             Name: data[i][1].toString(),
             CGPA: data[i][2],
             Branch: data[i][3].toString()
@@ -114,4 +126,29 @@ function addStudentDataTable(prn, name, cgpa, school) {
     namet.innerHTML = name;
     cgpat.innerHTML = cgpa;
     schoolt.innerHTML = school;
+}
+function searchtest() {
+
+    const res = document.getElementById("search").value
+    if (res.toString().length == 10) {
+        db.collection("studentData").doc(res.toString())
+            .get().then((doc) => {
+                if (doc.exists) {
+                    var rows = document.getElementById("courset").rows.length;
+                    for (i = 2; i < rows; i++)
+                        document.getElementById("courset").deleteRow(1);
+                    const d = doc.data();
+                    addStudentDataTable(doc.id, d.Name, d.CGPA, d.Branch);
+                } else {
+                    window.alert("Student not found with that PRN")
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+    }
+    else {
+        window.alert("Invalid PRN")
+        getdata(2)
+    }
+
 }

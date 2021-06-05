@@ -50,7 +50,7 @@
 
   <nav>
     <div class="nav-wrapper blue darken-2">
-      <form>
+      <form onsubmit="searchtest();return false">
         <div class="input-field">
           <input placeholder="Search with PRN" id="search" type="search" required>
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
@@ -59,9 +59,9 @@
       </form>
     </div>
   </nav>
-  <a id="page-pre" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a>
+  <a id="page-pre" class="waves-effect waves-light btn" onclick="getdata(2)"><i class="material-icons left">cloud</i>1st Page/Refresh</a>
   <a id="page">Page 1</a>
-<a id="page-next" class="waves-effect waves-light btn" onclick="getdata()"><i class="material-icons right">cloud</i>button</a>
+<a id="page-next" class="waves-effect waves-light btn" onclick="getdata(1)"><i class="material-icons right">cloud</i>Next Page</a>
   <!-- student data table -->
   <div id="ctable">
     <table id="courset" class="centered striped">
