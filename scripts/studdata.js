@@ -5,7 +5,7 @@ var lastdoc=null;
 
 
 async function getdata() {
-    const ref = await db.collection("studentData").startAfter(0).limit(6);
+    const ref = await db.collection("studentData").ord.startAfter(0).limit(6);
     const data = await ref.get();
     data.docs.forEach(doc => {
         const data = doc.data();
