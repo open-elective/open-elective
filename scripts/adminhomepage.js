@@ -1,4 +1,4 @@
-
+hideall()
 checkcurrentstate()
 async function checkcurrentstate() {
     await firebase.firestore().collection("Misc").doc("State").get().then((doc) => {

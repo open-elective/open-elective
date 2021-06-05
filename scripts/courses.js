@@ -1,6 +1,9 @@
 
 retriveCourseData()
 function retriveCourseData() {
+    var rows = document.getElementById("courset").rows.length;
+    for (i = 2; i < rows; i++)
+        document.getElementById("courset").deleteRow(1);
     firebase.firestore().collection("courseData")
         .get()
         .then((querySnapshot) => {
@@ -86,6 +89,12 @@ async function addcourse() {
         var c6 = document.getElementById("c6");
         var dd = schooldd.selectedIndex;
         var school = ""
+        //skip if All check box is selected
+        var skip = false;
+        if(c2.checked && c3.checked && c4.checked && c5.checked && c6.checked)
+        {
+            skip = true;
+        }
         if (dd == 1)
             school = "SCET"
         else if (dd == 2)
@@ -135,19 +144,21 @@ async function addcourse() {
             InternalCap: cincapa.toString(),
             ExternalCap: cextcapa.toString(),
             School: school,
-            All: c1.checked,
-            SCET: c2.checked,
-            SEE: c3.checked,
-            SMCEM: c4.checked,
-            SMCEC: c5.checked,
-            SCE: c6.checked
+            All: c1.checked || skip,
+            SCET: c2.checked && !skip,
+            SEE: c3.checked && !skip,
+            SMCEM: c4.checked && !skip,
+            SMCEC: c5.checked && !skip,
+            SCE: c6.checked && !skip
         })
             .then(() => {
                 console.log("Added in Database");
+                retriveCourseData()
             })
             .catch((error) => {
                 console.error("Error adding Data in database: ", error);
             });
+            
     }
     catch (err) {
         window.alert(err.message)
@@ -264,6 +275,7 @@ async function editcourse() {
     catch (err) {
         window.alert(err.message)
     }
+    removeextra()
 }
 function focusall(a) {
     document.getElementsByTagName("label")[0].className = a
@@ -273,6 +285,7 @@ function focusall(a) {
 }
 async function deletecourse()
 {
+    removeall()
     try {
         var cno = document.getElementById("cdelete").value;
         if (!cno) {
@@ -307,6 +320,7 @@ async function deletecourse()
             }).catch((error) => {
                 console.error("Error removing document: ", error);
             });
+            retriveCourseData()
             throw {
                 message: "Course deleted succussfully",
                 error: new Error()
@@ -324,4 +338,11 @@ async function deletecourse()
     {
         window.alert(err.message)
     }
+    removeextra()
+}
+function removeextra() {
+    document.getElementById("cedit").value = "";
+    document.getElementById("cdelete").value = "";
+    document.getElementsByTagName("label")[10].className = "";
+    document.getElementsByTagName("label")[11].className = "";
 }
