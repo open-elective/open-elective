@@ -107,17 +107,17 @@
     </div>
 
     <!-- Edit Course -->
-    <div id="edit">
-      <div id="editdel">
-        <h6>Edit Course</h6>
-        <div class="input-field col s6 center">
-          <input type="text" id="cedit">
+    <div id="edit"> 
+        <div id="editdel">
+          <h6>Edit Course</h6>
+          <div class="input-field col s6 center">
+          <input type="number" id="cedit">
           <label for="cedit">Enter Course No</label>
           <a class="waves-effect waves-light btn blue darken-2" id="editcourse" onclick="editcourse()">Edit</a>
-        </div>
-        <h6>Delete Course</h6>
-        <div class="input-field col s6 center">
-          <input type="text" id="cdelete">
+                </div>
+          <h6>Delete Course</h6>
+          <div class="input-field col s6 center">
+          <input type="number" id="cdelete">
           <label for="cdelete">Enter Course No</label>
           <a class="waves-effect waves-light btn blue darken-2" id="deletecourse" onclick="deletecourse()">Delete</a>
         </div>
@@ -127,7 +127,7 @@
     <!-- Course Table -->
 
     <div id="ctable">
-      <table id="courset" class="highlight centered">
+      <table id="courset" class="centered striped">
         <thead>
           <tr>
             <th>Course No</th>
