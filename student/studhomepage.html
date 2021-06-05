@@ -7,22 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Elective Allocation Portal</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="stylesheet" href="/css/stud.css">
+  <link rel="stylesheet" href="/css/studhome.css">
 </head>
 
 <body>
 
-  <select id="pref" class="input-field col s12" onchange="prefchange()">
-    <option value="" disabled selected>Filter By Allocation</option>
-    <option value="1"></option>
-  </select>
+  <div id="select-pref">
+    <select id="pref" class="input-field col s6" onchange="prefchange()">
+      <option value="" disabled selected>Select Your Preferences</option>
+      <option value="1">Pref 1</option>
+    </select>
+  </div>
+  
   <!-- student data table -->
   <div id="ctable">
     <table id="studpref" class="centered striped">
       <thead>
         <tr>
-          <th>PRN</th>
-          <th>Name</th>
+          <th>Preference No</th>
+          <th>Open Elective Name</th>
         </tr>
       </thead>
       <tbody>
@@ -49,7 +53,12 @@
   <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-
+<script>
+   document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
+  });
+</script>
   <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {

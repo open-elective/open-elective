@@ -1,0 +1,17 @@
+td{
+    padding: 3px;
+}
+th{
+    border-bottom: 1px solid #1976d2;
+}
+#ctable{
+    border: 1px solid #1d72bc;
+    grid-area: ctable;
+    margin: 2em 2em 10em 2em;
+    border-radius: 10px;
+}
+#selectpref{
+    display: inline-block;
+    max-width: 50%;
+    margin: 0px 15px;
+}
