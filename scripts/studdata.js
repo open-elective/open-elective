@@ -29,10 +29,10 @@ async function getdata(b) {
     });
     lastdoc = data.docs[data.docs.length - 1]
     if (data.empty || data.docs.length < pglen) {
-        nextpg.className = "waves-effect waves-light btn disabled";
+        nextpg.className = "waves-effect waves-light btn blue darken-2 disabled";
     }
     else {
-        nextpg.className = "waves-effect waves-light btn";
+        nextpg.className = "waves-effect waves-light btn blue darken-2";
     }
 }
 
