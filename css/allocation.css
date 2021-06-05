@@ -66,3 +66,9 @@ th{
     padding-right: 22px !important;
     color: black;
 }
+.filter{
+    display: inline-block;
+    max-width: 50%;
+    margin: 0px 15px;
+
+}

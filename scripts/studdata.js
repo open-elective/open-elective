@@ -56,7 +56,7 @@ c6.addEventListener('change', (event) => {
 async function getdata(b) {
     var rows = document.getElementById("studdatat").rows.length;
     //page length
-    var pglen = 3;
+    var pglen = 20;
 
     //delete all row
     for (i = 2; i < rows; i++)
