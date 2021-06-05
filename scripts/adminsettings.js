@@ -79,12 +79,3 @@ const sendVerificationEmail = () => {
             console.error(error);
         })
 }
-//log out
-function logout() {
-    firebase.auth().signOut().then(() => {
-        window.alert("Logout successfull")
-        window.location.href = "index.html";
-    }).catch((error) => {
-        window.alert(error.message)
-    });
-}

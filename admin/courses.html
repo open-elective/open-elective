@@ -8,8 +8,8 @@
   <title>Admin Console</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="css/admin.css">
-  <link rel="stylesheet" href="css/courses.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="stylesheet" href="/css/courses.css">
 
 </head>
 <!-- nav -->
@@ -25,23 +25,23 @@
     <li>
       <div class="user-view">
         <div class="background">
-          <img id="test" src="assets/bg.jpg">
+          <img id="test" src="/assets/bg.jpg">
         </div>
-        <a href="#user"><img class="circle" src="assets/user.png"></a>
+        <a href="#user"><img class="circle" src="/assets/user.png"></a>
         <a href="#name"><span class="black-text name" id="navname"><b>John Doe</b></span></a>
         <a href="#email"><span class="black-text email" id="navemail">jdandturk@gmail.com</span></a>
       </div>
     </li>
 
-    <li><a href="adminhomepage.html" class="waves-effect waves-light white-text"><i
+    <li><a href="/admin/adminhomepage.html" class="waves-effect waves-light white-text"><i
           class="material-icons white-text">schedule</i>Schedule</a></li>
-    <li><a href="courses.html" class="waves-effect waves-light white-text"><i
+    <li><a href="/admin/courses.html" class="waves-effect waves-light white-text"><i
           class="material-icons white-text">book</i>Courses Setting</a></li>
-    <li><a href="allocation.html" class="waves-effect waves-light white-text"><i
+    <li><a href="/admin/allocation.html" class="waves-effect waves-light white-text"><i
           class="material-icons white-text">check_box</i>Allocation</a></li>
-    <li><a href="studdata.html" class="waves-effect waves-light white-text"><i
+    <li><a href="/admin/studdata.html" class="waves-effect waves-light white-text"><i
           class="material-icons white-text">data_usage</i>Student Data</a></li>
-    <li><a href="adminsettings.html" class="waves-effect waves-light white-text"><i
+    <li><a href="/admin/adminsettings.html" class="waves-effect waves-light white-text"><i
           class="material-icons white-text">settings</i>Admin Settings</a></li>
     <li>
       <div class="divider white-text"></div>
@@ -107,21 +107,21 @@
     </div>
 
     <!-- Edit Course -->
-    <div id="edit"> 
-        <div id="editdel">
-          <h6>Edit Course</h6>
-          <div class="input-field col s6 center">
+    <div id="edit">
+      <div id="editdel">
+        <h6>Edit Course</h6>
+        <div class="input-field col s6 center">
           <input type="text" id="cedit">
           <label for="cedit">Enter Course No</label>
           <a class="waves-effect waves-light btn blue darken-2" id="editcourse" onclick="editcourse()">Edit</a>
-                </div>
-          <h6>Delete Course</h6>
-          <div class="input-field col s6 center">
+        </div>
+        <h6>Delete Course</h6>
+        <div class="input-field col s6 center">
           <input type="text" id="cdelete">
           <label for="cdelete">Enter Course No</label>
           <a class="waves-effect waves-light btn blue darken-2" id="deletecourse" onclick="deletecourse()">Delete</a>
-                </div>
         </div>
+      </div>
     </div>
 
     <!-- Course Table -->
@@ -153,7 +153,7 @@
     <div id="padding"></div>
   </div>
 
- 
+
 
 
 
@@ -194,8 +194,8 @@
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
   </script>
-  <script src="scripts/adminconsole.js"></script>
-  <script src="scripts/courses.js"></script>
+  <script src="/scripts/adminconsole.js"></script>
+  <script src="/scripts/courses.js"></script>
 </body>
 
 </html>

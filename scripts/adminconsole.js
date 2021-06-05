@@ -6,7 +6,7 @@ document.getElementById("navemail").innerHTML = await firebase.auth().currentUse
 function logout() {
     firebase.auth().signOut().then(() => {
         window.alert("Logout successfull")
-        window.location.href = "index.html";
+        window.location.href = "/index.html";
     }).catch((error) => {
         window.alert(error.message)
     });
@@ -19,6 +19,6 @@ firebase.auth().onAuthStateChanged((user) => {
     }
     else if(!user)
     {
-        window.location.href = "index.html";
+        window.location.href = "/index.html";
     }
 });

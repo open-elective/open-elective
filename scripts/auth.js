@@ -34,7 +34,7 @@ async function signup(e) {
         progress.style.visibility = "hidden";
         btn.style.visibility = "visible";
         window.alert("Signup successful.\nPlease check your inbox to verify your email id")
-        window.location.href = "index.html";
+        window.location.href = "/index.html";
     }
     catch (err) {
         if (err.code == "auth/email-already-in-use") {
@@ -108,7 +108,7 @@ async function login(e) {
 function logout() {
     firebase.auth().signOut().then(() => {
         window.alert("Logout successfull")
-        window.location.href = "index.html";
+        window.location.href = "/index.html";
     }).catch((error) => {
         window.alert(error.message)
     });
@@ -123,13 +123,13 @@ firebase.auth().onAuthStateChanged((user) => {
     if (user && firebase.auth().currentUser.emailVerified) {
         if (firebase.auth().currentUser.displayName == "User") {
             if (window.location.href.slice(-17) != "studhomepage.html") {
-                window.location.href = "studhomepage.html";
+                window.location.href = "/student/studhomepage.html";
             }
         }
         else if(firebase.auth().currentUser.displayName == "Admin")
         {
             if (window.location.href.slice(-18) != "adminhomepage.html") {
-                window.location.href = "adminhomepage.html";
+                window.location.href = "/admin/adminhomepage.html";
             }
         }
         console.log(firebase.auth().currentUser)
