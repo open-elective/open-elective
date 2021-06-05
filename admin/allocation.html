@@ -9,15 +9,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/css/admin.css">
+  <link rel="stylesheet" href="/css/allocation.css">
 </head>
 
+<!-- top nav -->
 <body>
   <ul class="top-nav">
     <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
     <h4 class="center">Allocation</h4>
   </ul>
 
-
+<!-- side nav -->
   <ul id="slide-out" class="sidenav blue darken-2">
     <li>
       <div class="user-view">
@@ -46,6 +48,85 @@
     <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
   </ul>
 
+   <!-- search box -->
+   <nav>
+    <div class="nav-wrapper blue darken-2">
+      <form onsubmit="searchtest();return false">
+        <div class="input-field">
+          <input placeholder="Search with PRN" id="search" type="search" required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+
+  <!-- Page buttons -->
+  <div class="center">
+  <a id="page-pre" class="waves-effect waves-light btn blue darken-2" onclick="getdata(2)"><i class="material-icons left">navigate_before</i>1st Page/Refresh</a>
+  <a id="page">Page 1</a>
+<a id="page-next" class="waves-effect waves-light btn blue darken-2" onclick="getdata(1)"><i class="material-icons right">navigate_next</i>Next Page</a>
+<div class="filter">
+  <select id="schooldd" class="input-field col s12" onchange="ddchanged()">
+    <option value="" disabled selected>Filter By School</option>
+    <option value="1">SCET</option>
+    <option value="2">SEE</option>
+    <option value="3">SMCE(Mechanical)</option>
+    <option value="4">SMCE(Civil)</option>
+    <option value="5">SCE</option>
+    <option value="6">SHES</option>
+  </select>
+</div>
+<div class="filter">
+  <select id="schooldd" class="input-field col s12" onchange="ddchanged()">
+    <option value="" disabled selected>Filter By Allocation</option>
+    <option value="1">SCET</option>
+    <option value="2">SEE</option>
+    <option value="3">SMCE(Mechanical)</option>
+    <option value="4">SMCE(Civil)</option>
+    <option value="5">SCE</option>
+    <option value="6">SHES</option>
+  </select>
+</div>
+
+
+</div>
+  
+  
+<!-- student data table -->
+  <div id="ctable">
+    <table id="studdatat" class="centered striped">
+      <thead>
+        <tr>
+          <th>PRN</th>
+          <th>Name</th>
+          <th>CGPA</th>
+          <th>School</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- Fixed Footer -->
+  <footer class="page-footer">
+    <div id="buttons" class="center">
+      <a href="#modal1" class="waves-effect waves-light btn blue darken-2 modal-trigger" id="allocate">Allocate</a>
+      <a class="waves-effect waves-light btn blue darken-2" id="resetstuddata" onclick="resetstuddata()">Reset</a>
+      <a class="waves-effect waves-light btn blue darken-2" id="downloaddata" onclick="downloaddata()">Download Excel</a>      
+      <div class="progress">
+        <div class="determinate"></div>
+      </div>
+    </div>
+  </footer>
 
 
   <!-- Compiled and minified JavaScript -->
@@ -56,6 +137,14 @@
       var elems = document.querySelectorAll('.sidenav');
       var instances = M.Sidenav.init(elems);
     });
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  });
   </script>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->

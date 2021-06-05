@@ -7,10 +7,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Elective Allocation Portal</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="/css/admin.css">
 </head>
 
 <body>
-  
+
+  <select id="pref" class="input-field col s12" onchange="prefchange()">
+    <option value="" disabled selected>Filter By Allocation</option>
+    <option value="1"></option>
+  </select>
+  <!-- student data table -->
+  <div id="ctable">
+    <table id="studpref" class="centered striped">
+      <thead>
+        <tr>
+          <th>PRN</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <a class="waves-effect waves-light btn blue darken-2" id="studlogout" onclick="logout()">Logout</a>
 
 
