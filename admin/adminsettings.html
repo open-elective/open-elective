@@ -48,6 +48,34 @@
     <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
   </ul>
 
+  <!-- assign new admin -->
+  <div class="assign">
+    <div>
+      <div class="center">
+        <h5>Assign New Admin</h5>
+      </div>
+      <div>
+        <div>
+          <input id="adminname" type="text" placeholder="Name">
+        </div>
+        <div>
+          <input id="adminemail" type="email" placeholder="Email ID">
+          <small>Enter Official Mail-ID</small>
+        </div>
+        <div class="center">
+          <a class="waves-effect waves-light btn blue darken-2" id="addadmin" onclick="addadmin(event)">Assign as
+            Admin</a>
+        </div>
+
+        <div class="progress blue lighten-4" id="addadminprogress">
+          <div class="indeterminate blue darken-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
   <!-- database -->
   <div class="data center">
     <div>
@@ -84,36 +112,6 @@
       <a href="#!" class="modal-close waves-effect waves-light btn white black-text" onclick="deleteallstud()">YES</a>
     </div>
   </div>
-
-
-
-  <hr>
-  <!-- assign new admin -->
-  <div class="assign">
-    <div>
-      <div class="center">
-        <h5>Assign New Admin</h5>
-      </div>
-      <div>
-        <div>
-          <input id="adminname" type="text" placeholder="Name">
-        </div>
-        <div>
-          <input id="adminemail" type="email" placeholder="Email ID">
-          <small>Enter Official Mail-ID</small>
-        </div>
-        <div class="center">
-          <a class="waves-effect waves-light btn blue darken-2" id="addadmin" onclick="addadmin(event)">Assign as
-            Admin</a>
-        </div>
-
-        <div class="progress blue lighten-4" id="addadminprogress">
-          <div class="indeterminate blue darken-2"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
