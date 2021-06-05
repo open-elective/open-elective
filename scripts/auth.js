@@ -89,6 +89,11 @@ async function login(e) {
         password.value = ""
         progress.style.visibility = "hidden";
         btn.style.visibility = "visible";
+        if (Auth.currentUser.displayName == "User") {
+            if (window.location.href.slice(-17) != "studhomepage.html") {
+                window.location.href = "/student/studhomepage.html";
+            }
+        }
     }
     catch (err) {
         if (err.code == "auth/wrong-password") {
@@ -133,6 +138,13 @@ Auth.onAuthStateChanged((user) => {
             }
         }
         console.log(Auth.currentUser)
+    }
+    if(!user || !Auth.currentUser.emailVerified )
+    {
+        if (window.location.href.slice(-10) != "index.html" && window.location.href.slice(-11) != "signup.html") {
+            window.alert("You are not Authorized to view this url, please login")
+            window.location.href = "/index.html";
+        }
     }
 });
 

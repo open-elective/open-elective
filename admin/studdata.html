@@ -94,7 +94,7 @@
   <!-- Fixed Footer -->
   <footer class="page-footer">
     <div id="buttons" class="center">
-      <a href="#modal1" class="waves-effect waves-light btn blue darken-2 modal-trigger" id="editstud">Edit</a>
+      <a href="#modal1" class="waves-effect waves-light btn blue darken-2 modal-trigger" id="editstud">Edit/Add</a>
       <a class="waves-effect waves-light btn blue darken-2" id="downloadtemp" onclick="downloadtemp()">Download
         Template</a>
       <input type="file" id="exl">
@@ -109,7 +109,7 @@
    <div id="modal1" class="modal">
     <div class="modal-content">
       <div id="course-input">
-        <h6>Edit Student Data</h6>
+        <h6>Edit/Add Student Data</h6>
         <div class="input-field col s6">
           <input id="editprn" type="text" class="validate">
           <label for="editprn">Input PRN for search</label>
@@ -120,7 +120,7 @@
           <label for="editname">Name</label>
         </div>
         <div class="input-field col s6">
-          <input id="editcgpa" type="number" class="validate">
+          <input id="editcgpa" type="number" step="0.01" class="validate">
           <label for="editcgpa">CGPA</label>
         </div>
         <h6>School</h6>
@@ -146,7 +146,8 @@
         </label>
     </div>
     <div class="modal-footer white">
-      <a href="#!" class="modal-close btn waves-effect waves-light blue darken-2" onclick="editstud()">Save Changes</a>
+      <a class="btn waves-effect waves-light blue darken-2" onclick="dismiss()">Dismiss Changes</a>
+      <a class="btn waves-effect waves-light blue darken-2" onclick="editstud()">Save Changes</a>
     </div>
   </div>
 

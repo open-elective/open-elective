@@ -224,6 +224,7 @@ function searchtest() {
 function searchforedit() {
 
     const res = document.getElementById("editprn").value
+    document.getElementById("editprn").disabled = true
     if (res.toString().length == 10) {
         db.collection("studentData").doc(res.toString())
             .get().then((doc) => {
@@ -232,7 +233,6 @@ function searchforedit() {
                     document.getElementById("editname").value = d.Name;
                     document.getElementById("editcgpa").value = d.CGPA;
                     var schooltemp = doc.data().School;
-                    console.log(schooltemp)
                     if (schooltemp == "SCET") {
                         document.getElementById("c2").checked = true
                     }
@@ -259,7 +259,99 @@ function searchforedit() {
     }
     else {
         window.alert("Invalid PRN")
-        getdata(2)
     }
+}
+async function editstud() {
+    try {
+        var editname = document.getElementById("editname").value;
+        var editprn = document.getElementById("editprn").value;
+        var editcgpa = document.getElementById("editcgpa").value;
+        var c2 = document.getElementById("c2");
+        var c3 = document.getElementById("c3");
+        var c4 = document.getElementById("c4");
+        var c5 = document.getElementById("c5");
+        var c6 = document.getElementById("c6");
+        var school = ""
 
+        if (c2.checked)
+            school = "SCET"
+        else if (c3.checked)
+            school = "SEE"
+        else if (c4.checked)
+            school = "SMCEM"
+        else if (c5.checked)
+            school = "SMCEC"
+        else if ( c6.checked)
+            school = "SCE"
+
+        if (!editname || !editprn || !editcgpa || school =="") {
+            throw {
+                message: "Please fill All details",
+                error: new Error()
+            };
+        }
+        var edit = true;
+        await db.collection("Misc").doc("State").get().then((doc) => {
+            if (doc.exists) {
+                const data = doc.data();
+                if (data.Allow == 3) {
+                    if (!confirm("Result is already Published, This won't affect allocation now. Do you still want to continue?")) {
+                        edit = false;
+                    }
+                }
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+        await db.collection("studentData").doc(editprn.toString()).get().then((doc) => {
+            if (doc.exists) {
+                if (!confirm('This PRN already exist. Are you sure you want to edit the student data?')) {
+                    edit = false;
+                }
+            }
+            else
+            {
+                if (!confirm("This PRN Doesn't exist. Are you sure you want to add the student data?")) {
+                    edit = false;
+                }
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+        if (!edit) {
+            throw {
+                message: "We revert the changes.",
+                error: new Error()
+            };
+        }
+        await db.collection("studentData").doc(editprn.toString()).set({
+            Name: editname.toString(),
+            CGPA: parseFloat(editcgpa.toString()),
+            School: school,
+        })
+            .then(() => {
+                console.log("Added in Database");
+            })
+            .catch((error) => {
+                console.error("Error adding Data in database: ", error);
+            });
+            
+    }
+    catch (err) {
+        window.alert(err.message)
+    }
+}
+function dismiss() {
+    document.getElementById("editprn").disabled = false
+    document.getElementById("editprn").value = ""
+    document.getElementById("editname").value = ""
+    document.getElementById("editcgpa").value = ""
+    document.getElementsByTagName("label")[2].className = ""
+    document.getElementsByTagName("label")[3].className = ""
+    document.getElementsByTagName("label")[4].className = ""
+    document.getElementById("c2").checked = false;
+    document.getElementById("c3").checked = false;
+    document.getElementById("c4").checked = false;
+    document.getElementById("c5").checked = false;
+    document.getElementById("c6").checked = false;
 }
