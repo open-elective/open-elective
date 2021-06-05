@@ -6,7 +6,6 @@ function retriveCourseData() {
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 var temp = ""
-                console.log(doc.id, " => ", doc.data());
                 if (doc.data()["All"]) {
                     temp = "All"
                 }
@@ -271,4 +270,58 @@ function focusall(a) {
     document.getElementsByTagName("label")[1].className = a
     document.getElementsByTagName("label")[2].className = a
     document.getElementsByTagName("label")[3].className = a
+}
+async function deletecourse()
+{
+    try {
+        var cno = document.getElementById("cdelete").value;
+        if (!cno) {
+            throw {
+                message: "Please fill Course No.",
+                error: new Error()
+            };
+        }
+        var isexist = true;
+        var subjectname = ""
+        await firebase.firestore().collection("courseData").doc(cno.toString()).get().then((doc) => {
+            if (!doc.exists) {
+                isexist = false;
+            }
+            else
+            {
+                subjectname = doc.data()["Name"]
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+        if(!isexist)
+        {
+            throw {
+                message: "Course dosen't exist",
+                error: new Error()
+            };
+        }
+        if (confirm('Are you sure you want to delete '+ subjectname+"?")) {
+            await firebase.firestore().collection("courseData").doc(cno.toString()).delete().then(() => {
+                console.log("Document successfully deleted!");
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+            throw {
+                message: "Course deleted succussfully",
+                error: new Error()
+            };
+        } 
+        else
+        {
+            throw {
+                message: "Course deleted unsuccussfully",
+                error: new Error()
+            };
+        }       
+    }
+    catch(err)
+    {
+        window.alert(err.message)
+    }
 }
