@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="/css/studdata.css">
 </head>
 <!-- top nav -->
+
 <body>
   <ul class="top-nav">
     <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
@@ -46,18 +47,21 @@
     </li>
     <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
   </ul>
-  
+
   <nav>
-    <div class="nav-wrapper blue darken-3">
+    <div class="nav-wrapper blue darken-2">
       <form>
         <div class="input-field">
-          <input id="search" type="search" required>
+          <input placeholder="Search with PRN" id="search" type="search" required>
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
           <i class="material-icons">close</i>
         </div>
       </form>
     </div>
   </nav>
+  <a id="page-pre" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a>
+  <a id="page">Page 1</a>
+<a id="page-next" class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>button</a>
   <!-- student data table -->
   <div id="ctable">
     <table id="courset" class="centered striped">
@@ -76,22 +80,25 @@
           <td>8.42</td>
           <td>SCET</td>
         </tr>
-        <tr>
-          <td>0123456789</td>
-          <td>Pratik Kale</td>
-          <td>8.42</td>
-          <td>SCET</td>
-        </tr>
       </tbody>
     </table>
   </div>
 
-  <a class="waves-effect waves-light btn blue darken-2" id="closeportal" onclick="downloadtemp()">Download Template</a>
-  <input type="file" id="exl">
-  <div class="progress">
-    <div class="determinate"></div>
-  </div>
+  
 
+  
+  <footer class="page-footer">
+    <div id="buttons" class="center">
+      <a class="waves-effect waves-light btn blue darken-2" id="editstud" onclick="editstud()">Edit</a>
+      <a class="waves-effect waves-light btn blue darken-2" id="downloadtemp" onclick="downloadtemp()">Download
+        Template</a>
+      <input type="file" id="exl">
+      <label class="btn waves-effect waves-light btn blue darken-2" id="exl-l" for="exl">Upload Excel</label>
+      <div class="progress">
+        <div class="determinate"></div>
+      </div>
+    </div>
+  </footer>
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
