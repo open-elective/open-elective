@@ -329,13 +329,7 @@ async function deletecourse()
                 error: new Error()
             };
         } 
-        else
-        {
-            throw {
-                message: "Course deleted unsuccussfully",
-                error: new Error()
-            };
-        }       
+              
     }
     catch(err)
     {
