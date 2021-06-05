@@ -47,7 +47,7 @@
     </li>
     <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
   </ul>
-
+  <!-- search box -->
   <nav>
     <div class="nav-wrapper blue darken-2">
       <form>
@@ -59,12 +59,17 @@
       </form>
     </div>
   </nav>
-  <a id="page-pre" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>button</a>
-  <a id="page">Page 1</a>
-<a id="page-next" class="waves-effect waves-light btn" onclick="getdata()"><i class="material-icons right">cloud</i>button</a>
-  <!-- student data table -->
+  
+  <!-- Page buttons -->
+  <div class="center">
+    <a id="page-pre" class="waves-effect waves-light btn blue darken-2"><i class="material-icons left">navigate_before</i>Prev</a>
+    <a id="page">Page 1</a>
+    <a id="page-next" class="waves-effect waves-light btn blue darken-2" onclick="getdata()"><i class="material-icons right">navigate_next</i>Next</a>
+  </div>
+  
+<!-- student data table -->
   <div id="ctable">
-    <table id="courset" class="centered striped">
+    <table id="studdatat" class="centered striped">
       <thead>
         <tr>
           <th>PRN</th>
@@ -84,21 +89,69 @@
     </table>
   </div>
 
-  
 
-  
+  <!-- Fixed Footer -->
   <footer class="page-footer">
     <div id="buttons" class="center">
-      <a class="waves-effect waves-light btn blue darken-2" id="editstud" onclick="editstud()">Edit</a>
+      <a href="#modal1" class="waves-effect waves-light btn blue darken-2 modal-trigger" id="editstud">Edit</a>
       <a class="waves-effect waves-light btn blue darken-2" id="downloadtemp" onclick="downloadtemp()">Download
         Template</a>
       <input type="file" id="exl">
-      <label class="btn waves-effect waves-light btn blue darken-2" id="exl-l" for="exl">Upload Excel</label>
+      <label class="btn waves-effect waves-light blue darken-2" id="exl-l" for="exl">Upload Excel</label>
       <div class="progress">
         <div class="determinate"></div>
       </div>
     </div>
   </footer>
+
+   <!-- Modal 1 Structure -->
+   <div id="modal1" class="modal">
+    <div class="modal-content">
+      <div id="course-input">
+        <h6>Edit Student Data</h6>
+        <div class="input-field col s6">
+          <input id="cname" type="text" class="validate">
+          <label for="cname">Input PRN for search</label>
+          <a href="#!" class="modal-close btn waves-effect waves-light blue darken-2" onclick="searchPRN()">Serach</a>
+        </div>
+        <div class="input-field col s6">
+          <input id="cno" type="number" class="validate">
+          <label for="cno">Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="cincapa" type="number" class="validate">
+          <label for="cincapa">CGPA</label>
+        </div>
+        <h6>School</h6>
+        <label>
+          <input id="c1" type="checkbox" />
+          <span id="checktext">All</span>
+        </label>
+        <label>
+          <input id="c2" type="checkbox" />
+          <span id="checktext">SCET</span>
+        </label>
+        <label>
+          <input id="c3" type="checkbox" />
+          <span id="checktext">SEE</span>
+        </label>
+        <label>
+          <input id="c4" type="checkbox" />
+          <span id="checktext">SMCE(Mechanical)</span>
+        </label>
+        <label>
+          <input id="c5" type="checkbox" />
+          <span id="checktext">SMCE(Civil)</span>
+        </label>
+        <label>
+          <input id="c6" type="checkbox" />
+          <span id="checktext">SCE</span>
+        </label>
+    </div>
+    <div class="modal-footer white">
+      <a href="#!" class="modal-close btn waves-effect waves-light blue darken-2" onclick="editstud()">Save Changes</a>
+    </div>
+  </div>
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -107,6 +160,10 @@
     document.addEventListener('DOMContentLoaded', function () {
       var elems = document.querySelectorAll('.sidenav');
       var instances = M.Sidenav.init(elems);
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems);
     });
   </script>
 

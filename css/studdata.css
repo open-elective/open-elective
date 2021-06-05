@@ -14,7 +14,7 @@ footer {
 nav{
     height:50px;
     max-width: 60%;
-    margin:2% 20%;
+    margin:2% 2% 1% 20%;
     background-color: white;
     -webkit-box-shadow: none;
     box-shadow:none;
@@ -57,4 +57,23 @@ td{
 }
 th{
     border-bottom: 1px solid #1976d2;
+}
+
+.input-field input:focus+label {
+    color: #1d72bc !important;
+}
+
+.input-field input:focus {
+    border-bottom: 1px solid #1d72bc !important;
+    box-shadow: 0 1px 0 0 #1d72bc !important
+}
+
+.dropdown-content.select-dropdown li span {
+    color: #000; 
+}
+#checktext {
+    padding: 0 !important;
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+    color: black;
 }
