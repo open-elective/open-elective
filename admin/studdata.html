@@ -11,14 +11,14 @@
   <link rel="stylesheet" href="/css/admin.css">
   <link rel="stylesheet" href="/css/studdata.css">
 </head>
-
+<!-- top nav -->
 <body>
   <ul class="top-nav">
     <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
     <h4 class="center">Student Data</h4>
   </ul>
 
-
+  <!-- side nav -->
   <ul id="slide-out" class="sidenav blue darken-2">
     <li>
       <div class="user-view">
@@ -46,6 +46,45 @@
     </li>
     <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
   </ul>
+  
+  <nav>
+    <div class="nav-wrapper blue darken-3">
+      <form>
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+  <!-- student data table -->
+  <div id="ctable">
+    <table id="courset" class="centered striped">
+      <thead>
+        <tr>
+          <th>PRN</th>
+          <th>Name</th>
+          <th>CGPA</th>
+          <th>School</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0123456789</td>
+          <td>Pratik Kale</td>
+          <td>8.42</td>
+          <td>SCET</td>
+        </tr>
+        <tr>
+          <td>0123456789</td>
+          <td>Pratik Kale</td>
+          <td>8.42</td>
+          <td>SCET</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
   <a class="waves-effect waves-light btn blue darken-2" id="closeportal" onclick="downloadtemp()">Download Template</a>
   <input type="file" id="exl">
