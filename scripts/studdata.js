@@ -6,11 +6,57 @@ var nextpg = document.getElementById('page-next');
 var pgno = 1;
 var firstdoc = null;
 
+const c2 = document.getElementById('c2')
+const c3 = document.getElementById('c3')
+const c4 = document.getElementById('c4')
+const c5 = document.getElementById('c5')
+const c6 = document.getElementById('c6')
+
+c2.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        document.getElementById("c3").checked = false;
+        document.getElementById("c4").checked = false;
+        document.getElementById("c5").checked = false;
+        document.getElementById("c6").checked = false;
+    }
+})
+c3.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        document.getElementById("c2").checked = false;
+        document.getElementById("c4").checked = false;
+        document.getElementById("c5").checked = false;
+        document.getElementById("c6").checked = false;
+    }
+})
+c4.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        document.getElementById("c2").checked = false;
+        document.getElementById("c3").checked = false;
+        document.getElementById("c5").checked = false;
+        document.getElementById("c6").checked = false;
+    }
+})
+c5.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        document.getElementById("c2").checked = false;
+        document.getElementById("c3").checked = false;
+        document.getElementById("c4").checked = false;
+        document.getElementById("c6").checked = false;
+    }
+})
+c6.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        document.getElementById("c2").checked = false;
+        document.getElementById("c3").checked = false;
+        document.getElementById("c4").checked = false;
+        document.getElementById("c5").checked = false;
+    }
+})
 
 async function getdata(b) {
     var rows = document.getElementById("studdatat").rows.length;
     //page length
-    var pglen = 30;
+    var pglen = 3;
 
     //delete all row
     for (i = 2; i < rows; i++)
@@ -39,7 +85,7 @@ async function getdata(b) {
     }
     data.docs.forEach(doc => {
         const d = doc.data();
-        addStudentDataTable(doc.id, d.Name, d.CGPA, d.Branch);
+        addStudentDataTable(doc.id, d.Name, d.CGPA, d.School);
     });
 
     //note the last row data for paging
@@ -56,7 +102,6 @@ async function getdata(b) {
 input.addEventListener('change', function () {
     if (document.getElementById('exl').value.endsWith(".xlsx")) {
         readXlsxFile(input.files[0]).then(function (data) {
-            console.log(data)
             checkValidity(data)
         });
     }
@@ -83,10 +128,10 @@ function checkValidity(data) {
                     error: new Error()
                 };
             }
-            var branch = data[i][3].toString()
-            if (!(branch == "SCET" || branch == "SEE" || branch == "SMCEM" || branch == "SMCEC" || branch == "SCE")) {
+            var School = data[i][3].toString()
+            if (!(School == "SCET" || School == "SEE" || School == "SMCEM" || School == "SMCEC" || School == "SCE")) {
                 throw {
-                    message: "Invalid Branch at : row(" + (i + 1).toString() + ")  {" + data[i][0].toString() + ", " + data[i][1].toString() + ", " + data[i][2].toString() + ", " + data[i][3].toString() + "}",
+                    message: "Invalid School at : row(" + (i + 1).toString() + ")  {" + data[i][0].toString() + ", " + data[i][1].toString() + ", " + data[i][2].toString() + ", " + data[i][3].toString() + "}",
                     error: new Error()
                 };
             }
@@ -100,41 +145,48 @@ function checkValidity(data) {
     }
 }
 async function uploaddata(data) {
-    var i;
-    var progress = document.getElementsByClassName("determinate")[0];
-    document.getElementsByClassName("progress")[0].style.visibility = "visible";
-    await db.collection("Misc").doc("State").get().then((doc) => {
-        if (doc.exists) {
-            if (doc.data()["Allow"] == 3) {
-                window.alert("Result is already Published, This upload won't affect allocation now");
+
+    if (confirm("You are about to upload the data on the database, this may overwrite the previous data. Do you still want to proceed?")) {
+        window.alert("Please be patient while we upload the data to the database")
+        var i;
+        var uploadbtn = document.getElementById("exl-l");
+        uploadbtn.className = "btn waves-effect waves-light blue darken-2 disabled"
+        var progress = document.getElementsByClassName("determinate")[0];
+        document.getElementsByClassName("progress")[0].style.visibility = "visible";
+        await db.collection("Misc").doc("State").get().then((doc) => {
+            if (doc.exists) {
+                if (doc.data()["Allow"] == 3) {
+                    window.alert("Result is already Published, This upload won't affect allocation now");
+                }
             }
-        }
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
-    var len = data.length;
-    for (i = 1; i < len; i++) {
-        console.log("in loop");
-        await db.collection("studentData").doc("0" + data[i][0].toString()).set({
-            Name: data[i][1].toString(),
-            CGPA: data[i][2],
-            Branch: data[i][3].toString()
-        })
-            .then(() => {
-                console.log("Added in Database");
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+        var len = data.length;
+        for (i = 1; i < len; i++) {
+            await db.collection("studentData").doc("0" + data[i][0].toString()).set({
+                Name: data[i][1].toString(),
+                CGPA: data[i][2],
+                School: data[i][3].toString()
             })
-            .catch((error) => {
-                console.error("Error adding Data in database: ", error);
-            });
-        var percent = (i * 100) / (len - 1)
-        progress.style = "width:" + percent.toString() + "%";
+                .then(() => {
+
+                })
+                .catch((error) => {
+                    console.error("Error adding Data in database: ", error);
+                });
+            var percent = (i * 100) / (len - 1)
+            progress.style = "width:" + percent.toString() + "%";
+        }
+        document.getElementsByClassName("progress")[0].style.visibility = "hidden";
+        uploadbtn.className = "btn waves-effect waves-light blue darken-2"
     }
-    document.getElementsByClassName("progress")[0].style.visibility = "hidden";
+
 }
 
 function addStudentDataTable(prn, name, cgpa, school) {
     var table = document.getElementById("studdatat");
-    var row = table.insertRow(document.getElementById("studdatat").rows.length-1);
+    var row = table.insertRow(document.getElementById("studdatat").rows.length - 1);
     var prnt = row.insertCell(0);
     var namet = row.insertCell(1);
     var cgpat = row.insertCell(2);
@@ -156,6 +208,48 @@ function searchtest() {
                         document.getElementById("studdatat").deleteRow(1);
                     const d = doc.data();
                     addStudentDataTable(doc.id, d.Name, d.CGPA, d.Branch);
+                } else {
+                    window.alert("Student not found with that PRN")
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+    }
+    else {
+        window.alert("Invalid PRN")
+        getdata(2)
+    }
+
+}
+function searchforedit() {
+
+    const res = document.getElementById("editprn").value
+    if (res.toString().length == 10) {
+        db.collection("studentData").doc(res.toString())
+            .get().then((doc) => {
+                if (doc.exists) {
+                    const d = doc.data();
+                    document.getElementById("editname").value = d.Name;
+                    document.getElementById("editcgpa").value = d.CGPA;
+                    var schooltemp = doc.data().School;
+                    console.log(schooltemp)
+                    if (schooltemp == "SCET") {
+                        document.getElementById("c2").checked = true
+                    }
+                    else if (schooltemp == "SEE") {
+                        document.getElementById("c3").checked = true
+                    }
+                    else if (schooltemp == "SCE") {
+                        document.getElementById("c6").checked = true
+                    }
+                    else if (schooltemp == "SMCEC") {
+                        document.getElementById("c5").checked = true
+                    }
+                    else if (schooltemp == "SMCEM") {
+                        document.getElementById("c4").checked = true
+                    }
+                    document.getElementsByTagName("label")[3].className = "active"
+                    document.getElementsByTagName("label")[4].className = "active"
                 } else {
                     window.alert("Student not found with that PRN")
                 }
