@@ -147,6 +147,30 @@ async function addcourse() {
         }).catch((error) => {
             console.log("Error getting document:", error);
         });
+        await db.collection("Misc").doc("State").get().then((doc) => {
+            if (doc.exists) {
+                const data = doc.data();
+                if (data.Allow == 1) {
+                    if (!confirm("Portal is already opended for students, Editing/Adding may cause conflict. Do you still want to continue?")) {
+                        edit = false;
+                    }
+                }
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+        await db.collection("Misc").doc("State").get().then((doc) => {
+            if (doc.exists) {
+                const data = doc.data();
+                if (data.Allow == 2) {
+                    if (!confirm("Portal is already closed, Editing/Adding may cause conflict. Do you still want to continue?")) {
+                        edit = false;
+                    }
+                }
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
         await db.collection("courseData").doc(cno.toString()).get().then((doc) => {
             if (doc.exists) {
                 if (!confirm('This course already exist. Are you sure you want to edit the course data?')) {
@@ -374,16 +398,16 @@ function removeextra() {
 async function updateschooldata() {
     var progress = document.getElementById("cprogress")
     progress.style.visibility = "visible";
-    var scet = [];
-    var see = [];
-    var sce = [];
-    var smcem = [];
-    var smcec = [];
+    var SCET = [];
+    var SEE = [];
+    var SCE = [];
+    var SMCEM = [];
+    var SMCEC = [];
     await db.collection("courseData").where("SCET", "==", true)
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                scet.push(doc.id.toString()+"~"+doc.data().Name)
+                SCET.push(doc.id.toString()+"~"+doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
@@ -394,7 +418,7 @@ async function updateschooldata() {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                see.push(doc.id.toString()+"~"+doc.data().Name)
+                SEE.push(doc.id.toString()+"~"+doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
@@ -405,7 +429,7 @@ async function updateschooldata() {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                sce.push(doc.id.toString()+"~"+doc.data().Name)
+                SCE.push(doc.id.toString()+"~"+doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
@@ -416,7 +440,7 @@ async function updateschooldata() {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                smcem.push(doc.id.toString()+"~"+doc.data().Name)
+                SMCEM.push(doc.id.toString()+"~"+doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
@@ -427,7 +451,7 @@ async function updateschooldata() {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                smcec.push(doc.id.toString()+"~"+doc.data().Name)
+                SMCEC.push(doc.id.toString()+"~"+doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
@@ -438,19 +462,47 @@ async function updateschooldata() {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                scet.push(doc.id.toString()+"~"+doc.data().Name)
-                see.push(doc.id.toString()+"~"+doc.data().Name)
-                sce.push(doc.id.toString()+"~"+doc.data().Name)
-                smcem.push(doc.id.toString()+"~"+doc.data().Name)
-                smcec.push(doc.id.toString()+"~"+doc.data().Name)
+                SCET.push(doc.id.toString()+"~"+doc.data().Name)
+                SEE.push(doc.id.toString()+"~"+doc.data().Name)
+                SCE.push(doc.id.toString()+"~"+doc.data().Name)
+                SMCEM.push(doc.id.toString()+"~"+doc.data().Name)
+                SMCEC.push(doc.id.toString()+"~"+doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
-    //console.log(scet, see, sce, smcem, smcec)
-    db.collection("courseData").doc("Schools").set({scet,see,sce,smcem,smcec})
+    //console.log(SCET, SEE, SCE, SMCEM, SMCEC)
+    await db.collection("Schools").doc("SCET").set({SCET})
+    .then(() => {
+        console.log("Document successfully written!");
+    })
+    .catch((error) => {
+        console.error("Error writing document: ", error);
+    });
+    await db.collection("Schools").doc("SEE").set({SEE})
+    .then(() => {
+        console.log("Document successfully written!");
+    })
+    .catch((error) => {
+        console.error("Error writing document: ", error);
+    });
+    await db.collection("Schools").doc("SCE").set({SCE})
+    .then(() => {
+        console.log("Document successfully written!");
+    })
+    .catch((error) => {
+        console.error("Error writing document: ", error);
+    });
+    await db.collection("Schools").doc("SMCEM").set({SMCEM})
+    .then(() => {
+        console.log("Document successfully written!");
+    })
+    .catch((error) => {
+        console.error("Error writing document: ", error);
+    });
+    await db.collection("Schools").doc("SMCEC").set({SMCEC})
     .then(() => {
         console.log("Document successfully written!");
     })

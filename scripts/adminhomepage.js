@@ -1,7 +1,7 @@
 hideall()
 window.addEventListener('DOMContentLoaded', () => checkcurrentstate());
 async function checkcurrentstate() {
-    await db.collection("Misc").doc("State").get().then((doc) => {
+    db.collection("Misc").doc("State").get().then((doc) => {
         const state = doc.data()["Allow"]
         hideall()
         if (state == 0) {
@@ -50,30 +50,34 @@ async function openportal() {
     await db.collection("Misc").doc("State").get().then((doc) => {
         const data = doc.data();
         if (data.Allow == 0) {
-            db.collection("Misc").doc("State").update({
-                Allow: 1
-            })
-                .then(() => {
-                    console.log("Document successfully written!");
-                    checkcurrentstate()
+            if (confirm('Make sure you have added all the courses data before proceeding. Do you still want to proceed?')) {
+                db.collection("Misc").doc("State").update({
+                    Allow: 1
                 })
-                .catch((error) => {
-                    console.error("Error writing document: ", error);
-                });
+                    .then(() => {
+                        console.log("Document successfully written!");
+                        checkcurrentstate()
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+            }
         }
-        if (data.Allow == 2) {
-            db.collection("Misc").doc("State").update({
-                Allow: 1
-            })
-                .then(() => {
-                    console.log("Document successfully written!");
-                    checkcurrentstate()
+        else if (data.Allow == 2) {
+            if (confirm('Are you sure you want to open the portal?')) {
+                db.collection("Misc").doc("State").update({
+                    Allow: 1
                 })
-                .catch((error) => {
-                    console.error("Error writing document: ", error);
-                });
+                    .then(() => {
+                        console.log("Document successfully written!");
+                        checkcurrentstate()
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+            }
         }
-        if (data.Allow == 3) {
+        else if (data.Allow == 3) {
             if (confirm('Are you sure, you want to open the portal? The results will be unpublished')) {
                 db.collection("Misc").doc("State").update({
                     Allow: 1
@@ -85,9 +89,9 @@ async function openportal() {
                     .catch((error) => {
                         console.error("Error writing document: ", error);
                     });
-              } else {
-                
-              }
+            } else {
+
+            }
         }
     }).catch((error) => {
         console.log("Error getting document:", error);
@@ -96,16 +100,18 @@ async function openportal() {
 async function closeregistration() {
     await db.collection("Misc").doc("State").get().then((doc) => {
         if (doc.data()["Allow"] == 1) {
-            db.collection("Misc").doc("State").update({
-                Allow: 2
-            })
-                .then(() => {
-                    console.log("Document successfully written!");
-                    checkcurrentstate()
+            if (confirm('After this Students will not be able to fill the prefernces. Do you still want to proceed?')) {
+                db.collection("Misc").doc("State").update({
+                    Allow: 2
                 })
-                .catch((error) => {
-                    console.error("Error writing document: ", error);
-                });
+                    .then(() => {
+                        console.log("Document successfully written!");
+                        checkcurrentstate()
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+            }
         }
     }).catch((error) => {
         console.log("Error getting document:", error);
@@ -114,16 +120,18 @@ async function closeregistration() {
 async function publish() {
     await db.collection("Misc").doc("State").get().then((doc) => {
         if (doc.data()["Allow"] == 2) {
-            db.collection("Misc").doc("State").update({
-                Allow: 3
-            })
-                .then(() => {
-                    console.log("Document successfully written!");
-                    checkcurrentstate()
+            if (confirm('Make sure that allocation is done, this will make result public. Do you still want to proceed?')) {
+                db.collection("Misc").doc("State").update({
+                    Allow: 3
                 })
-                .catch((error) => {
-                    console.error("Error writing document: ", error);
-                });
+                    .then(() => {
+                        console.log("Document successfully written!");
+                        checkcurrentstate()
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+            }
         }
     }).catch((error) => {
         console.log("Error getting document:", error);
@@ -132,16 +140,18 @@ async function publish() {
 async function closeportal() {
     await db.collection("Misc").doc("State").get().then((doc) => {
         if (doc.data()["Allow"] == 3) {
-            db.collection("Misc").doc("State").update({
-                Allow: 0
-            })
-                .then(() => {
-                    console.log("Document successfully written!");
-                    checkcurrentstate()
+            if (confirm('Are you sure you want to close the portal?')) {
+                db.collection("Misc").doc("State").update({
+                    Allow: 0
                 })
-                .catch((error) => {
-                    console.error("Error writing document: ", error);
-                });
+                    .then(() => {
+                        console.log("Document successfully written!");
+                        checkcurrentstate()
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+            }
         }
     }).catch((error) => {
         console.log("Error getting document:", error);
