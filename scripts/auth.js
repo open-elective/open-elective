@@ -113,7 +113,6 @@ async function login(e) {
 function logout() {
     Auth.signOut().then(() => {
         window.alert("Logout successfull")
-        window.location.href = "/index.html";
     }).catch((error) => {
         window.alert(error.message)
     });
@@ -142,7 +141,6 @@ Auth.onAuthStateChanged((user) => {
     if(!user || !Auth.currentUser.emailVerified )
     {
         if (window.location.href.slice(-10) != "index.html" && window.location.href.slice(-11) != "signup.html") {
-            window.alert("You are not Authorized to view this url, please login")
             window.location.href = "/index.html";
         }
     }
