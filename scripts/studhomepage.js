@@ -4,18 +4,16 @@ async function checkState() {
     db.collection("Misc").doc("State").get().then((doc) => {
         const data = doc.data();
         if (data.Allow == 0) {
-            console.log("closed portal")
             //closed portal
-
-            //window.location.href="send to protal not yet opened/or closed"
+            if (window.location.href.slice(-16) != "studlanding.html") {
+                window.location.href = "/student/studlanding.html";
+            }
         }
         else if (data.Allow == 1) {
-            console.log("opened portal")
             //opened portal
             assignDropdownOp()
         }
         else if (data.Allow == 2) {
-            console.log("allocation phase")
             //allocation phase
 
 
