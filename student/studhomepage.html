@@ -7,40 +7,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Elective Allocation Portal</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/css/stud.css">
   <link rel="stylesheet" href="/css/studhome.css">
 </head>
 
 <body>
 
-  <div id="select-pref">
-    <select id="pref" class="input-field col s6" onchange="prefchange()">
-      <option value="" disabled selected>Select Your Preferences</option>
-      <option value="1">Pref 1</option>
-    </select>
-  </div>
+  <ul class="top-nav">
+    <li><a onclick="logout()"><i class="material-icons left">power_settings_new</i>Logout</a></li>
+    <h4 class="center">Preferences</h4>
+  </ul>
   
-  <!-- student data table -->
-  <div id="ctable">
-    <table id="studpref" class="centered striped">
-      <thead>
-        <tr>
-          <th>Preference No</th>
-          <th>Open Elective Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+
+   <!-- Student Details and Instructions -->
+  <div class="grid">
+    <div id="instructions">
+      <h5>Your Details</h5>
+      <span id="dispPRN">PRN:</span>
+      <span id="dispname">Name:</span>
+      <span id="dispcgpa">CGPA:</span>
+      <span id="dispschool">School:</span>
+      <hr>
+      <h5>Instructions</h5>
+      <span>1.Verify that your details are correct.</span>
+      <span>2.If there is any correction in the data contact at</span><a href="mailto:open_elective_allocation@mitaoe.ac.in">(open_elective_allocation@mitaoe.ac.in).</a>
+      <span>3.You need to give preferences for all the available subjects in the dropdown.</span>
+    </div>
+
+    <!-- Course Dropdown -->
+    <div id="courses">
+      <div id="editdel">
+        <h5>Select Preferences</h5>
+        <select id="schooldd" class="input-field col s12" onchange="addcourseintab()">
+          <option value="" disabled selected>Choose your options</option>
+          <option value="1">Data Science</option>
+          <option value="2">Cybersecurity</option>
+          <option value="3">AI/ML</option>
+          <option value="4">Cloud Computing</option>
+        </select>   
+          <a class="waves-effect waves-light btn blue darken-2" id="resetcourses" onclick="resetcourses()">Reset All</a>
+      </div>
+    </div>
+
+    <!-- Prefrence Table -->
+
+    <div id="ctable">
+      <table id="preftable" class="centered striped">
+        <thead>
+          <tr>
+            <th>Preference No</th>
+            <th>Course Name</th>            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>AI/ML</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="padding"></div>
   </div>
-
-  <a class="waves-effect waves-light btn blue darken-2" id="studlogout" onclick="logout()">Logout</a>
-
-
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -53,12 +82,12 @@
   <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-<script>
-   document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems);
-  });
-</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+    });
+  </script>
   <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {

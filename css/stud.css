@@ -21,3 +21,28 @@ h4{
     position: -2px;
     
 }
+.top-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 6px;
+    overflow: hidden;
+    background-color:  #1976d2;
+    position: -webkit-sticky; /* Safari */    
+    position: sticky;
+    top: 0;
+    z-index: 2
+  }
+.top-nav li {
+    float: right;
+    cursor: pointer;
+    margin-right: 23px;
+  }
+  
+.top-nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
