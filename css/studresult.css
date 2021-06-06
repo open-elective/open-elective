@@ -1,0 +1,133 @@
+td{
+    padding: 3px;
+}
+th{
+    border-top: 1px solid #1976d2;
+    border-bottom: 1px solid #1976d2;
+}
+h5 {
+    font-weight: bold;
+}
+.dropdown-content.select-dropdown li span {
+    color: #000; 
+}
+.input-field input:focus+label {
+    color: #1d72bc !important;
+}
+
+.input-field input:focus {
+    border-bottom: 1px solid #1d72bc !important;
+    box-shadow: 0 1px 0 0 #1d72bc !important
+}
+
+
+#ctable{
+    border: 1px solid #1d72bc;
+    grid-area: ctable;
+    margin: 2em 2em 10em 2em;
+    border-radius: 10px;
+}
+#selectpref{
+    display: inline-block;
+    max-width: 50%;
+    margin: 0px 15px;
+}
+.grid {
+    margin: 0;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr 1fr;
+    grid-template-areas: "course-input edit" "ctable ctable";
+    grid-gap: 0.3rem;
+}
+#studdata {
+    border: 1px solid #1d72bc;
+    grid-area: course-input;
+    margin: 2em 1em 0em 2em;
+    border-radius: 10px;
+    padding: 10px 20px
+}
+
+#studdata span{
+    display: block;
+    font-size: 20px;
+}
+
+#studdata a{
+    display: inline;
+}
+
+#courses {
+    border: 1px solid #1d72bc;
+    grid-area: edit;
+    margin: 2em 2em 0em 1em;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+#courses h6{
+    font-weight: bold;
+    font-size: 3.6em;
+    margin-top: 40px;
+}
+
+#ctable {
+    border: 1px solid #1d72bc;
+    grid-area: ctable;
+    margin: 2em 2em;
+    border-radius: 10px;
+}
+
+#submit{
+    margin-top: 20px;
+}
+.animation{
+    float: right;
+    transform: scaleX(-1);
+    width: 250px; 
+    height: 150px;
+}
+@media screen and (max-width: 900px) {
+
+    .grid {
+        margin-bottom: 50px;
+        display: grid;
+        height: 100vh;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.3fr 0.2fr 0.3fr;
+        grid-template-areas: "course-input" "edit" "ctable";
+        
+    }
+    #studdata {
+       margin: 0;
+       margin: 1em;
+    }
+    #courses {
+        margin: 0; 
+        margin: 1em;    
+    }
+    #ctable {
+        margin: 0;
+        margin: 1em;
+    }
+    h4{
+        font-size: 25px;
+    }
+    h5{
+        font-size: 20px;
+    }
+    #courses h6{
+        font-weight: bold;
+        font-size: 2.0em;
+        margin-top: 50px;
+    }
+    .animation{
+        float: right;
+        transform: scaleX(-1);
+        width: 150px; 
+        height: 150px;
+    }
+}
+select {
+    display: block !important;
+}

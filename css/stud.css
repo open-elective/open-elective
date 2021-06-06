@@ -48,3 +48,9 @@ h4{
 .top-nav h4{
   padding-left: 150px;
 } 
+
+@media screen and (max-width: 900px) {
+  .top-nav h4{
+    padding-left: 60px;
+  } 
+}
