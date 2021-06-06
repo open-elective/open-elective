@@ -207,7 +207,7 @@ function searchtest() {
                     for (i = 2; i < rows; i++)
                         document.getElementById("studdatat").deleteRow(1);
                     const d = doc.data();
-                    addStudentDataTable(doc.id, d.Name, d.CGPA, d.Branch);
+                    addStudentDataTable(doc.id, d.Name, d.CGPA, d.School);
                 } else {
                     window.alert("Student not found with that PRN")
                 }

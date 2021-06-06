@@ -39,13 +39,9 @@
     <div id="courses">
       <div id="editdel">
         <h5>Select Preferences</h5>
-        <select id="schooldd" class="input-field col s12" onchange="addcourseintab()">
-          <option value="" disabled selected>Choose your options</option>
-          <option value="1">Data Science</option>
-          <option value="2">Cybersecurity</option>
-          <option value="3">AI/ML</option>
-          <option value="4">Cloud Computing</option>
-        </select>   
+        <select id="schooldd" name="schooldd" class="input-field col s12" onchange="selectpref()">
+          <option value=""></option>
+        </select>
           <a class="waves-effect waves-light btn blue darken-2" id="resetcourses" onclick="resetcourses()">Reset All</a>
       </div>
     </div>
@@ -62,8 +58,8 @@
         </thead>
         <tbody>
           <tr>
-            <td>1</td>
-            <td>AI/ML</td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>
@@ -83,12 +79,6 @@
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('select');
-      var instances = M.FormSelect.init(elems);
-    });
-  </script>
-  <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {
       apiKey: "AIzaSyD9BHz-HTQl518KmUr1GHHx0IXJGj7bJP8",
@@ -100,8 +90,10 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
   </script>
   <script src="/scripts/auth.js"></script>
+  <script src="/scripts/studhomepage.js"></script>
 </body>
 
 </html>

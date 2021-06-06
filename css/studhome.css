@@ -100,3 +100,6 @@ th{
     }
    
 }
+select {
+    display: block !important;
+}
