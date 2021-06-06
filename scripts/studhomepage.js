@@ -1,21 +1,21 @@
 window.addEventListener('DOMContentLoaded', () => initiate());
 var optionsfromdb;
+var mypref=[]
+var prn=""
 async function checkState() {
     db.collection("Misc").doc("State").get().then((doc) => {
         const data = doc.data();
         if (data.Allow == 0) {
-            console.log("closed portal")
             //closed portal
-
-            //window.location.href="send to protal not yet opened/or closed"
+            if (window.location.href.slice(-16) != "studlanding.html") {
+                window.location.href = "/student/studlanding.html";
+            }
         }
         else if (data.Allow == 1) {
-            console.log("opened portal")
             //opened portal
             assignDropdownOp()
         }
         else if (data.Allow == 2) {
-            console.log("allocation phase")
             //allocation phase
 
 
@@ -39,7 +39,7 @@ function initiate() {
 }
 async function assignDropdownOp() {
     var dd = document.getElementById("schooldd");
-    var prn = await firebase.auth().currentUser.photoURL;
+    prn = await firebase.auth().currentUser.photoURL;
     var name = "";
     var school = "";
     var CGPA = 0;
@@ -76,15 +76,16 @@ function selectpref() {
     var value = dd.options[dd.selectedIndex].value;// get selected option value
     var text = dd.options[dd.selectedIndex].text;
     dd.remove(dd.selectedIndex);
-    addCourseTable(text)
+    addCourseTable(value,text)
 }
-function addCourseTable(cname) {
+function addCourseTable(cno,cname) {
     var table = document.getElementById("preftable");
     var row = table.insertRow(document.getElementById("preftable").rows.length - 1);
     var cnot = row.insertCell(0);
     var cnamet = row.insertCell(1);
     cnot.innerHTML = document.getElementById("preftable").rows.length - 2;
     cnamet.innerHTML = cname;
+    mypref.push(cno)
 }
 function resetcourses() {
     var dd = document.getElementById("schooldd");
@@ -101,4 +102,29 @@ function resetcourses() {
     var rows = document.getElementById("preftable").rows.length;
     for (i = 2; i < rows; i++)
         document.getElementById("preftable").deleteRow(1);
+    mypref=[]
+}
+async function submitpref() {
+    try {
+        if (mypref.length == optionsfromdb.length) {
+            await db.collection("studentprefs").doc(prn).set({
+                mypref
+            })
+                .then(() => {
+                    window.alert("Your Response is recorded")
+                })
+                .catch((error) => {
+                    console.error("Error adding Data in database: ", error);
+                });
+        }
+        else {
+            throw {
+                message: "Please select all the courses from dropdown",
+                error: new Error()
+            };
+        }
+    }
+    catch (err) {
+        window.alert(err.message)
+    }
 }
