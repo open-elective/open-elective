@@ -95,17 +95,21 @@
   
 <!-- student data table -->
   <div id="ctable">
-    <table id="studdatat" class="centered striped">
+    <table id="studprefdatat" class="centered striped">
       <thead>
         <tr>
           <th>PRN</th>
           <th>Name</th>
           <th>CGPA</th>
           <th>School</th>
+          <th>Pref</th>
+          <th>Allocation</th>
         </tr>
       </thead>
       <tbody>
         <tr>
+          <td></td>
+          <td></td>
           <td></td>
           <td></td>
           <td></td>
@@ -166,8 +170,10 @@
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
   </script>
   <script src="/scripts/adminconsole.js"></script>
+  <script src="/scripts/allocation.js"></script>
 </body>
 
 </html>

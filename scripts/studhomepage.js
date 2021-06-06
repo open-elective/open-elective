@@ -22,10 +22,9 @@ async function checkState() {
             //window.location.href="send to result will be published soon"
         }
         else if (data.Allow == 3) {
-            console.log("result published phase")
-            //result published phase
-
-            //window.location.href="send to show result page"
+            if (window.location.href.slice(-11) != "result.html") {
+                window.location.href = "/student/result.html";
+            }
         }
     }).catch((error) => {
         console.log("Error getting document:", error);
@@ -72,7 +71,7 @@ async function assignDropdownOp() {
 }
 function selectpref() {
     var dd = document.getElementById("schooldd");
-    console.log(dd.value)
+    // console.log(dd.value)
     var value = dd.options[dd.selectedIndex].value;// get selected option value
     var text = dd.options[dd.selectedIndex].text;
     dd.remove(dd.selectedIndex);
@@ -86,6 +85,11 @@ function addCourseTable(cno,cname) {
     cnot.innerHTML = document.getElementById("preftable").rows.length - 2;
     cnamet.innerHTML = cname;
     mypref.push(cno)
+    console.log(mypref.length," ",optionsfromdb.length)
+    if(mypref.length == optionsfromdb.length)
+    {
+        document.getElementById("submitprefbtn").className="waves-effect waves-light btn blue darken-2"
+    }
 }
 function resetcourses() {
     var dd = document.getElementById("schooldd");
@@ -103,6 +107,7 @@ function resetcourses() {
     for (i = 2; i < rows; i++)
         document.getElementById("preftable").deleteRow(1);
     mypref=[]
+    document.getElementById("submitprefbtn").className="waves-effect waves-light btn blue darken-2 disabled"
 }
 async function submitpref() {
     try {

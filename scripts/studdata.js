@@ -77,6 +77,7 @@ async function getdata(b) {
         pgno++;
         document.getElementById("page").innerHTML = "Page " + pgno.toString();
     }
+    //refresh page
     else {
         const ref = await db.collection("studentData").orderBy("CGPA", "desc").startAt(firstdoc).limit(pglen);
         data = await ref.get();
