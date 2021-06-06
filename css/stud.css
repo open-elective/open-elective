@@ -5,6 +5,7 @@ body{
     padding: 0;
     margin: 0;
 }
+
 h4{
     margin: 0;
     padding-top: 10px;
@@ -20,11 +21,11 @@ h4{
     position: -2px;
     
 }
-
 .top-nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    padding-bottom: 6px;
     overflow: hidden;
     background-color:  #1976d2;
     position: -webkit-sticky; /* Safari */    
@@ -33,7 +34,9 @@ h4{
     z-index: 2
   }
 .top-nav li {
-    float: left;
+    float: right;
+    cursor: pointer;
+    margin-right: 23px;
   }
   
 .top-nav li a {
@@ -43,8 +46,3 @@ h4{
     padding: 14px 16px;
     text-decoration: none;
   }
-  
-.top-nav li a:hover {
-    background-color: #074983;
-}
-
