@@ -1,8 +1,8 @@
-window.addEventListener('DOMContentLoaded', () => getdata(2));
 var lastdoc = null;
 var nextpg = document.getElementById('page-next');
 var pgno = 1;
 var firstdoc = null;
+window.addEventListener('DOMContentLoaded', () => getdata(2));
 async function getdata(b) {
     var rows = document.getElementById("studprefdatat").rows.length;
     //page length
@@ -104,7 +104,7 @@ function searchtest() {
                             var rows = document.getElementById("studprefdatat").rows.length;
                             for (i = 2; i < rows; i++)
                                 document.getElementById("studprefdatat").deleteRow(1);
-                            addStudentDataTable(doc.id, d.Name, d.CGPA, d.School, preftemp,myalloc);
+                            addStudentDataTable(doc.id, d.Name, d.CGPA, d.School, preftemp, myalloc);
                         }).catch((error) => {
                             console.log("Error getting document:", error);
                         });
@@ -119,4 +119,35 @@ function searchtest() {
         window.alert("Invalid PRN")
         getdata(2)
     }
+}
+async function allocation() {
+    //window.alert("This may take time, please be patient")
+    const progress = document.getElementsByClassName("progress")[0];
+    // const ref = await db.collection("studentData").orderBy("CGPA", "desc");
+    // data = await ref.get();
+    // const len = data.docs.length;
+    // for (i = 0; i < len; i++) {
+    //     progress.style.visibility = "visible";
+    //     var pref = [];
+    //     console.log(data.docs[i].id)
+    //     await db.collection("studentprefs").doc(data.docs[i].id).get().then((doc) => {
+    //         if (doc.exists) {
+    //             pref = doc.data().mypref
+    //             console.log(pref)
+    //         }
+    //     }).catch((error) => {
+    //         console.log("Error getting document:", error);
+    //     });
+    //     var percent = (i * 100) / (len - 1)
+    //     progress.style = "width:" + percent.toString() + "%";
+    // }
+
+    await db.collection("studentprefs").doc("0120190543").get().then((doc) => {
+        if (doc.exists) {
+            pref = doc.data().mypref
+            console.log(pref)
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
 }

@@ -1,11 +1,9 @@
-
-window.addEventListener('DOMContentLoaded', () => getdata(2));
 var input = document.getElementById('exl');
 var lastdoc = null;
 var nextpg = document.getElementById('page-next');
 var pgno = 1;
 var firstdoc = null;
-
+window.addEventListener('DOMContentLoaded', () => getdata(2));
 const c2 = document.getElementById('c2')
 const c3 = document.getElementById('c3')
 const c4 = document.getElementById('c4')

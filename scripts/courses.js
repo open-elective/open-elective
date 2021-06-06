@@ -138,32 +138,18 @@ async function addcourse() {
         await db.collection("Misc").doc("State").get().then((doc) => {
             if (doc.exists) {
                 const data = doc.data();
-                if (data.Allow == 3) {
-                    if (!confirm("Result is already Published, Adding course won't affect allocation now. Do you still want to continue?")) {
-                        edit = false;
-                    }
-                }
-            }
-        }).catch((error) => {
-            console.log("Error getting document:", error);
-        });
-        await db.collection("Misc").doc("State").get().then((doc) => {
-            if (doc.exists) {
-                const data = doc.data();
                 if (data.Allow == 1) {
                     if (!confirm("Portal is already opended for students, Editing/Adding may cause conflict. Do you still want to continue?")) {
                         edit = false;
                     }
                 }
-            }
-        }).catch((error) => {
-            console.log("Error getting document:", error);
-        });
-        await db.collection("Misc").doc("State").get().then((doc) => {
-            if (doc.exists) {
-                const data = doc.data();
-                if (data.Allow == 2) {
+                else if (data.Allow == 2) {
                     if (!confirm("Portal is already closed, Editing/Adding may cause conflict. Do you still want to continue?")) {
+                        edit = false;
+                    }
+                }
+                else if (data.Allow == 3) {
+                    if (!confirm("Result is already Published, Adding course won't affect allocation now. Do you still want to continue?")) {
                         edit = false;
                     }
                 }
@@ -196,7 +182,9 @@ async function addcourse() {
             SEE: c3.checked && !skip,
             SMCEM: c4.checked && !skip,
             SMCEC: c5.checked && !skip,
-            SCE: c6.checked && !skip
+            SCE: c6.checked && !skip,
+            Intfill: 0,
+            Extfill: 0
         })
             .then(() => {
                 console.log("Added in Database");
@@ -212,6 +200,7 @@ async function addcourse() {
         window.alert(err.message)
     }
     removeall()
+    document.getElementById("c1").disabled = "";
     progress.style.visibility = "hidden";
 }
 function removeall() {

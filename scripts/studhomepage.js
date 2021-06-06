@@ -1,7 +1,9 @@
-window.addEventListener('DOMContentLoaded', () => initiate());
+var progress = document.getElementById("submitprogress");
+progress.style.visibility = "visible";
 var optionsfromdb;
 var mypref=[]
 var prn=""
+window.addEventListener('DOMContentLoaded', () => initiate());
 async function checkState() {
     db.collection("Misc").doc("State").get().then((doc) => {
         const data = doc.data();
@@ -26,6 +28,7 @@ async function checkState() {
                 window.location.href = "/student/result.html";
             }
         }
+        progress.style.visibility = "hidden";
     }).catch((error) => {
         console.log("Error getting document:", error);
     });
@@ -85,7 +88,6 @@ function addCourseTable(cno,cname) {
     cnot.innerHTML = document.getElementById("preftable").rows.length - 2;
     cnamet.innerHTML = cname;
     mypref.push(cno)
-    console.log(mypref.length," ",optionsfromdb.length)
     if(mypref.length == optionsfromdb.length)
     {
         document.getElementById("submitprefbtn").className="waves-effect waves-light btn blue darken-2"
@@ -110,6 +112,7 @@ function resetcourses() {
     document.getElementById("submitprefbtn").className="waves-effect waves-light btn blue darken-2 disabled"
 }
 async function submitpref() {
+    progress.style.visibility = "visible";
     try {
         if (mypref.length == optionsfromdb.length) {
             await db.collection("studentprefs").doc(prn).set({
@@ -132,4 +135,5 @@ async function submitpref() {
     catch (err) {
         window.alert(err.message)
     }
+    progress.style.visibility = "hidden";
 }
