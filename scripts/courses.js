@@ -1,6 +1,8 @@
 window.addEventListener('DOMContentLoaded', () => retriveCourseData());
 
 function retriveCourseData() {
+    var progress = document.getElementById("cprogress")
+    progress.style.visibility = "visible";
     var rows = document.getElementById("courset").rows.length;
     for (i = 2; i < rows; i++)
         document.getElementById("courset").deleteRow(1);
@@ -36,6 +38,7 @@ function retriveCourseData() {
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
+    progress.style.visibility = "hidden";
 }
 const all = document.getElementById('c1')
 all.addEventListener('change', (event) => {
@@ -48,10 +51,19 @@ all.addEventListener('change', (event) => {
     }
 })
 function ddchanged() {
-    if (document.getElementById("c1").checked)
-        return;
+    // if (document.getElementById("c1").checked)
+    // {
+    //     document.getElementById("c1").disabled = ""
+    //     return;
+    // }
     blockall("")
     removeallcheck()
+
+    //newlyadded
+    document.getElementById("c1").disabled = ""
+    document.getElementById("c1").checked = false;
+
+
     var schooldd = document.getElementById("schooldd");
     var dd = schooldd.selectedIndex;
     if (dd == 1) {
@@ -74,9 +86,17 @@ function ddchanged() {
         document.getElementById("c6").disabled = "disabled"
         document.getElementById("c6").checked = true;
     }
+    else if (dd == 6) {
+        document.getElementById("c1").disabled = "disabled"
+        document.getElementById("c1").checked = true;
+        removeallcheck()
+        blockall("disabled")
+    }
 }
 async function addcourse() {
     try {
+        var progress = document.getElementById("cprogress")
+        progress.style.visibility = "visible";
         var cname = document.getElementById("cname").value;
         var cno = document.getElementById("cno").value;
         var cincapa = document.getElementById("cincapa").value;
@@ -92,8 +112,7 @@ async function addcourse() {
         var school = ""
         //skip if All check box is selected
         var skip = false;
-        if(c2.checked && c3.checked && c4.checked && c5.checked && c6.checked)
-        {
+        if (c2.checked && c3.checked && c4.checked && c5.checked && c6.checked) {
             skip = true;
         }
         if (dd == 1)
@@ -106,6 +125,8 @@ async function addcourse() {
             school = "SMCEC"
         else if (dd == 5)
             school = "SCE"
+        else if (dd == 6)
+            school = "SHES"
 
         if (!cname || !cno || !cincapa || !cextcapa || !schooldd) {
             throw {
@@ -155,18 +176,19 @@ async function addcourse() {
         })
             .then(() => {
                 console.log("Added in Database");
+                updateschooldata()
                 retriveCourseData()
             })
             .catch((error) => {
                 console.error("Error adding Data in database: ", error);
             });
-            
+
     }
     catch (err) {
         window.alert(err.message)
     }
     removeall()
-
+    progress.style.visibility = "hidden";
 }
 function removeall() {
     blockall("")
@@ -214,6 +236,8 @@ function addCourseTable(cno, cname, intcap, extcap, cscl, open) {
 async function editcourse() {
     removeall()
     try {
+        var progress = document.getElementById("cprogress")
+        progress.style.visibility = "visible";
         var cno = document.getElementById("cedit");
         if (!cno.value) {
             throw {
@@ -237,6 +261,10 @@ async function editcourse() {
                 else if (schooltemp == "SCE") {
                     document.getElementById("c6").disabled = "disabled"
                     s = 5
+                }
+                else if (schooltemp == "SHES") {
+                    document.getElementById("c1").disabled = "disabled"
+                    s = 6
                 }
 
                 if (schooltemp == "SMCEC") {
@@ -279,6 +307,7 @@ async function editcourse() {
         window.alert(err.message)
     }
     removeextra()
+    progress.style.visibility = "hidden";
 }
 function focusall(a) {
     document.getElementsByTagName("label")[0].className = a
@@ -286,10 +315,11 @@ function focusall(a) {
     document.getElementsByTagName("label")[2].className = a
     document.getElementsByTagName("label")[3].className = a
 }
-async function deletecourse()
-{
+async function deletecourse() {
     removeall()
     try {
+        var progress = document.getElementById("cprogress")
+        progress.style.visibility = "visible";
         var cno = document.getElementById("cdelete").value;
         if (!cno) {
             throw {
@@ -303,23 +333,22 @@ async function deletecourse()
             if (!doc.exists) {
                 isexist = false;
             }
-            else
-            {
+            else {
                 subjectname = doc.data()["Name"]
             }
         }).catch((error) => {
             console.log("Error getting document:", error);
         });
-        if(!isexist)
-        {
+        if (!isexist) {
             throw {
                 message: "Course dosen't exist",
                 error: new Error()
             };
         }
-        if (confirm('Are you sure you want to delete '+ subjectname+"?")) {
+        if (confirm('Are you sure you want to delete ' + subjectname + "?")) {
             await db.collection("courseData").doc(cno.toString()).delete().then(() => {
                 console.log("Document successfully deleted!");
+                updateschooldata()
             }).catch((error) => {
                 console.error("Error removing document: ", error);
             });
@@ -328,18 +357,106 @@ async function deletecourse()
                 message: "Course deleted succussfully",
                 error: new Error()
             };
-        } 
-              
+        }
     }
-    catch(err)
-    {
+    catch (err) {
         window.alert(err.message)
     }
     removeextra()
+    progress.style.visibility = "hidden";
 }
 function removeextra() {
     document.getElementById("cedit").value = "";
     document.getElementById("cdelete").value = "";
     document.getElementsByTagName("label")[10].className = "";
     document.getElementsByTagName("label")[11].className = "";
+}
+async function updateschooldata() {
+    var progress = document.getElementById("cprogress")
+    progress.style.visibility = "visible";
+    var scet = [];
+    var see = [];
+    var sce = [];
+    var smcem = [];
+    var smcec = [];
+    await db.collection("courseData").where("SCET", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                scet.push(doc.id.toString()+"~"+doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    await db.collection("courseData").where("SEE", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                see.push(doc.id.toString()+"~"+doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    await db.collection("courseData").where("SCE", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                sce.push(doc.id.toString()+"~"+doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    await db.collection("courseData").where("SMCEM", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                smcem.push(doc.id.toString()+"~"+doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    await db.collection("courseData").where("SMCEC", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                smcec.push(doc.id.toString()+"~"+doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    await db.collection("courseData").where("All", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                scet.push(doc.id.toString()+"~"+doc.data().Name)
+                see.push(doc.id.toString()+"~"+doc.data().Name)
+                sce.push(doc.id.toString()+"~"+doc.data().Name)
+                smcem.push(doc.id.toString()+"~"+doc.data().Name)
+                smcec.push(doc.id.toString()+"~"+doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    //console.log(scet, see, sce, smcem, smcec)
+    db.collection("courseData").doc("Schools").set({scet,see,sce,smcem,smcec})
+    .then(() => {
+        console.log("Document successfully written!");
+    })
+    .catch((error) => {
+        console.error("Error writing document: ", error);
+    });
+    
+    progress.style.visibility = "hidden";
 }
