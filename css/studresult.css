@@ -2,8 +2,9 @@ td{
     padding: 3px;
 }
 th{
-    border-top: 1px solid #1976d2;
-    border-bottom: 1px solid #1976d2;
+    border-top: 2px solid #1976d2;
+    border-bottom: 2px solid #1976d2;
+    font-size: 18px;
 }
 h5 {
     font-weight: bold;
@@ -20,13 +21,6 @@ h5 {
     box-shadow: 0 1px 0 0 #1d72bc !important
 }
 
-
-#ctable{
-    border: 1px solid #1d72bc;
-    grid-area: ctable;
-    margin: 2em 2em 10em 2em;
-    border-radius: 10px;
-}
 #selectpref{
     display: inline-block;
     max-width: 50%;
@@ -42,7 +36,7 @@ h5 {
     grid-gap: 0.3rem;
 }
 #studdata {
-    border: 1px solid #1d72bc;
+    border: 2px solid #1d72bc;
     grid-area: course-input;
     margin: 2em 1em 0em 2em;
     border-radius: 10px;
@@ -51,7 +45,7 @@ h5 {
 
 #studdata span{
     display: block;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 #studdata a{
@@ -59,7 +53,7 @@ h5 {
 }
 
 #courses {
-    border: 1px solid #1d72bc;
+    border: 2px solid #1d72bc;
     grid-area: edit;
     margin: 2em 2em 0em 1em;
     border-radius: 10px;
@@ -72,7 +66,7 @@ h5 {
 }
 
 #ctable {
-    border: 1px solid #1d72bc;
+    border: 2px solid #1d72bc;
     grid-area: ctable;
     margin: 2em 2em;
     border-radius: 10px;

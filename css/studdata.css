@@ -35,7 +35,7 @@ nav .nav-wrapper i{
     position: absolute;
   }
 #ctable{
-    border: 1px solid #1d72bc;
+    border: 2px solid #1d72bc;
     grid-area: ctable;
     margin: 2em 2em 10em 2em;
     border-radius: 10px;
@@ -45,7 +45,7 @@ td{
     padding: 3px;
 }
 th{
-    border-bottom: 1px solid #1976d2;
+    border-bottom: 2px solid #1976d2;
 }
 
 .input-field input:focus+label {

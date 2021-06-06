@@ -24,29 +24,31 @@
   <div class="grid">
     <div id="instructions">
       <h5>Your Details</h5>
-      <span id="dispPRN">PRN:</span>
-      <span id="dispname">Name:</span>
-      <span id="dispcgpa">CGPA:</span>
-      <span id="dispschool">School:</span>
+      <span id="dispPRN"><b>PRN:</b></span>
+      <span id="dispname"><b>Name:</b></span>
+      <span id="dispcgpa"><b>CGPA:</b></span>
+      <span id="dispschool"><b>School:</b></span>
       <hr>
       <h5>Instructions</h5>
       <span>1.Verify that your details are correct.</span>
-      <span>2.If there is any correction in the data contact at</span><a href="mailto:open_elective_allocation@mitaoe.ac.in">(open_elective_allocation@mitaoe.ac.in).</a>
+      <span>2.If there is any correction in the data contact at<a href="mailto:open_elective_allocation@mitaoe.ac.in"> (open_elective_allocation@mitaoe.ac.in).</a></span>
       <span>3.You need to give preferences for all the available subjects in the dropdown.</span>
     </div>
 
     <!-- Course Dropdown -->
     <div id="courses">
-      <div id="editdel">
+      <div id="pref">
         <h5>Select Preferences</h5>
         <select id="schooldd" name="schooldd" class="input-field col s12" onchange="selectpref()">
           <option value=""></option>
         </select>
           <a class="waves-effect waves-light btn blue darken-2" id="resetcourses" onclick="resetcourses()">Reset All</a>
       </div>
+      <hr>
       <div id="submit">
         <h5>Submit Preferences</h5>
         <a class="waves-effect waves-light btn blue darken-2" id="resetcourses" onclick="submitpref()">Submit</a>
+        <div class="block"><button class="button success">Submit</button></div>
       </div>
     </div>
 

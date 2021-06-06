@@ -24,7 +24,7 @@ h5 {
   border: 3px solid #1d72bc;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 #open-portal {
@@ -180,7 +180,7 @@ tr {
 }
 
 .card.white {
-  border: 1px solid #1d72bc;
+  border: 2px solid #1d72bc;
   border-radius: 20px;
   margin: 2em 3em;
   padding: 2em;

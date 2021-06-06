@@ -6,6 +6,10 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+#clglogo{
+    text-align: center;
+    max-width: 50%;
+}
 .home-overlay {
     width: 100%;
     height: 100%;
@@ -35,32 +39,32 @@ small {
 
 #loginpassword {
     padding-left: 10px;
-    border: 1px solid #1d72bc;
+    border: 2px solid #1d72bc;
 }
 
 #loginemail {
     padding-left: 10px;
-    border: 1px solid #1d72bc;
+    border: 2px solid #1d72bc;
 }
 
 #signinemail {
     padding-left: 10px;
-    border: 1px solid #1d72bc;
+    border: 2px solid #1d72bc;
 }
 
 #signinPRN {
     padding-left: 10px;
-    border: 1px solid #1d72bc;
+    border: 2px solid #1d72bc;
 }
 
 #signinpassword {
     padding-left: 10px;
-    border: 1px solid #1d72bc;
+    border: 2px solid #1d72bc;
 }
 
 #studresetemail {
     padding-left: 10px;
-    border: 1px solid #1d72bc;
+    border: 2px solid #1d72bc;
 }
 
 .progress {

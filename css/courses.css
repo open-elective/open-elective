@@ -23,7 +23,7 @@
 }
 
 #course-input {
-    border: 1px solid #1d72bc;
+    border: 2px solid #1d72bc;
     grid-area: course-input;
     margin: 2em 1em 0em 2em;
     border-radius: 10px;
@@ -31,7 +31,7 @@
 }
 
 #edit {
-    border: 1px solid #1d72bc;
+    border: 2px solid #1d72bc;
     grid-area: edit;
     margin: 2em 2em 0em 1em;
     border-radius: 10px;
@@ -39,7 +39,7 @@
 }
 
 #ctable {
-    border: 1px solid #1d72bc;
+    border: 2px solid #1d72bc;
     grid-area: ctable;
     margin: 2em 2em;
     border-radius: 10px;
@@ -70,7 +70,7 @@ td{
     padding: 6px;
 }
 th{
-    border-bottom: 1px solid #1976d2;
+    border-bottom: 2px solid #1976d2;
 }
 @media screen and (max-width: 900px) {
 

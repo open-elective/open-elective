@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Elective Allocation Portal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/stud.css">
+</head>
+<style>
+  lottie-player{
+    margin: auto;
+  }
+  h3 {
+    margin-top: 7%;
+  }
+</style>
+<body>
+
+  <ul class="top-nav">
+    <li><a onclick="logout()"><i class="material-icons left">power_settings_new</i>Logout</a></li>
+    <h4 class="center">Waiting</h4>
+  </ul>
+  
+  <h2 class="center">Registraion is closed.Results will be published soon!</h2>
+  <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_3k7mjdup.json"  background="transparent"  speed="1"  style="width: 500px; height: 500px;"  loop  autoplay></lottie-player>
+ 
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+    });
+  </script>
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyD9BHz-HTQl518KmUr1GHHx0IXJGj7bJP8",
+      authDomain: "openelectiveallocation.firebaseapp.com",
+      projectId: "openelectiveallocation",
+      storageBucket: "openelectiveallocation.appspot.com",
+      messagingSenderId: "953116708866",
+      appId: "1:953116708866:web:69c0de0ba08dda4efc971b"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+  <!-- <script src="/scripts/auth.js"></script>
+  <script src="/scripts/studlanding.js"></script> -->
+</body>
+
+</html>
