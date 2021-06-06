@@ -56,9 +56,6 @@ Auth.onAuthStateChanged((user) => {
         else if(Auth.currentUser.displayName == "Admin")
         {
             getData();
-            if (window.location.href.slice(-18) != "adminhomepage.html") {
-                window.location.href = "/admin/adminhomepage.html";
-            }
         }
         console.log(Auth.currentUser)
     }
