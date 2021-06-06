@@ -72,3 +72,31 @@ th{
     margin: 0px 15px;
 
 }
+
+@media screen and (max-width: 900px) {
+
+    nav{
+        margin: auto;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        max-width: 90%;
+    }
+    #ctable{
+        margin: 0;
+        margin: 20px 15px 150px 20px;
+    }
+    h4{
+        font-size: 25px;
+    }
+    .filter{
+
+        max-width: 40%;
+        margin: 10px;
+    
+    }
+    #ctable{
+        margin: 0;
+        margin: 0 10px 100px 10px;
+    }
+  
+}

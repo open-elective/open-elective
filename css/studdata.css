@@ -66,3 +66,21 @@ th{
     padding-right: 22px !important;
     color: black;
 }
+
+@media screen and (max-width: 900px) {
+
+    nav{
+        margin: auto;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        max-width: 90%;
+    }
+    #ctable{
+        margin: 0;
+        margin: 20px 15px 150px 20px;
+    }
+    h4{
+        font-size: 25px;
+    }
+  
+}

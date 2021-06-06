@@ -69,6 +69,10 @@ th{
     border-radius: 10px;
 }
 
+#submit{
+    margin-top: 20px;
+}
+
 @media screen and (max-width: 900px) {
 
     .grid {
