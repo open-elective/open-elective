@@ -14,9 +14,9 @@ async function checkState() {
             //window.location.href="send to result will be published soon"
         }
         else if (data.Allow == 3) {
-            //result published phase
-            
-            //window.location.href="send to show result page"
+            if (window.location.href.slice(-11) != "result.html") {
+                window.location.href = "/student/result.html";
+            }
         }
     }).catch((error) => {
         console.log("Error getting document:", error);

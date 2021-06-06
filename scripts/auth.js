@@ -89,11 +89,30 @@ async function login(e) {
         password.value = ""
         progress.style.visibility = "hidden";
         btn.style.visibility = "visible";
-        if (Auth.currentUser.displayName == "User") {
-            if (window.location.href.slice(-16) != "studlanding.html") {
-                window.location.href = "/student/studlanding.html";
+        firebase.firestore().collection("Misc").doc("State").get().then((doc) => {
+            const data = doc.data();
+            if (data.Allow == 0) {
+                if (window.location.href.slice(-16) != "studlanding.html") {
+                    window.location.href = "/student/studlanding.html";
+                }
             }
-        }
+            else if (data.Allow == 1) {
+                if (window.location.href.slice(-17) != "studhomepage.html") {
+                    window.location.href = "/student/studhomepage.html";
+                }
+            }
+            else if (data.Allow == 2) {
+                     
+                //window.location.href="send to result will be published soon"
+            }
+            else if (data.Allow == 3) {
+                if (window.location.href.slice(-11) != "result.html") {
+                    window.location.href = "/student/result.html";
+                }
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
     }
     catch (err) {
         if (err.code == "auth/wrong-password") {
@@ -143,7 +162,9 @@ Auth.onAuthStateChanged((user) => {
                     //window.location.href="send to result will be published soon"
                 }
                 else if (data.Allow == 3) {
-                    //window.location.href="send to show result page"
+                    if (window.location.href.slice(-11) != "result.html") {
+                        window.location.href = "/student/result.html";
+                    }
                 }
             }).catch((error) => {
                 console.log("Error getting document:", error);
