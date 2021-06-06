@@ -90,8 +90,8 @@ async function login(e) {
         progress.style.visibility = "hidden";
         btn.style.visibility = "visible";
         if (Auth.currentUser.displayName == "User") {
-            if (window.location.href.slice(-17) != "studhomepage.html") {
-                window.location.href = "/student/studhomepage.html";
+            if (window.location.href.slice(-16) != "studlanding.html") {
+                window.location.href = "/student/studlanding.html";
             }
         }
     }
@@ -126,8 +126,8 @@ function logout() {
 Auth.onAuthStateChanged((user) => {
     if (user && Auth.currentUser.emailVerified) {
         if (Auth.currentUser.displayName == "User") {
-            if (window.location.href.slice(-17) != "studhomepage.html") {
-                window.location.href = "/student/studhomepage.html";
+            if (window.location.href.slice(-16) != "studlanding.html") {
+                window.location.href = "/student/studlanding.html";
             }
         }
         else if(Auth.currentUser.displayName == "Admin")

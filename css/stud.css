@@ -10,7 +10,6 @@ h4{
     margin: 0;
     padding-top: 10px;
     color: white;
-    padding-right: 60px;
 }
 
 .btn{
@@ -46,3 +45,6 @@ h4{
     padding: 14px 16px;
     text-decoration: none;
   }
+.top-nav h4{
+  padding-left: 150px;
+} 
