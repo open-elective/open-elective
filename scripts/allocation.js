@@ -3,6 +3,7 @@ var nextpg = document.getElementById('page-next');
 var pgno = 1;
 var firstdoc = null;
 var storedata = null;
+const progress = document.getElementsByClassName("progress")[0];
 window.addEventListener('DOMContentLoaded', () => getdata(2));
 async function getdata(b) {
     var rows = document.getElementById("studprefdatat").rows.length;
@@ -66,6 +67,7 @@ async function getdata(b) {
     else {
         nextpg.className = "waves-effect waves-light btn blue darken-2";
     }
+    progress.style.visibility = "hidden";
 }
 
 function addStudentDataTable(prn, name, cgpa, school, pref, allo) {
@@ -122,99 +124,101 @@ function searchtest() {
     }
 }
 async function allocation() {
-    resetstuddata(1);
+    //resetstuddata(1);
     //window.alert("This may take time, please be patient")
-    const progress = document.getElementsByClassName("progress")[0];
+    progress.style.visibility = "visible";
     const ref = await db.collection("studentData").orderBy("CGPA", "desc");
     storedata = await ref.get();
     const len = storedata.docs.length;
     for (l = 0; l < len; l++) {
-        progress.style.visibility = "visible";
-        var pref = [];
-        //console.log(storedata.docs[l].id)
-        await db.collection("studentprefs").doc(storedata.docs[l].id).get().then((doc) => {
-            if (doc.exists) {
-                pref = doc.data().mypref
-                // console.log(pref)
-            }
-        }).catch((error) => {
-            console.log("Error getting document:", error);
-        });
-        var gotit = false;
-        for (m = 0; m < pref.length; m++) {
-            if (gotit) {
-                break;
-            }
-            var myschool;
-            var cdata
-            await db.collection("courseData").doc(pref[m]).get().then((doc) => {
+        if ((storedata.docs[l].data().alloc == null || storedata.docs[l].data().alloc == 0)) {
+            var pref = [];
+            //console.log(storedata.docs[l].id)
+            await db.collection("studentprefs").doc(storedata.docs[l].id).get().then((doc) => {
                 if (doc.exists) {
-                    cdata = doc.data();
-                    //console.log(cdata)
-                    myschool = (cdata.School == storedata.docs[l].data().School)
+                    pref = doc.data().mypref
+                    // console.log(pref)
                 }
             }).catch((error) => {
                 console.log("Error getting document:", error);
             });
-
-
-
-            if (myschool) {
-                if (cdata.Intfill < cdata.InternalCap) {
-
-                    await db.collection("courseData").doc(pref[m]).update({
-                        Intfill: cdata.Intfill + 1
-                    })
-                        .then(() => {
-                            //console.log("Added in Database");
-                        })
-                        .catch((error) => {
-                            console.error("Error adding Data in database: ", error);
-                        });
-                    await db.collection("studentData").doc(storedata.docs[l].id).update({
-                        alloc: pref[m]
-                    })
-                        .then(() => {
-                            //console.log("Added in Database");
-                        })
-                        .catch((error) => {
-                            console.error("Error adding Data in database: ", error);
-                        });
+            var gotit = false;
+            for (m = 0; m < pref.length; m++) {
+                if (gotit) {
+                    break;
                 }
-                gotit = true
-            }
-            else {
-                if (cdata.Extfill < cdata.ExternalCap) {
-                    db.collection("courseData").doc(pref[m]).update({
-                        Extfill: cdata.Extfill + 1
-                    })
-                        .then(() => {
-                            //console.log("Added in Database");
-                        })
-                        .catch((error) => {
-                            console.error("Error adding Data in database: ", error);
-                        });
-                    db.collection("studentData").doc(storedata.docs[l].id).update({
-                        alloc: pref[m]
-                    })
-                        .then(() => {
-                            //console.log("Added in Database");
-                        })
-                        .catch((error) => {
-                            console.error("Error adding Data in database: ", error);
-                        });
-                }
-                gotit = true
-            }
+                var myschool;
+                var cdata
+                await db.collection("courseData").doc(pref[m]).get().then((doc) => {
+                    if (doc.exists) {
+                        cdata = doc.data();
+                        //console.log(cdata)
+                        myschool = (cdata.School == storedata.docs[l].data().School)
+                    }
+                }).catch((error) => {
+                    console.log("Error getting document:", error);
+                });
 
+
+
+                if (myschool) {
+                    if (cdata.Intfill < cdata.InternalCap) {
+
+                        await db.collection("courseData").doc(pref[m]).update({
+                            Intfill: cdata.Intfill + 1
+                        })
+                            .then(() => {
+                                //console.log("Added in Database");
+                            })
+                            .catch((error) => {
+                                console.error("Error adding Data in database: ", error);
+                            });
+                        await db.collection("studentData").doc(storedata.docs[l].id).update({
+                            alloc: parseInt(pref[m])
+                        })
+                            .then(() => {
+                                //console.log("Added in Database");
+                            })
+                            .catch((error) => {
+                                console.error("Error adding Data in database: ", error);
+                            });
+                        gotit = true
+                    }
+
+                }
+                else {
+                    if (cdata.Extfill < cdata.ExternalCap) {
+                        await db.collection("courseData").doc(pref[m]).update({
+                            Extfill: cdata.Extfill + 1
+                        })
+                            .then(() => {
+                                //console.log("Added in Database");
+                            })
+                            .catch((error) => {
+                                console.error("Error adding Data in database: ", error);
+                            });
+                        await db.collection("studentData").doc(storedata.docs[l].id).update({
+                            alloc: parseInt(pref[m])
+                        })
+                            .then(() => {
+                                //console.log("Added in Database");
+                            })
+                            .catch((error) => {
+                                console.error("Error adding Data in database: ", error);
+                            });
+                        gotit = true
+                    }
+                }
+
+            }
+            var percent = (l * 100) / (len - 1)
+            progress.style = "width:" + percent.toString() + "%";
         }
-        var percent = (l * 100) / (len - 1)
-        progress.style = "width:" + percent.toString() + "%";
     }
-    progress.style.visibility = "hidden";
     getdata(2)
 }
-async function resetstuddata(b) {
+async function resetstuddata() {
+    progress.style.visibility = "visible";
     if (storedata != null) {
         for (n = 0; n < storedata.docs.length; n++) {
             await db.collection("studentData").doc(storedata.docs[n].id).update({
@@ -266,9 +270,7 @@ async function resetstuddata(b) {
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
-    if (b == 2) {
         getdata(2)
-    }
 }
 
 

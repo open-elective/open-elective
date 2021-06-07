@@ -13,13 +13,14 @@
 </head>
 
 <!-- top nav -->
+
 <body>
   <ul class="top-nav">
     <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
     <h4 class="center">Allocation</h4>
   </ul>
 
-<!-- side nav -->
+  <!-- side nav -->
   <ul id="slide-out" class="sidenav blue darken-2">
     <li>
       <div class="user-view">
@@ -48,8 +49,8 @@
     <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
   </ul>
 
-   <!-- search box -->
-   <nav>
+  <!-- search box -->
+  <nav>
     <div class="nav-wrapper blue darken-2">
       <form onsubmit="searchtest();return false">
         <div class="input-field">
@@ -63,37 +64,17 @@
 
   <!-- Page buttons -->
   <div class="center">
-  <a id="page-pre" class="waves-effect waves-light btn blue darken-2" onclick="getdata(2)"><i class="material-icons left">navigate_before</i>1st Page/Refresh</a>
-  <a id="page">Page 1</a>
-<a id="page-next" class="waves-effect waves-light btn blue darken-2" onclick="getdata(1)"><i class="material-icons right">navigate_next</i>Next Page</a>
-<div class="filter">
-  <select id="schooldd" class="input-field col s12" onchange="ddchanged()">
-    <option value="" disabled selected>Filter By School</option>
-    <option value="1">SCET</option>
-    <option value="2">SEE</option>
-    <option value="3">SMCE(Mechanical)</option>
-    <option value="4">SMCE(Civil)</option>
-    <option value="5">SCE</option>
-    <option value="6">SHES</option>
-  </select>
-</div>
-<div class="filter">
-  <select id="schooldd" class="input-field col s12" onchange="ddchanged()">
-    <option value="" disabled selected>Filter By Allocation</option>
-    <option value="1">SCET</option>
-    <option value="2">SEE</option>
-    <option value="3">SMCE(Mechanical)</option>
-    <option value="4">SMCE(Civil)</option>
-    <option value="5">SCE</option>
-    <option value="6">SHES</option>
-  </select>
-</div>
+    <a id="page-pre" class="waves-effect waves-light btn blue darken-2" onclick="getdata(2)"><i
+        class="material-icons left">navigate_before</i>1st Page/Refresh</a>
+    <a id="page">Page 1</a>
+    <a id="page-next" class="waves-effect waves-light btn blue darken-2 disabled" onclick="getdata(1)"><i
+        class="material-icons right">navigate_next</i>Next Page</a>
 
 
-</div>
-  
-  
-<!-- student data table -->
+  </div>
+
+
+  <!-- student data table -->
   <div id="ctable">
     <table id="studprefdatat" class="centered striped">
       <thead>
@@ -124,8 +105,9 @@
   <footer class="page-footer">
     <div id="buttons" class="center">
       <a class="waves-effect waves-light btn blue darken-2" id="allocate" onclick="allocation()">Allocate</a>
-      <a class="waves-effect waves-light btn blue darken-2" id="resetstuddata" onclick="resetstuddata(2)">Reset</a>
-      <a class="waves-effect waves-light btn blue darken-2" id="downloaddata" onclick="downloaddata()">Download Excel</a>      
+      <a class="waves-effect waves-light btn blue darken-2" id="resetstuddata" onclick="resetstuddata()">Reset</a>
+      <a class="waves-effect waves-light btn blue darken-2" id="downloaddata" onclick="downloaddata()">Download
+        Excel</a>
       <div class="progress">
         <div class="determinate blue darken-2"></div>
       </div>
@@ -142,13 +124,9 @@
       var instances = M.Sidenav.init(elems);
     });
     document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('select');
-      var instances = M.FormSelect.init(elems);
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems);
     });
-    document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems);
-  });
   </script>
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
