@@ -57,7 +57,7 @@ Auth.onAuthStateChanged((user) => {
         {
             getData();
         }
-        console.log(Auth.currentUser)
+        //console.log(Auth.currentUser)
     }
     if(!user || !Auth.currentUser.emailVerified )
     {

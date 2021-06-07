@@ -177,7 +177,7 @@ Auth.onAuthStateChanged((user) => {
                 window.location.href = "/admin/adminhomepage.html";
             }
         }
-        console.log(Auth.currentUser)
+        //console.log(Auth.currentUser)
     }
     if(!user || !Auth.currentUser.emailVerified )
     {

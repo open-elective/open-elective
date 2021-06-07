@@ -174,8 +174,8 @@ async function addcourse() {
         }
         await db.collection("courseData").doc(cno.toString()).set({
             Name: cname.toString(),
-            InternalCap: cincapa.toString(),
-            ExternalCap: cextcapa.toString(),
+            InternalCap: parseInt(cincapa),
+            ExternalCap: parseInt(cextcapa),
             School: school,
             All: c1.checked || skip,
             SCET: c2.checked && !skip,
