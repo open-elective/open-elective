@@ -19,16 +19,15 @@ async function addadmin(e) {
         var btn = document.getElementById("addadmin");
         progress.style.visibility = "visible";
         btn.style.visibility = "hidden";
-        var alreadyexist =false;
+        var alreadyexist = false;
         await db.collection("allow-users").doc(email.value).get().then((doc) => {
             if (doc.exists) {
-               alreadyexist = true;
+                alreadyexist = true;
             }
         }).catch((error) => {
             console.log("Error getting document:", error);
         });
-        if(alreadyexist)
-        {
+        if (alreadyexist) {
             throw {
                 message: "User is already admin",
                 error: new Error()
@@ -43,7 +42,7 @@ async function addadmin(e) {
             .catch((error) => {
                 console.error("Error adding Admin in database: ", error);
             });
-            
+
         const result = await Auth.createUserWithEmailAndPassword(email.value, Math.random().toString(36).slice(2))
         sendVerificationEmail(email.value)
         await result.user.updateProfile({
@@ -51,7 +50,7 @@ async function addadmin(e) {
             photoURL: Name.value
         });
 
-        
+
         Name.value = ""
         email.value = ""
         progress.style.visibility = "hidden";
@@ -68,7 +67,7 @@ async function addadmin(e) {
         btn.style.visibility = "visible";
     }
 }
-async function sendVerificationEmail(email){
+async function sendVerificationEmail(email) {
     await Auth.sendPasswordResetEmail(email).then(function () {
         console.log('link sent')
     }).catch(function (error) {
@@ -83,8 +82,7 @@ function logout() {
         window.alert(error.message)
     });
 }
-async function deleteallstud()
-{
+async function deleteallstud() {
     progress.style.visibility = "visible";
     var batch = firebase.firestore().batch()
     await db.collection("studentData").get().then((querySnapshot) => {
@@ -98,8 +96,7 @@ async function deleteallstud()
     });
     progress.style.visibility = "hidden";
 }
-async function deleteallpref()
-{
+async function deleteallpref() {
     progress.style.visibility = "visible";
     var batch = firebase.firestore().batch()
     await db.collection("studentprefs").get().then((querySnapshot) => {
@@ -113,8 +110,7 @@ async function deleteallpref()
     });
     progress.style.visibility = "hidden";
 }
-async function deleteallcourse()
-{
+async function deleteallcourse() {
     progress.style.visibility = "visible";
     var batch = firebase.firestore().batch()
     await db.collection("courseData").get().then((querySnapshot) => {
@@ -137,24 +133,26 @@ async function deleteallcourse()
     });
     progress.style.visibility = "hidden";
 }
-function downloadexcel()
-{
-    const reader = require('xlsx')
-    let student_data = [{
-        Student:'Nikhil',
-        Age:22,
-        Branch:'ISE',
-        Marks: 70
-    },
-    {
-        Name:'Amitha',
-        Age:21,
-        Branch:'EC',
-        Marks:80
-    }]
-      
-    const ws = reader.utils.json_to_sheet(student_data)
-      
-    // Writing to our file
-    reader.writeFile(file,'./test.xlsx')
+function downloadexcel() {
+    var wb = XLSX.utils.book_new();
+    wb.Props = {
+        Title: "SheetJS Tutorial",
+        Subject: "Test",
+        Author: "Red Stapler",
+        CreatedDate: new Date(2017, 12, 19)
+    };
+    wb.SheetNames.push("Test Sheet1");
+    wb.SheetNames.push("Test Sheet2");
+    var ws_data = [['hello', 'world']];
+    var ws = XLSX.utils.aoa_to_sheet(ws_data);
+    wb.Sheets["Test Sheet1"] = ws;
+    wb.Sheets["Test Sheet2"] = ws;
+    var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'test.xlsx');
+}
+function s2ab(s) {
+    var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
+    var view = new Uint8Array(buf);  //create uint8array as viewer
+    for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
+    return buf;
 }
