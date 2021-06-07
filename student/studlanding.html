@@ -13,10 +13,23 @@
 <style>
   lottie-player{
     margin: auto;
+    width: 500px; 
+    height: 500px;
   }
-  h3 {
+  h2 {
     margin-top: 7%;
   }
+  @media screen and (max-width: 900px) {
+    lottie-player{
+    width: 300px; 
+    height: 300px;
+  }
+  h2 {
+    margin-top: 25%;
+    font-size: 30px;
+  }
+}
+
 </style>
 <body>
 
@@ -26,7 +39,7 @@
   </ul>
   
   <h2 class="center">The Portal Is Closed</h2>
-  <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_sswp5f0x.json"  background="transparent"  speed="1"  style="width: 500px; height: 500px;"  loop  autoplay></lottie-player>
+  <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_sswp5f0x.json"  background="transparent"  speed="1"   loop  autoplay></lottie-player>
  
 
   <!-- Compiled and minified JavaScript -->

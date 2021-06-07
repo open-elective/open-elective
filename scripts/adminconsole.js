@@ -41,7 +41,9 @@ Auth.onAuthStateChanged((user) => {
                 }
                 else if (data.Allow == 2) {
                          
-                    //window.location.href="send to result will be published soon"
+                    if (window.location.href.slice(-16) != "studwaiting.html") {
+                        window.location.href = "/student/studwaiting.html";
+                    }
                 }
                 else if (data.Allow == 3) {
                     if (window.location.href.slice(-11) != "result.html") {

@@ -13,10 +13,22 @@
 <style>
   lottie-player{
     margin: auto;
+    width: 500px; 
+    height: 500px;
   }
-  h3 {
+  h2 {
     margin-top: 7%;
   }
+  @media screen and (max-width: 900px) {
+    lottie-player{
+    width: 300px; 
+    height: 300px;
+  }
+  h2 {
+    margin-top: 25%;
+    font-size: 30px;
+  }
+}
 </style>
 <body>
 
@@ -26,7 +38,7 @@
   </ul>
   
   <h2 class="center">Registraion is closed.Results will be published soon!</h2>
-  <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_3k7mjdup.json"  background="transparent"  speed="1"  style="width: 500px; height: 500px;"  loop  autoplay></lottie-player>
+  <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_3k7mjdup.json"  background="transparent"  speed="1"  loop  autoplay></lottie-player>
  
 
   <!-- Compiled and minified JavaScript -->
@@ -59,8 +71,8 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
   </script>
-  <!-- <script src="/scripts/auth.js"></script>
-  <script src="/scripts/studlanding.js"></script> -->
+  <script src="/scripts/auth.js"></script>
+  <script src="/scripts/studwaiting.js"></script>
 </body>
 
 </html>
