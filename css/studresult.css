@@ -31,7 +31,7 @@ h5 {
     display: grid;
     height: 100vh;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 0.5fr 1fr;
+    grid-template-rows: 0.3fr 0.7fr;
     grid-template-areas: "course-input edit" "ctable ctable";
     grid-gap: 0.3rem;
 }
@@ -81,6 +81,25 @@ h5 {
     width: 250px; 
     height: 150px;
 }
+
+.footer {
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    font-family: sans-serif;
+    font-size: 24px;
+    color: white;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1d72bc;
+  }
+
+  .footer span{
+      padding: 0 8px;
+      font-size: 15px;
+  }
 @media screen and (max-width: 900px) {
 
     .grid {
@@ -88,7 +107,7 @@ h5 {
         display: grid;
         height: 100vh;
         grid-template-columns: 1fr;
-        grid-template-rows: 0.3fr 0.2fr 0.3fr;
+        grid-template-rows: 0.3fr 0.2fr 1fr;
         grid-template-areas: "course-input" "edit" "ctable";
         
     }
@@ -125,3 +144,15 @@ h5 {
 select {
     display: block !important;
 }
+
+@media screen and (max-height:600px){
+    h3 {
+        font-size: 25px;
+    }
+    .footer span{
+        padding: 0 4px;
+        font-size: 13px;
+    }  
+
+}
+
