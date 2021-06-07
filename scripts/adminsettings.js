@@ -1,4 +1,4 @@
-
+var progress = document.getElementById("addadminprogress");
 async function addadmin(e) {
     e.preventDefault()
     const email = document.getElementById("adminemail")
@@ -16,7 +16,6 @@ async function addadmin(e) {
                 error: new Error()
             };
         }
-        var progress = document.getElementById("addadminprogress");
         var btn = document.getElementById("addadmin");
         progress.style.visibility = "visible";
         btn.style.visibility = "hidden";
@@ -83,4 +82,79 @@ function logout() {
     }).catch((error) => {
         window.alert(error.message)
     });
+}
+async function deleteallstud()
+{
+    progress.style.visibility = "visible";
+    var batch = firebase.firestore().batch()
+    await db.collection("studentData").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            db.collection("studentData").doc(doc.id).delete().then(() => {
+                console.log("Document successfully deleted!");
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+        });
+    });
+    progress.style.visibility = "hidden";
+}
+async function deleteallpref()
+{
+    progress.style.visibility = "visible";
+    var batch = firebase.firestore().batch()
+    await db.collection("studentprefs").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            db.collection("studentprefs").doc(doc.id).delete().then(() => {
+                console.log("Document successfully deleted!");
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+        });
+    });
+    progress.style.visibility = "hidden";
+}
+async function deleteallcourse()
+{
+    progress.style.visibility = "visible";
+    var batch = firebase.firestore().batch()
+    await db.collection("courseData").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            db.collection("courseData").doc(doc.id).delete().then(() => {
+                console.log("Document successfully deleted!");
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+        });
+    });
+    await db.collection("Schools").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            db.collection("Schools").doc(doc.id).delete().then(() => {
+                console.log("Document successfully deleted!");
+            }).catch((error) => {
+                console.error("Error removing document: ", error);
+            });
+        });
+    });
+    progress.style.visibility = "hidden";
+}
+function downloadexcel()
+{
+    const reader = require('xlsx')
+    let student_data = [{
+        Student:'Nikhil',
+        Age:22,
+        Branch:'ISE',
+        Marks: 70
+    },
+    {
+        Name:'Amitha',
+        Age:21,
+        Branch:'EC',
+        Marks:80
+    }]
+      
+    const ws = reader.utils.json_to_sheet(student_data)
+      
+    // Writing to our file
+    reader.writeFile(file,'./test.xlsx')
 }

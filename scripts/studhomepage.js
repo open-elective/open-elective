@@ -1,38 +1,65 @@
 var progress = document.getElementById("submitprogress");
 progress.style.visibility = "visible";
 var optionsfromdb;
-var mypref=[]
-var prn=""
+var mypref = []
+var prn = ""
 window.addEventListener('DOMContentLoaded', () => initiate());
 async function checkState() {
-    db.collection("Misc").doc("State").get().then((doc) => {
-        const data = doc.data();
-        if (data.Allow == 0) {
-            //closed portal
-            if (window.location.href.slice(-16) != "studlanding.html") {
-                window.location.href = "/student/studlanding.html";
-            }
-        }
-        else if (data.Allow == 1) {
-            //opened portal
-            assignDropdownOp()
-        }
-        else if (data.Allow == 2) {
-            //allocation phase
 
-            if (window.location.href.slice(-16) != "studwaiting.html") {
-                window.location.href = "/student/studwaiting.html";
+    try {
+        var imavaliduser = true;
+        await firebase.firestore().collection("studentData").doc(Auth.currentUser.photoURL).get().then((doc) => {
+            if (!doc.exists) {
+                imavaliduser = false;
             }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+        if (!imavaliduser) {
+            throw {
+                message: "You are not in our database, Please contact concerning faculty",
+                error: new Error()
+            };
         }
-        else if (data.Allow == 3) {
-            if (window.location.href.slice(-11) != "result.html") {
-                window.location.href = "/student/result.html";
+        await db.collection("Misc").doc("State").get().then((doc) => {
+            const data = doc.data();
+            if (data.Allow == 0) {
+                //closed portal
+                if (window.location.href.slice(-16) != "studlanding.html") {
+                    window.location.href = "/student/studlanding.html";
+                }
             }
+            else if (data.Allow == 1) {
+                //opened portal
+                assignDropdownOp()
+            }
+            else if (data.Allow == 2) {
+                //allocation phase
+
+                if (window.location.href.slice(-16) != "studwaiting.html") {
+                    window.location.href = "/student/studwaiting.html";
+                }
+            }
+            else if (data.Allow == 3) {
+                if (window.location.href.slice(-11) != "result.html") {
+                    window.location.href = "/student/result.html";
+                }
+            }
+            progress.style.visibility = "hidden";
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+    }
+    catch (err) {
+        window.alert(err.message)
+        if (!imavaliduser) {
+            Auth.signOut().then(() => {
+                window.alert("Logout successfull")
+            }).catch((error) => {
+                window.alert(error.message)
+            });
         }
-        progress.style.visibility = "hidden";
-    }).catch((error) => {
-        console.log("Error getting document:", error);
-    });
+    }
 }
 function initiate() {
     db.collection("Misc").doc("State")
@@ -79,9 +106,9 @@ function selectpref() {
     var value = dd.options[dd.selectedIndex].value;// get selected option value
     var text = dd.options[dd.selectedIndex].text;
     dd.remove(dd.selectedIndex);
-    addCourseTable(value,text)
+    addCourseTable(value, text)
 }
-function addCourseTable(cno,cname) {
+function addCourseTable(cno, cname) {
     var table = document.getElementById("preftable");
     var row = table.insertRow(document.getElementById("preftable").rows.length - 1);
     var cnot = row.insertCell(0);
@@ -89,9 +116,8 @@ function addCourseTable(cno,cname) {
     cnot.innerHTML = document.getElementById("preftable").rows.length - 2;
     cnamet.innerHTML = cname;
     mypref.push(cno)
-    if(mypref.length == optionsfromdb.length)
-    {
-        document.getElementById("submitprefbtn").className="waves-effect waves-light btn blue darken-2"
+    if (mypref.length == optionsfromdb.length) {
+        document.getElementById("submitprefbtn").className = "waves-effect waves-light btn blue darken-2"
     }
 }
 function resetcourses() {
@@ -109,8 +135,8 @@ function resetcourses() {
     var rows = document.getElementById("preftable").rows.length;
     for (i = 2; i < rows; i++)
         document.getElementById("preftable").deleteRow(1);
-    mypref=[]
-    document.getElementById("submitprefbtn").className="waves-effect waves-light btn blue darken-2 disabled"
+    mypref = []
+    document.getElementById("submitprefbtn").className = "waves-effect waves-light btn blue darken-2 disabled"
 }
 async function submitpref() {
     progress.style.visibility = "visible";

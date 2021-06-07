@@ -84,37 +84,53 @@ async function login(e) {
                 error: new Error()
             };
         }
-        
+
         email.value = ""
         password.value = ""
         progress.style.visibility = "hidden";
         btn.style.visibility = "visible";
-        firebase.firestore().collection("Misc").doc("State").get().then((doc) => {
-            const data = doc.data();
-            if (data.Allow == 0) {
-                if (window.location.href.slice(-16) != "studlanding.html") {
-                    window.location.href = "/student/studlanding.html";
+        if (Auth.currentUser.displayName == "User") {
+            var imavaliduser = true;
+            await firebase.firestore().collection("studentData").doc(Auth.currentUser.photoURL).get().then((doc) => {
+                if (!doc.exists) {
+                    imavaliduser = false;
                 }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+            if (!imavaliduser) {
+                throw {
+                    message: "You are not in our database, Please contact concerning faculty",
+                    error: new Error()
+                };
             }
-            else if (data.Allow == 1) {
-                if (window.location.href.slice(-17) != "studhomepage.html") {
-                    window.location.href = "/student/studhomepage.html";
+            await firebase.firestore().collection("Misc").doc("State").get().then((doc) => {
+                const data = doc.data();
+                if (data.Allow == 0) {
+                    if (window.location.href.slice(-16) != "studlanding.html") {
+                        window.location.href = "/student/studlanding.html";
+                    }
                 }
-            }
-            else if (data.Allow == 2) {
-                     
-                if (window.location.href.slice(-16) != "studwaiting.html") {
-                    window.location.href = "/student/studwaiting.html";
+                else if (data.Allow == 1) {
+                    if (window.location.href.slice(-17) != "studhomepage.html") {
+                        window.location.href = "/student/studhomepage.html";
+                    }
                 }
-            }
-            else if (data.Allow == 3) {
-                if (window.location.href.slice(-11) != "result.html") {
-                    window.location.href = "/student/result.html";
+                else if (data.Allow == 2) {
+
+                    if (window.location.href.slice(-16) != "studwaiting.html") {
+                        window.location.href = "/student/studwaiting.html";
+                    }
                 }
-            }
-        }).catch((error) => {
-            console.log("Error getting document:", error);
-        });
+                else if (data.Allow == 3) {
+                    if (window.location.href.slice(-11) != "result.html") {
+                        window.location.href = "/student/result.html";
+                    }
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+        }
     }
     catch (err) {
         if (err.code == "auth/wrong-password") {
@@ -172,18 +188,16 @@ Auth.onAuthStateChanged((user) => {
             }).catch((error) => {
                 console.log("Error getting document:", error);
             });
-            
+
         }
-        else if(Auth.currentUser.displayName == "Admin")
-        {
+        else if (Auth.currentUser.displayName == "Admin") {
             if (window.location.href.slice(-18) != "adminhomepage.html") {
                 window.location.href = "/admin/adminhomepage.html";
             }
         }
         //console.log(Auth.currentUser)
     }
-    if(!user || !Auth.currentUser.emailVerified )
-    {
+    if (!user || !Auth.currentUser.emailVerified) {
         if (window.location.href.slice(-10) != "index.html" && window.location.href.slice(-11) != "signup.html") {
             window.location.href = "/index.html";
         }
