@@ -11,36 +11,64 @@
   <link rel="stylesheet" href="/css/stud.css">
 </head>
 <style>
-  lottie-player{
+  lottie-player {
     margin: auto;
-    width: 500px; 
+    width: 500px;
     height: 500px;
   }
-  h2 {
-    margin-top: 7%;
-  }
-  @media screen and (max-width: 900px) {
-    lottie-player{
-    width: 300px; 
-    height: 300px;
-  }
-  h2 {
-    margin-top: 25%;
-    font-size: 30px;
-  }
-}
 
+  h2 {
+    margin-top: 4%;
+  }
+
+  @media screen and (max-width: 900px) {
+    lottie-player {
+      width: 300px;
+      height: 300px;
+    }
+
+    h2 {
+      margin-top: 25%;
+      font-size: 30px;
+    }
+  }
 </style>
+
 <body>
 
   <ul class="top-nav">
     <li><a onclick="logout()"><i class="material-icons left">power_settings_new</i>Logout</a></li>
     <h4 class="center">Closed</h4>
   </ul>
-  
+
   <h2 class="center">The Portal Is Closed</h2>
-  <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_sswp5f0x.json"  background="transparent"  speed="1"   loop  autoplay></lottie-player>
- 
+  <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_sswp5f0x.json" background="transparent" speed="1"
+    loop autoplay></lottie-player>
+
+  <div class="fixed-action-btn toolbar">
+    <a class="btn-floating btn-large blue darken-2 ">
+      <i class="large material-icons">help</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating">Developed By</a></li>
+      <li><a href="https://niranjangirhe.github.io/Connect-with-me/" target="_blank" class="btn-floating">Niranjan
+          Girhe</a></li>
+      <li><a href="https://pratik-kale20.github.io/my-links/index.html" target="_blank" class="btn-floating ">Pratik
+          Kale</a></li>
+      <li><a href="mailto:open_elective_allocation@mitaoe.ac.in" class="btn-floating "><i
+            class="material-icons">email</i>Help</a></li>
+    </ul>
+  </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems, {
+        toolbarEnabled: true
+      });
+    });
+  </script>
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

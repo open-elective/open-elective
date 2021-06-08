@@ -18,9 +18,9 @@
     <li><a onclick="logout()"><i class="material-icons left">power_settings_new</i>Logout</a></li>
     <h4 class="center">Preferences</h4>
   </ul>
-  
 
-   <!-- Student Details and Instructions -->
+
+  <!-- Student Details and Instructions -->
   <div class="grid">
     <div id="instructions">
       <h5>Your Details</h5>
@@ -31,7 +31,8 @@
       <hr>
       <h5>Instructions</h5>
       <span>1.Verify that your details are correct.</span>
-      <span>2.If there is any correction in the data contact at<a href="mailto:open_elective_allocation@mitaoe.ac.in"> (open_elective_allocation@mitaoe.ac.in).</a></span>
+      <span>2.If there is any correction in the data contact at<a href="mailto:open_elective_allocation@mitaoe.ac.in">
+          (open_elective_allocation@mitaoe.ac.in).</a></span>
       <span>3.You need to give preferences for all the available subjects in the dropdown.</span>
     </div>
 
@@ -42,16 +43,17 @@
         <select id="schooldd" name="schooldd" class="input-field col s12" onchange="selectpref()">
           <option value="">Select preferences</option>
         </select>
-          <a class="waves-effect waves-light btn blue darken-2" id="resetcourses" onclick="resetcourses()">Reset All</a>
+        <a class="waves-effect waves-light btn blue darken-2" id="resetcourses" onclick="resetcourses()">Reset All</a>
       </div>
       <hr>
       <div id="submit">
         <h5>Submit Preferences</h5>
-        <a class="waves-effect waves-light btn blue darken-2 disabled" id="submitprefbtn" onclick="submitpref()">Submit</a>
+        <a class="waves-effect waves-light btn blue darken-2 disabled" id="submitprefbtn"
+          onclick="submitpref()">Submit</a>
       </div>
       <div class="progress blue lighten-4" id="submitprogress">
         <div class="indeterminate blue darken-2"></div>
-    </div>
+      </div>
     </div>
 
     <!-- Prefrence Table -->
@@ -61,7 +63,7 @@
         <thead>
           <tr>
             <th>Preference No</th>
-            <th>Course Name</th>            
+            <th>Course Name</th>
           </tr>
         </thead>
         <tbody>
@@ -75,6 +77,32 @@
     <div id="padding"></div>
   </div>
 
+  <div class="fixed-action-btn toolbar">
+    <a class="btn-floating btn-large blue darken-2 ">
+      <i class="large material-icons">help</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating">Developed By</a></li>
+      <li><a href="https://niranjangirhe.github.io/Connect-with-me/" target="_blank" class="btn-floating">Niranjan
+          Girhe</a></li>
+      <li><a href="https://pratik-kale20.github.io/my-links/index.html" target="_blank" class="btn-floating ">Pratik
+          Kale</a></li>
+      <li><a href="mailto:open_elective_allocation@mitaoe.ac.in" class="btn-floating "><i
+            class="material-icons">email</i>Help</a></li>
+    </ul>
+  </div>
+
+
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems, {
+        toolbarEnabled: true
+      });
+    });
+  </script>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 

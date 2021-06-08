@@ -32,6 +32,31 @@
   </main>
 
 
+  <div class="fixed-action-btn toolbar">
+    <a class="btn-floating btn-large blue darken-2 ">
+      <i class="large material-icons">help</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating">Developed By</a></li>
+      <li><a href="https://niranjangirhe.github.io/Connect-with-me/" target="_blank" class="btn-floating">Niranjan
+          Girhe</a></li>
+      <li><a href="https://pratik-kale20.github.io/my-links/index.html" target="_blank" class="btn-floating ">Pratik
+          Kale</a></li>
+      <li><a href="mailto:open_elective_allocation@mitaoe.ac.in" class="btn-floating "><i
+            class="material-icons">email</i>Help</a></li>
+    </ul>
+  </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems, {
+        toolbarEnabled: true
+      });
+    });
+  </script>
+
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
