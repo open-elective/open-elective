@@ -198,7 +198,7 @@ Auth.onAuthStateChanged((user) => {
         //console.log(Auth.currentUser)
     }
     if (!user || !Auth.currentUser.emailVerified) {
-        if (window.location.href.slice(-10) != "index.html" && window.location.href.slice(-11) != "signup.html") {
+        if (!(window.location.href.slice(-10) == "index.html" || window.location.href.slice(-11) == "signup.html" || window.location.href.slice(-10) == "reset.html")) {
             window.location.href = "/index.html";
         }
     }
