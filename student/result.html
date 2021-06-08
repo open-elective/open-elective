@@ -18,9 +18,9 @@
     <li><a onclick="logout()"><i class="material-icons left">power_settings_new</i>Logout</a></li>
     <h4 class="center">Result</h4>
   </ul>
-  
 
-   <!-- Student Details and Instructions -->
+
+  <!-- Student Details and Instructions -->
   <div class="grid">
     <div id="studdata">
       <h5>Your Details</h5>
@@ -33,25 +33,26 @@
     <!-- Course Dropdown -->
     <div id="courses">
       <div id="editdel">
-        <lottie-player class="animation" src="https://assets10.lottiefiles.com/temp/lf20_bpLhgE.json"  background="transparent"  speed="1" autoplay loop></lottie-player>
+        <lottie-player class="animation" src="https://assets10.lottiefiles.com/temp/lf20_bpLhgE.json"
+          background="transparent" speed="1" autoplay loop></lottie-player>
 
         <h5>Allocated Course</h5>
-        <h6 id="myallocation"></h6>        
-        <div id="progressloading"  class="progress">
+        <h6 id="myallocation"></h6>
+        <div id="progressloading" class="progress">
           <div class="indeterminate blue darken-2"></div>
-      </div>
+        </div>
       </div>
     </div>
 
     <!-- Prefrence Table -->
 
     <div id="ctable">
-      <h5 class="center">Your Prefrences</h5>
+      <h5 class="center">Your Preferences</h5>
       <table id="preftable" class="centered striped">
         <thead>
           <tr>
             <th>Preference No</th>
-            <th>Course Name</th>            
+            <th>Course Name</th>
           </tr>
         </thead>
         <tbody>
@@ -63,16 +64,29 @@
       </table>
     </div>
   </div>
-  <footer>
-    <div class="footer">
-        <span>Developed By-</span>
-        <span><a style="color: white;" href="https://linktr.ee/pratik_kale" target="_blank"><u>Pratik Kale</u></a></span>
-        <span>|</span>
-        <span><a style="color: white;" href="" target="_blank"><u>Niranjan Girhe</u></a></span>
-      </div>
-</footer>
+  <div class="fixed-action-btn toolbar">
+    <a class="btn-floating btn-large blue darken-2 ">
+      <i class="large material-icons">help</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating">Developed By</a></li>
+      <li><a href="https://niranjangirhe.github.io/Connect-with-me/" target="_blank" class="btn-floating">Niranjan
+          Girhe</a></li>
+      <li><a href="https://pratik-kale20.github.io/my-links/index.html" target="_blank" class="btn-floating ">Pratik
+          Kale</a></li>
+      <li><a href="mailto:open_elective_allocation@mitaoe.ac.in" class="btn-floating "><i
+            class="material-icons">email</i>Help</a></li>
+    </ul>
+  </div>
 
-
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems, {
+        toolbarEnabled: true
+      });
+    });
+  </script>
 
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <!-- Compiled and minified JavaScript -->

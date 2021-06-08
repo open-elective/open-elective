@@ -20,7 +20,6 @@ async function checkState() {
                 window.location.href = "/student/result.html";
             }
         }
-        progress.style.visibility = "hidden";
     }).catch((error) => {
         console.log("Error getting document:", error);
     });
