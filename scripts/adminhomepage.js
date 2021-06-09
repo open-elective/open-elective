@@ -7,13 +7,13 @@ async function checkcurrentstate() {
         if (state == 0) {
             document.getElementsByClassName("btn")[1].className = "waves-effect waves-light btn blue darken-2"
             document.getElementsByClassName("li")[0].className = "li complete"
-            document.getElementById("studviewtext").innerHTML = "Registration is Closed"
+            document.getElementById("frame1").src = "/iframe/p1.html"
         }
         else if (state == 1) {
             document.getElementsByClassName("btn")[2].className = "waves-effect waves-light btn blue darken-2"
             document.getElementsByClassName("li")[0].className = "li complete"
             document.getElementsByClassName("li")[1].className = "li complete"
-            document.getElementById("studviewtext").innerHTML = "Select Preferences"
+            document.getElementById("frame1").src = "/iframe/p2.html"
         }
         else if (state == 2) {
             document.getElementsByClassName("btn")[1].className = "waves-effect waves-light btn blue darken-2"
@@ -21,7 +21,7 @@ async function checkcurrentstate() {
             document.getElementsByClassName("li")[0].className = "li complete"
             document.getElementsByClassName("li")[1].className = "li complete"
             document.getElementsByClassName("li")[2].className = "li complete"
-            document.getElementById("studviewtext").innerHTML = "Result will be publish soon"
+            document.getElementById("frame1").src = "/iframe/p3.html"
         }
         else if (state == 3) {
             document.getElementsByClassName("btn")[1].className = "waves-effect waves-light btn blue darken-2"
@@ -30,7 +30,7 @@ async function checkcurrentstate() {
             document.getElementsByClassName("li")[1].className = "li complete"
             document.getElementsByClassName("li")[2].className = "li complete"
             document.getElementsByClassName("li")[3].className = "li complete"
-            document.getElementById("studviewtext").innerHTML = "Your Allocated subject is ABC...."
+            document.getElementById("frame1").src = "/iframe/p4.html"
         }
     }).catch((error) => {
         console.log("Error getting document:", error);

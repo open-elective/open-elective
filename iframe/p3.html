@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Elective Allocation Portal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/stud.css">
+  <link rel="icon" href="/assets/favicon/studwaiting.png" type="image/gif" sizes="16x16">
+</head>
+<style>
+  lottie-player {
+    margin: auto;
+    width: 500px;
+    height: 500px;
+  }
+
+  h2 {
+    margin: 2%;
+  }
+
+  @media screen and (max-width: 900px) {
+    lottie-player {
+      width: 300px;
+      height: 300px;
+    }
+
+    h2 {
+      margin-top: 4%;
+      font-size: 25px;
+    }
+    #h21{
+      margin-top: 25%;
+    }
+  }
+</style>
+
+<body>
+
+  <ul class="top-nav">
+    <li><a onclick="logout()"><i class="material-icons left">power_settings_new</i>Logout</a></li>
+    <h4 class="center">Waiting</h4>
+  </ul>
+
+  <h2 id="h21" class="center">Registration is closed</h2>
+  <h2 class="center">Results will be published soon!</h2>
+  <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_3k7mjdup.json" background="transparent" speed="1"
+    loop autoplay></lottie-player>
+
+  <div class="fixed-action-btn toolbar">
+    <a class="btn-floating btn-large blue darken-2 ">
+      <i class="large material-icons">help</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating">Developed By</a></li>
+      <li><a href="https://niranjangirhe.github.io/Connect-with-me/" target="_blank" class="btn-floating">Niranjan
+          Girhe</a></li>
+      <li><a href="https://pratik-kale20.github.io/my-links/index.html" target="_blank" class="btn-floating ">Pratik
+          Kale</a></li>
+      <li><a href="mailto:open_elective_allocation@mitaoe.ac.in" class="btn-floating "><i
+            class="material-icons">email</i>Help</a></li>
+    </ul>
+  </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems, {
+        toolbarEnabled: true
+      });
+    });
+  </script>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+    });
+  </script>
+</body>
+
+</html>
