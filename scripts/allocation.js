@@ -313,12 +313,12 @@ async function downloadcoursewisedata() {
         ws_data.push(["PRN", "Name", "CGPA", "School", "Allocation"]);
         for (i = 0; i < storedatasd.docs.length; i++) {
             if (storedatasd.docs[i].data().alloc == coursewithname[j][0]) {
-                ws_data.push([storedatasd.docs[i].id, storedatasd.docs[i].data().Name, storedatasd.docs[i].data().CGPA, storedatasd.docs[i].data().School, storedatasd.docs[i].data().alloc]);
+                ws_data.push([storedatasd.docs[i].id, storedatasd.docs[i].data().Name, storedatasd.docs[i].data().CGPA, storedatasd.docs[i].data().School, coursewithname[j][1]]);
             }
         }
         var ws = XLSX.utils.aoa_to_sheet(ws_data);
         wb.SheetNames.push(coursewithname[j][1].slice(0, 20) + "-" + coursewithname[j][0].slice(0, 9));
-        wb.Sheets[coursewithname[j][1].slice(0, 30) + "-" + coursewithname[j][0].slice(0, 9)] = ws;
+        wb.Sheets[coursewithname[j][1].slice(0, 20) + "-" + coursewithname[j][0].slice(0, 9)] = ws;
     }
 
     var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
@@ -357,18 +357,27 @@ async function downloadSchoolwisedata() {
     const ref3 = await db.collection("Schools");
     const schoolData = await ref3.get();
 
+    const ref2 = await db.collection("courseData");
+    const courseData = await ref2.get();
+
     //2d array implementation
     var schoolwithname = new Array();
     for (i = 0; i < schoolData.docs.length; i++) {
         schoolwithname.push(schoolData.docs[i].id);
     }
+    //dictionary implementation
+    var coursewithname = {};
+    for (i = 0; i < courseData.docs.length; i++) {
+        coursewithname[courseData.docs[i].id] = courseData.docs[i].data().Name;
+    }
+
 
     for (j = 0; j < schoolwithname.length; j++) {
         var ws_data = [];
         ws_data.push(["PRN", "Name", "CGPA", "School", "Allocation"]);
         for (i = 0; i < storedatasd.docs.length; i++) {
             if (storedatasd.docs[i].data().School == schoolwithname[j]) {
-                ws_data.push([storedatasd.docs[i].id, storedatasd.docs[i].data().Name, storedatasd.docs[i].data().CGPA, storedatasd.docs[i].data().School, storedatasd.docs[i].data().alloc]);
+                ws_data.push([storedatasd.docs[i].id, storedatasd.docs[i].data().Name, storedatasd.docs[i].data().CGPA, storedatasd.docs[i].data().School, coursewithname[storedatasd.docs[i].data().alloc]]);
             }
         }
         var ws = XLSX.utils.aoa_to_sheet(ws_data);
@@ -377,7 +386,7 @@ async function downloadSchoolwisedata() {
     }
 
     var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
-    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'Course Wise Allocation Data' + dateTime + '.xlsx');
+    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'School Wise Allocation Data' + dateTime + '.xlsx');
 
 
 
