@@ -372,8 +372,8 @@ async function downloadSchoolwisedata() {
             }
         }
         var ws = XLSX.utils.aoa_to_sheet(ws_data);
-        wb.SheetNames.push(schoolwithname);
-        wb.Sheets[schoolwithname] = ws;
+        wb.SheetNames.push(schoolwithname[j]);
+        wb.Sheets[schoolwithname[j]] = ws;
     }
 
     var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
