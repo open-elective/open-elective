@@ -237,10 +237,12 @@ async function downloadexcel() {
     //student pref sheet
     var ws_data = [];
 
-    ws_data.push(["PRN", "Preferences"]);
+    ws_data.push(["PRN", "School","Preferences"]);
     for (i = 0; i < storedatasp.docs.length; i++) {
         var myprefstr = storedatasp.docs[i].data().mypref;
+        myprefstr.splice(0, 0, storedatasd.docs[i].data().School)
         myprefstr.splice(0, 0, storedatasp.docs[i].id);
+        console.log()
         ws_data.push(myprefstr);
     }
     var ws = XLSX.utils.aoa_to_sheet(ws_data);

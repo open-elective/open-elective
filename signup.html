@@ -20,39 +20,45 @@
         <div class="card white">
             <div class="card-content black-text">
                 <span class="card-title center">
+
                     <h4>Sign Up</h4>
                 </span>
-                <div class="input-field col s12">
-                    <input id="signinPRN" type="number" placeholder="PRN">
-                    <small>Start PRN with 0</small>
-                    <div class="center"><a class="waves-effect waves-light btn blue darken-2" onclick="submitprn(event)" id="submitprn">Submit</a></div>
-                   <div id="verify">
-                       <h6>Name:</h6>
-                       <h6>CGPA:</h6>
-                       <h6>School:</h6>
-                       <label>
-                        <input id="verifyprn" type="checkbox" />
-                        <span id="checktext">I confirm that my details are correct</span>
-                      </label>
-                   </div>
-                   
-                </div>
-                <div class="input-field col s12">
-                    <input id="signinemail" type="email" placeholder="Email ID">
-                    <small>Enter Official Mail-ID</small>
-                </div>
+                <form>
+                    <div class="input-field col s12">
+                        <input id="signinPRN" type="number" placeholder="PRN">
+                        <small>Start PRN with 0</small>
+                        <div class="center"><a class="waves-effect waves-light btn blue darken-2" onclick="submitprn()"
+                                id="submitprn">Submit</a></div>
+                        <div id="details">
 
-                <div class="input-field col s12">
-                    <input id="signinpassword" type="password" placeholder="Password">
-                    <small>Password should be minimum six characters</small>
-                </div>
-                <div class="center">
-                    <a href="index.html">Login</a>
-                </div>
-                <div class="center">
-                    <a class="waves-effect waves-light btn blue darken-2" onclick="signup(event)" id="signinbtn">Sign
-                        Up</a>
-                </div>
+                            <h6 id="name"></h6>
+                            <h6 id="CGPA"></h6>
+                            <h6 id="school"></h6>
+
+                            <label>
+                                <input id="verifyprn" type="checkbox" />
+                                <span id="checktext">I confirm that my details are correct</span>
+                            </label>
+                        </div>
+
+                    </div>
+                    <div id="cred">
+                        <div class="input-field col s12">
+                            <input id="signinemail" type="email" placeholder="Email ID">
+                            <small>Enter Official Mail-ID</small>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="signinpassword" type="password" placeholder="Password">
+                            <small>Password should be minimum six characters</small>
+                        </div>
+                        <div class="center">
+                            <a class="waves-effect waves-light btn blue darken-2" onclick="signup(event)"
+                                id="signinbtn">Sign
+                                Up</a>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="progress blue lighten-4" id="signinprogress">
                 <div class="indeterminate blue darken-2"></div>
@@ -69,8 +75,7 @@
             <li><a class="btn-floating">Developed By</a></li>
             <li><a href="https://niranjangirhe.github.io/Connect-with-me/" target="_blank" class="btn-floating">Niranjan
                     Girhe</a></li>
-            <li><a href="https://my-links-97a35.web.app/" target="_blank"
-                    class="btn-floating ">Pratik Kale</a></li>
+            <li><a href="https://my-links-97a35.web.app/" target="_blank" class="btn-floating ">Pratik Kale</a></li>
             <li><a href="mailto:open_elective_allocation@mitaoe.ac.in" class="btn-floating "><i
                         class="material-icons">email</i>Help</a></li>
         </ul>
@@ -110,8 +115,10 @@
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore()
     </script>
     <script src="scripts/auth.js"></script>
+    <script src="scripts/signup.js"></script>
 </body>
 
 </html>
