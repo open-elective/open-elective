@@ -62,12 +62,12 @@ function initiate() {
 
 
 async function filldata() {
-   
+
     prn = await firebase.auth().currentUser.photoURL;
     var name = "";
     var school = "";
     var CGPA = 0;
-    var alloc= 0;
+    var alloc = 0;
     var pref;
     var courseData;
     await db.collection("studentData").doc(prn).get().then((doc) => {
@@ -91,7 +91,7 @@ async function filldata() {
 
 
     await db.collection("Schools").doc(school).get().then((doc) => {
-       courseData = doc.data()[school];
+        courseData = doc.data()[school];
     }).catch((error) => {
         console.log("Error getting document:", error);
     });
@@ -100,13 +100,18 @@ async function filldata() {
     for (var option in courseData) {
         var pair = courseData[option].split("~");
         prefwithname[pair[0]] = pair[1];
-       
+
     }
-    for(i=0;i<pref.length;i++)
+    for (i = 0; i < pref.length; i++) {
+        addCourseTable(i + 1, prefwithname[pref[i]])
+    }
+    if (alloc != 0) {
+        document.getElementById("myallocation").innerHTML = prefwithname[alloc]
+    }
+    else
     {
-        addCourseTable(i+1, prefwithname[pref[i]])
+        document.getElementById("myallocation").innerHTML = "No Allocation"
     }
-    document.getElementById("myallocation").innerHTML=prefwithname[alloc]
     progress.style.visibility = "hidden";
 }
 function addCourseTable(cno, cname) {
