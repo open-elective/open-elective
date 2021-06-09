@@ -134,7 +134,6 @@ function checkValidity(data) {
                     error: new Error()
                 };
             }
-            console.log(data[i][2])
         }
         uploaddata(data);
     }
@@ -179,6 +178,8 @@ async function uploaddata(data) {
         }
         document.getElementsByClassName("progress")[0].style.visibility = "hidden";
         uploadbtn.className = "btn waves-effect waves-light blue darken-2"
+        getdata(2)
+
     }
 
 }
@@ -329,7 +330,6 @@ async function editstud() {
             School: school,
         })
             .then(() => {
-                console.log("Added in Database");
             })
             .catch((error) => {
                 console.error("Error adding Data in database: ", error);
