@@ -207,10 +207,12 @@ async function downloadexcel() {
 
     //student pref sheet
     var ws_data = [];
+
     ws_data.push(["PRN", "Preferences"]);
     for (i = 0; i < storedatasp.docs.length; i++) {
-        var myprefstr = storedatasp.docs[i].data().mypref.join(', ');
-        ws_data.push([storedatasp.docs[i].id, myprefstr]);
+        var myprefstr = storedatasp.docs[i].data().mypref;
+        myprefstr.splice(0, 0, storedatasp.docs[i].id);
+        ws_data.push(myprefstr);
     }
     var ws = XLSX.utils.aoa_to_sheet(ws_data);
     wb.SheetNames.push("Student Preferences");
@@ -222,8 +224,9 @@ async function downloadexcel() {
     var ws_data = [];
     ws_data.push(["School", "Allowed Course"]);
     for (i = 0; i < storedatass.docs.length; i++) {
-        var school = storedatass.docs[i].data()[storedatass.docs[i].id].join('# ');
-        ws_data.push([storedatass.docs[i].id,school]);
+        var school = storedatass.docs[i].data()[storedatass.docs[i].id];
+        school.splice(0,0,storedatass.docs[i].id)
+        ws_data.push(school);
     }
     var ws = XLSX.utils.aoa_to_sheet(ws_data);
     wb.SheetNames.push("Schools");
