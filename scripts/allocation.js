@@ -3,7 +3,8 @@ var nextpg = document.getElementById('page-next');
 var pgno = 1;
 var firstdoc = null;
 var storedata = null;
-const progress = document.getElementsByClassName("progress")[0];
+var progress = document.getElementsByClassName("determinate")[0];
+var storedatasd = null;
 window.addEventListener('DOMContentLoaded', () => getdata(2));
 async function getdata(b) {
     var rows = document.getElementById("studprefdatat").rows.length;
@@ -67,7 +68,8 @@ async function getdata(b) {
     else {
         nextpg.className = "waves-effect waves-light btn blue darken-2";
     }
-    progress.style.visibility = "hidden";
+    document.getElementsByClassName("progress")[0].style.visibility = "hidden";
+    progress.style = "width:0%";
 }
 
 function addStudentDataTable(prn, name, cgpa, school, pref, allo) {
@@ -126,118 +128,136 @@ function searchtest() {
 async function allocation() {
     //resetstuddata(1);
     //window.alert("This may take time, please be patient")
-    progress.style.visibility = "visible";
-    const ref = await db.collection("studentData").orderBy("CGPA", "desc");
-    storedata = await ref.get();
-    const len = storedata.docs.length;
-    for (l = 0; l < len; l++) {
-        if ((storedata.docs[l].data().alloc == null || storedata.docs[l].data().alloc == 0)) {
-            var pref = [];
-            //console.log(storedata.docs[l].id)
-            await db.collection("studentprefs").doc(storedata.docs[l].id).get().then((doc) => {
-                if (doc.exists) {
-                    pref = doc.data().mypref
-                    // console.log(pref)
-                }
-            }).catch((error) => {
-                console.log("Error getting document:", error);
-            });
-            var gotit = false;
-            for (m = 0; m < pref.length; m++) {
-                if (gotit) {
-                    break;
-                }
-                var myschool;
-                var cdata
-                await db.collection("courseData").doc(pref[m]).get().then((doc) => {
+    if (confirm("You are about to do the allocations, Are you sure you want to proceed? ")) {
+        window.alert("Please be patient while we do the allocations. You can check the progress at the bottom of the page")
+        document.getElementsByClassName("progress")[0].style.visibility = "visible";
+        const ref = await db.collection("studentData").orderBy("CGPA", "desc");
+        storedata = await ref.get();
+        const len = storedata.docs.length;
+        for (l = 0; l < len; l++) {
+            if ((storedata.docs[l].data().alloc == null || storedata.docs[l].data().alloc == 0)) {
+                var pref = [];
+                //console.log(storedata.docs[l].id)
+                await db.collection("studentprefs").doc(storedata.docs[l].id).get().then((doc) => {
                     if (doc.exists) {
-                        cdata = doc.data();
-                        //console.log(cdata)
-                        myschool = (cdata.School == storedata.docs[l].data().School)
+                        pref = doc.data().mypref
+                        // console.log(pref)
                     }
                 }).catch((error) => {
                     console.log("Error getting document:", error);
                 });
+                var gotit = false;
+                for (m = 0; m < pref.length; m++) {
+                    if (gotit) {
+                        break;
+                    }
+                    var myschool;
+                    var cdata
+                    await db.collection("courseData").doc(pref[m]).get().then((doc) => {
+                        if (doc.exists) {
+                            cdata = doc.data();
+                            //console.log(cdata)
+                            myschool = (cdata.School == storedata.docs[l].data().School)
+                        }
+                    }).catch((error) => {
+                        console.log("Error getting document:", error);
+                    });
 
 
 
-                if (myschool) {
-                    if (cdata.Intfill < cdata.InternalCap) {
+                    if (myschool) {
+                        if (cdata.Intfill < cdata.InternalCap) {
 
-                        await db.collection("courseData").doc(pref[m]).update({
-                            Intfill: cdata.Intfill + 1
-                        })
-                            .then(() => {
-                                //console.log("Added in Database");
+                            await db.collection("courseData").doc(pref[m]).update({
+                                Intfill: cdata.Intfill + 1
                             })
-                            .catch((error) => {
-                                console.error("Error adding Data in database: ", error);
-                            });
-                        await db.collection("studentData").doc(storedata.docs[l].id).update({
-                            alloc: parseInt(pref[m])
-                        })
-                            .then(() => {
-                                //console.log("Added in Database");
+                                .then(() => {
+                                    //console.log("Added in Database");
+                                })
+                                .catch((error) => {
+                                    console.error("Error adding Data in database: ", error);
+                                });
+                            await db.collection("studentData").doc(storedata.docs[l].id).update({
+                                alloc: parseInt(pref[m])
                             })
-                            .catch((error) => {
-                                console.error("Error adding Data in database: ", error);
-                            });
-                        gotit = true
+                                .then(() => {
+                                    //console.log("Added in Database");
+                                })
+                                .catch((error) => {
+                                    console.error("Error adding Data in database: ", error);
+                                });
+                            gotit = true
+                        }
+
+                    }
+                    else {
+                        if (cdata.Extfill < cdata.ExternalCap) {
+                            await db.collection("courseData").doc(pref[m]).update({
+                                Extfill: cdata.Extfill + 1
+                            })
+                                .then(() => {
+                                    //console.log("Added in Database");
+                                })
+                                .catch((error) => {
+                                    console.error("Error adding Data in database: ", error);
+                                });
+                            await db.collection("studentData").doc(storedata.docs[l].id).update({
+                                alloc: parseInt(pref[m])
+                            })
+                                .then(() => {
+                                    //console.log("Added in Database");
+                                })
+                                .catch((error) => {
+                                    console.error("Error adding Data in database: ", error);
+                                });
+                            gotit = true
+                        }
                     }
 
                 }
-                else {
-                    if (cdata.Extfill < cdata.ExternalCap) {
-                        await db.collection("courseData").doc(pref[m]).update({
-                            Extfill: cdata.Extfill + 1
-                        })
-                            .then(() => {
-                                //console.log("Added in Database");
-                            })
-                            .catch((error) => {
-                                console.error("Error adding Data in database: ", error);
-                            });
-                        await db.collection("studentData").doc(storedata.docs[l].id).update({
-                            alloc: parseInt(pref[m])
-                        })
-                            .then(() => {
-                                //console.log("Added in Database");
-                            })
-                            .catch((error) => {
-                                console.error("Error adding Data in database: ", error);
-                            });
-                        gotit = true
-                    }
-                }
-
             }
             var percent = (l * 100) / (len - 1)
             progress.style = "width:" + percent.toString() + "%";
+            console.log("Index", l, percent)
         }
+        console.log("triggered")
+        getdata(2)
     }
-    getdata(2)
 }
 async function resetstuddata() {
-    progress.style.visibility = "visible";
-    if (storedata != null) {
-        for (n = 0; n < storedata.docs.length; n++) {
-            await db.collection("studentData").doc(storedata.docs[n].id).update({
-                alloc: 0
-            })
-                .then(() => {
-                    //console.log("Added in Database");
+    if (confirm("You are about to rest the allocations, This will also reset late submission. Are you sure you want to proceed? ")) {
+        window.alert("Please be patient while we reset the data. You can check the progress at the bottom of the page")
+        document.getElementsByClassName("progress")[0].style.visibility = "visible";
+        if (storedata != null) {
+            const len = storedata.docs.length
+            for (n = 0; n < len; n++) {
+                await db.collection("studentData").doc(storedata.docs[n].id).update({
+                    alloc: 0
                 })
-                .catch((error) => {
-                    console.error("Error adding Data in database: ", error);
-                });
+                    .then(() => {
+                        //console.log("Added in Database");
+                    })
+                    .catch((error) => {
+                        console.error("Error adding Data in database: ", error);
+                    });
+                var percent = (n * 100) / (len - 1)
+                progress.style = "width:" + percent.toString() + "%";
+            }
         }
-    }
-    else {
-        await db.collection("studentData").get()
+        else {
+
+            const ref = await db.collection("studentData").orderBy("CGPA", "desc");
+            storedata = await ref.get();
+            resetstuddata()
+            return;
+        }
+
+        await db.collection("courseData").get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    db.collection("studentData").doc(doc.id).update({
-                        alloc: 0
+                    db.collection("courseData").doc(doc.id).update({
+                        Extfill: 0,
+                        Intfill: 0
                     })
                         .then(() => {
                             //console.log("Added in Database");
@@ -250,27 +270,133 @@ async function resetstuddata() {
             .catch((error) => {
                 console.log("Error getting documents: ", error);
             });
+        getdata(2)
+    }
+}
+async function downloadcoursewisedata() {
+
+    //Date and time intiate
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date + ' ' + time;
+
+    //course wise
+    var wb = XLSX.utils.book_new();
+    //woorkbook initiate
+    wb.Props = {
+        Title: "Course Wise data",
+        Subject: "Data",
+        Author: "Open-Elective-Devlopers",
+        CreatedDate: new Date(today.getFullYear(), today.getMonth() + 1, today.getDate())
+    };
+
+
+    //Data fetching
+    if (storedatasd == null) {
+        const ref1 = await db.collection("studentData").orderBy("CGPA", "desc");
+        storedatasd = await ref1.get();
     }
 
-    await db.collection("courseData").get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                db.collection("courseData").doc(doc.id).update({
-                    Extfill: 0,
-                    Intfill: 0
-                })
-                    .then(() => {
-                        //console.log("Added in Database");
-                    })
-                    .catch((error) => {
-                        console.error("Error adding Data in database: ", error);
-                    });
-            });
-        })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
-        getdata(2)
+    const ref2 = await db.collection("courseData");
+    const courseData = await ref2.get();
+
+    //2d array implementation
+    var coursewithname = new Array();
+    for (i = 0; i < courseData.docs.length; i++) {
+        coursewithname.push([courseData.docs[i].id, courseData.docs[i].data().Name]);
+    }
+
+
+    for (j = 0; j < coursewithname.length; j++) {
+        var ws_data = [];
+        ws_data.push(["PRN", "Name", "CGPA", "School", "Allocation"]);
+        for (i = 0; i < storedatasd.docs.length; i++) {
+            if (storedatasd.docs[i].data().alloc == coursewithname[j][0]) {
+                ws_data.push([storedatasd.docs[i].id, storedatasd.docs[i].data().Name, storedatasd.docs[i].data().CGPA, storedatasd.docs[i].data().School, coursewithname[j][1]]);
+            }
+        }
+        var ws = XLSX.utils.aoa_to_sheet(ws_data);
+        wb.SheetNames.push(coursewithname[j][1].slice(0, 20) + "-" + coursewithname[j][0].slice(0, 9));
+        wb.Sheets[coursewithname[j][1].slice(0, 20) + "-" + coursewithname[j][0].slice(0, 9)] = ws;
+    }
+
+    var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'Course Wise Allocation Data' + dateTime + '.xlsx');
+
+
+
+
 }
 
+async function downloadSchoolwisedata() {
+
+    //Date and time intiate
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date + ' ' + time;
+
+    //School wise
+    var wb = XLSX.utils.book_new();
+    //woorkbook initiate
+    wb.Props = {
+        Title: "School Wise data",
+        Subject: "Data",
+        Author: "Open-Elective-Devlopers",
+        CreatedDate: new Date(today.getFullYear(), today.getMonth() + 1, today.getDate())
+    };
+
+
+    //Data fetching
+    if (storedatasd == null) {
+        const ref1 = await db.collection("studentData").orderBy("CGPA", "desc");
+        storedatasd = await ref1.get();
+    }
+
+    const ref3 = await db.collection("Schools");
+    const schoolData = await ref3.get();
+
+    const ref2 = await db.collection("courseData");
+    const courseData = await ref2.get();
+
+    //2d array implementation
+    var schoolwithname = new Array();
+    for (i = 0; i < schoolData.docs.length; i++) {
+        schoolwithname.push(schoolData.docs[i].id);
+    }
+    //dictionary implementation
+    var coursewithname = {};
+    for (i = 0; i < courseData.docs.length; i++) {
+        coursewithname[courseData.docs[i].id] = courseData.docs[i].data().Name;
+    }
+
+
+    for (j = 0; j < schoolwithname.length; j++) {
+        var ws_data = [];
+        ws_data.push(["PRN", "Name", "CGPA", "School", "Allocation"]);
+        for (i = 0; i < storedatasd.docs.length; i++) {
+            if (storedatasd.docs[i].data().School == schoolwithname[j]) {
+                ws_data.push([storedatasd.docs[i].id, storedatasd.docs[i].data().Name, storedatasd.docs[i].data().CGPA, storedatasd.docs[i].data().School, coursewithname[storedatasd.docs[i].data().alloc]]);
+            }
+        }
+        var ws = XLSX.utils.aoa_to_sheet(ws_data);
+        wb.SheetNames.push(schoolwithname[j]);
+        wb.Sheets[schoolwithname[j]] = ws;
+    }
+
+    var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'School Wise Allocation Data' + dateTime + '.xlsx');
+
+
+
+}
+
+
+function s2ab(s) {
+    var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
+    var view = new Uint8Array(buf);  //create uint8array as viewer
+    for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
+    return buf;
+}
 
