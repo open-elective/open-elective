@@ -108,9 +108,7 @@ input.addEventListener('change', function () {
         window.alert("Please Upload Excel File only. (.xlsx extenstion)")
     }
 })
-function downloadtemp() {
-    window.location.href = "https://github.com/open-elective/open-elective.github.io/raw/main/template/template.xlsx"
-}
+
 function checkValidity(data) {
     try {
         var i;
