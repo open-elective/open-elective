@@ -121,7 +121,7 @@ async function fillpage() {
         }
 
         for (i = 0; i < preffortable.length; i++) {
-            addCourseTable(i+1, coursedict[preffortable[i]])
+            addCourseTable(preffortable[i], coursedict[preffortable[i]],false)
         }
     }
     else {
@@ -142,9 +142,9 @@ function selectpref() {
     var value = dd.options[dd.selectedIndex].value;// get selected option value
     var text = dd.options[dd.selectedIndex].text;
     dd.remove(dd.selectedIndex);
-    addCourseTable(value, text)
+    addCourseTable(value, text,true)
 }
-function addCourseTable(cno, cname) {
+function addCourseTable(cno, cname,b) {
     var table = document.getElementById("preftable");
     var row = table.insertRow(document.getElementById("preftable").rows.length - 1);
     var cnot = row.insertCell(0);
@@ -152,7 +152,7 @@ function addCourseTable(cno, cname) {
     cnot.innerHTML = document.getElementById("preftable").rows.length - 2;
     cnamet.innerHTML = cname;
     mypref.push(cno)
-    if (mypref.length == optionsfromdb.length) {
+    if (mypref.length == optionsfromdb.length && b) {
         document.getElementById("submitprefbtn").className = "waves-effect waves-light btn blue darken-2"
     }
 }
@@ -186,6 +186,7 @@ async function submitpref() {
             })
                 .then(() => {
                     sendemail()
+                    document.getElementById("submitprefbtn").className = "waves-effect waves-light btn blue darken-2 disabled"
                     window.alert("Your Response is recorded")
                 })
                 .catch((error) => {
