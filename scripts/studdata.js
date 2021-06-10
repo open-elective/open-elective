@@ -9,7 +9,7 @@ const c3 = document.getElementById('c3')
 const c4 = document.getElementById('c4')
 const c5 = document.getElementById('c5')
 const c6 = document.getElementById('c6')
-
+const myModal = document.querySelectorAll('.modal')
 c2.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
         document.getElementById("c3").checked = false;
@@ -261,7 +261,7 @@ function searchforedit() {
         window.alert("Invalid PRN")
     }
 }
-async function editstud() {
+async function editstud(e) {
     try {
         var editname = document.getElementById("editname").value;
         var editprn = document.getElementById("editprn").value;
@@ -303,16 +303,19 @@ async function editstud() {
         }).catch((error) => {
             console.log("Error getting document:", error);
         });
+        var exist=false;
         await db.collection("studentData").doc(editprn.toString()).get().then((doc) => {
             if (doc.exists) {
                 if (!confirm('This PRN already exist. Are you sure you want to edit the student data?')) {
                     edit = false;
+                    exist = true;
                 }
             }
             else
             {
                 if (!confirm("This PRN Doesn't exist. Are you sure you want to add the student data?")) {
                     edit = false;
+                    exist = false;
                 }
             }
         }).catch((error) => {
@@ -324,23 +327,44 @@ async function editstud() {
                 error: new Error()
             };
         }
-        await db.collection("studentData").doc(editprn.toString()).set({
-            Name: editname.toString(),
-            CGPA: parseFloat(editcgpa.toString()),
-            School: school,
-        })
-            .then(() => {
+        if(exist)
+        {
+            await db.collection("studentData").doc(editprn.toString()).update({
+                Name: editname.toString(),
+                CGPA: parseFloat(editcgpa.toString()),
+                School: school,
             })
-            .catch((error) => {
-                console.error("Error adding Data in database: ", error);
-            });
+                .then(() => {
+                })
+                .catch((error) => {
+                    console.error("Error adding Data in database: ", error);
+                });
+        }
+        else
+        {
+            await db.collection("studentData").doc(editprn.toString()).set({
+                Name: editname.toString(),
+                CGPA: parseFloat(editcgpa.toString()),
+                School: school,
+            })
+                .then(() => {
+                })
+                .catch((error) => {
+                    console.error("Error adding Data in database: ", error);
+                });
+        }
+        dismiss()
+        if (e != null) {
+            e.preventDefault()
+            M.Modal.getInstance(myModal[0]).close()
+        }
             
     }
     catch (err) {
         window.alert(err.message)
     }
 }
-function dismiss() {
+function dismiss(e) {
     document.getElementById("editprn").disabled = false
     document.getElementById("editprn").value = ""
     document.getElementById("editname").value = ""
@@ -353,4 +377,8 @@ function dismiss() {
     document.getElementById("c4").checked = false;
     document.getElementById("c5").checked = false;
     document.getElementById("c6").checked = false;
+    if (e != null) {
+        e.preventDefault()
+        M.Modal.getInstance(myModal[0]).close()
+    }
 }
