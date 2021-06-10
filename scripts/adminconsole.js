@@ -1,3 +1,7 @@
+if (window.location.hostname == "openelectiveallocation.web.app" || 
+    window.location.hostname == "https://openelectiveallocation.firebaseapp.com/") {
+       window.location.href = '/404.html'; 
+}
 const Auth = firebase.auth()
 async function getData() {
     document.getElementById("navname").innerHTML = await Auth.currentUser.photoURL;
