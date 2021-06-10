@@ -31,7 +31,8 @@ async function signup(e) {
         
         await firebase.firestore().collection("studentprefs").doc(PRN.value).set({
             email: email.value,
-            mypref: []
+            mypref: [],
+            School: document.getElementById("school").innerHTML.slice(7)
         })
             .then(() => {
             })
