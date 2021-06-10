@@ -144,8 +144,11 @@ async function submitpref() {
     progress.style.visibility = "visible";
     try {
         if (mypref.length == optionsfromdb.length) {
+            var d = new Date();
+            var n = d.getTime();
             await db.collection("studentprefs").doc(prn).update({
-                mypref
+                mypref,
+                Time: n
             })
                 .then(() => {
                     sendemail()

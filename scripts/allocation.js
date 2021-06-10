@@ -131,7 +131,24 @@ async function allocation() {
     if (confirm("You are about to do the allocations, Are you sure you want to proceed? ")) {
         window.alert("Please be patient while we do the allocations. You can check the progress at the bottom of the page")
         document.getElementsByClassName("progress")[0].style.visibility = "visible";
-        const ref = await db.collection("studentData").orderBy("CGPA", "desc");
+
+        const timepref = await db.collection("studentprefs");
+        timedata = await timepref.get();
+        
+        for(t=0;t<timedata.docs.length;t++)
+        {
+            await db.collection("studentData").doc(timedata.docs[t].id).update({
+               Time: timedata.docs[t].data().Time
+            })
+            .then(() => {
+                console.log("Document successfully written!");
+            })
+            .catch((error) => {
+                console.error("Error writing document: ", error);
+            });
+            
+        }
+        const ref = await db.collection("studentData").orderBy("CGPA", "desc").orderBy("Time");
         storedata = await ref.get();
         const len = storedata.docs.length;
         for (l = 0; l < len; l++) {
