@@ -62,13 +62,15 @@
 
   <!-- Page buttons -->
   <div class="center">
-  <a id="page-pre" class="waves-effect waves-light btn blue darken-2" onclick="getdata(2)"><i class="material-icons left">navigate_before</i>1st Page/Refresh</a>
-  <a id="page">Page 1</a>
-<a id="page-next" class="waves-effect waves-light btn blue darken-2" onclick="getdata(1)"><i class="material-icons right">navigate_next</i>Next Page</a>
-</div>
-  
-  
-<!-- student data table -->
+    <a id="page-pre" class="waves-effect waves-light btn blue darken-2" onclick="getdata(2)"><i
+        class="material-icons left">navigate_before</i>1st Page/Refresh</a>
+    <a id="page">Page 1</a>
+    <a id="page-next" class="waves-effect waves-light btn blue darken-2" onclick="getdata(1)"><i
+        class="material-icons right">navigate_next</i>Next Page</a>
+  </div>
+
+
+  <!-- student data table -->
   <div id="ctable">
     <table id="studdatat" class="centered striped">
       <thead>
@@ -105,8 +107,8 @@
     </div>
   </footer>
 
-   <!-- Modal 1 Structure -->
-   <div id="modal1" class="modal">
+  <!-- Modal 1 Structure -->
+  <div id="modal1" class="modal">
     <div class="modal-content">
       <div id="course-input">
         <h6>Edit/Add Student Data</h6>
@@ -144,51 +146,51 @@
           <input id="c6" type="checkbox" />
           <span id="checktext">SCE</span>
         </label>
+      </div>
+      <div class="modal-footer white">
+        <a class="btn waves-effect waves-light blue darken-2" onclick="editstud(event)">Save Changes</a>
+        <a class="btn waves-effect waves-light blue darken-2" onclick="dismiss(event)">Dismiss Changes</a>
+      </div>
     </div>
-    <div class="modal-footer white">
-      <a class="btn waves-effect waves-light blue darken-2" onclick="dismiss(event)">Dismiss Changes</a>
-      <a class="btn waves-effect waves-light blue darken-2" onclick="editstud(event)">Save Changes</a>
-    </div>
-  </div>
 
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.sidenav');
-      var instances = M.Sidenav.init(elems);
-    });
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.modal');
-      var instances = M.Modal.init(elems);
-    });
-  </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
+      });
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems);
+      });
+    </script>
 
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
-  <!-- TODO: Add SDKs for Firebase products that you want to use
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-  <script>
-    // Your web app's Firebase configuration
-    var firebaseConfig = {
-      apiKey: "AIzaSyD9BHz-HTQl518KmUr1GHHx0IXJGj7bJP8",
-      authDomain: "openelectiveallocation.firebaseapp.com",
-      projectId: "openelectiveallocation",
-      storageBucket: "openelectiveallocation.appspot.com",
-      messagingSenderId: "953116708866",
-      appId: "1:953116708866:web:69c0de0ba08dda4efc971b"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-  </script>
-  <script src="/scripts/studdata.js"></script>
-  <script src="/scripts/adminconsole.js"></script>
-  <script src="https://unpkg.com/read-excel-file@4.1.0/bundle/read-excel-file.min.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyD9BHz-HTQl518KmUr1GHHx0IXJGj7bJP8",
+        authDomain: "openelectiveallocation.firebaseapp.com",
+        projectId: "openelectiveallocation",
+        storageBucket: "openelectiveallocation.appspot.com",
+        messagingSenderId: "953116708866",
+        appId: "1:953116708866:web:69c0de0ba08dda4efc971b"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+    </script>
+    <script src="/scripts/studdata.js"></script>
+    <script src="/scripts/adminconsole.js"></script>
+    <script src="https://unpkg.com/read-excel-file@4.1.0/bundle/read-excel-file.min.js"></script>
 </body>
 
 </html>

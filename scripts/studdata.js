@@ -308,13 +308,21 @@ async function editstud(e) {
             if (doc.exists) {
                 if (!confirm('This PRN already exist. Are you sure you want to edit the student data?')) {
                     edit = false;
+                }
+                else
+                {
                     exist = true;
+                    console.log(exist)
                 }
             }
             else
             {
                 if (!confirm("This PRN Doesn't exist. Are you sure you want to add the student data?")) {
                     edit = false;
+                    exist = false;
+                }
+                else
+                {
                     exist = false;
                 }
             }
