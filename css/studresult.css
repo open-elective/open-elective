@@ -1,17 +1,21 @@
-td{
+td {
     padding: 3px;
 }
-th{
+
+th {
     border-top: 2px solid #1976d2;
     border-bottom: 2px solid #1976d2;
     font-size: 18px;
 }
+
 h5 {
     font-weight: bold;
 }
+
 .dropdown-content.select-dropdown li span {
-    color: #000; 
+    color: #000;
 }
+
 .input-field input:focus+label {
     color: #1d72bc !important;
 }
@@ -21,11 +25,12 @@ h5 {
     box-shadow: 0 1px 0 0 #1d72bc !important
 }
 
-#selectpref{
+#selectpref {
     display: inline-block;
     max-width: 50%;
     margin: 0px 15px;
 }
+
 .grid {
     margin: 0;
     display: grid;
@@ -35,6 +40,7 @@ h5 {
     grid-template-areas: "course-input edit" "ctable ctable";
     grid-gap: 0.3rem;
 }
+
 #studdata {
     border: 2px solid #1d72bc;
     grid-area: course-input;
@@ -43,12 +49,12 @@ h5 {
     padding: 10px 20px
 }
 
-#studdata span{
+#studdata span {
     display: block;
     font-size: 18px;
 }
 
-#studdata a{
+#studdata a {
     display: inline;
 }
 
@@ -59,7 +65,8 @@ h5 {
     border-radius: 10px;
     padding: 10px 20px;
 }
-#courses h6{
+
+#courses h6 {
     font-weight: bold;
     font-size: 3.6em;
     margin-top: 40px;
@@ -72,13 +79,14 @@ h5 {
     border-radius: 10px;
 }
 
-#submit{
+#submit {
     margin-top: 20px;
 }
-.animation{
+
+.animation {
     float: right;
     transform: scaleX(-1);
-    width: 250px; 
+    width: 250px;
     height: 150px;
 }
 
@@ -94,14 +102,14 @@ h5 {
     align-items: center;
     justify-content: center;
     background: #1d72bc;
-  }
+}
 
-  .footer span{
-      padding: 0 8px;
-      font-size: 15px;
-  }
+.footer span {
+    padding: 0 8px;
+    font-size: 15px;
+}
+
 @media screen and (max-width: 900px) {
-
     .grid {
         margin-bottom: 50px;
         display: grid;
@@ -109,50 +117,48 @@ h5 {
         grid-template-columns: 1fr;
         grid-template-rows: 0.3fr 0.2fr 1fr;
         grid-template-areas: "course-input" "edit" "ctable";
-        
     }
     #studdata {
-       margin: 0;
-       margin: 1em;
+        margin: 0;
+        margin: 1em;
     }
     #courses {
-        margin: 0; 
-        margin: 1em;    
+        margin: 0;
+        margin: 1em;
     }
     #ctable {
         margin: 0;
         margin: 1em;
     }
-    h4{
+    h4 {
         font-size: 25px;
     }
-    h5{
+    h5 {
         font-size: 20px;
     }
-    #courses h6{
+    #courses h6 {
         font-weight: bold;
         font-size: 2.0em;
         margin-top: 50px;
     }
-    .animation{
+    .animation {
         float: right;
         transform: scaleX(-1);
-        width: 150px; 
+        width: 150px;
         height: 150px;
     }
 }
+
 select {
     display: block !important;
 }
 
-@media screen and (max-height:600px){
+@media screen and (max-height:600px) {
     h3 {
         font-size: 25px;
     }
-    .footer span{
+    .footer span {
         padding: 0 4px;
         font-size: 13px;
-    }  
-
+    }
 }
-

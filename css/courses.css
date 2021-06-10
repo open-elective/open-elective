@@ -1,8 +1,7 @@
-
- 
 .dropdown-content.select-dropdown li span {
-    color: #000; 
+    color: #000;
 }
+
 .input-field input:focus+label {
     color: #1d72bc !important;
 }
@@ -51,29 +50,36 @@
     padding-right: 22px !important;
     color: black;
 }
-#editcourse{
+
+#editcourse {
     margin-top: 10px;
 }
-#deletecourse{
+
+#deletecourse {
     margin-top: 10px;
 }
-#editdel{
+
+#editdel {
     margin-top: 17%;
 }
-#courset{
-    margin:auto;
+
+#courset {
+    margin: auto;
 }
-#padding{
+
+#padding {
     padding-top: 10px;
 }
-td{
+
+td {
     padding: 6px;
 }
-th{
+
+th {
     border-bottom: 2px solid #1976d2;
 }
-@media screen and (max-width: 900px) {
 
+@media screen and (max-width: 900px) {
     .grid {
         margin-bottom: 50px;
         display: grid;
@@ -81,12 +87,11 @@ th{
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
         grid-template-areas: "course-input" "edit" "ctable";
-        
     }
     #course-input {
-       margin: 0;
-       margin: 15px;
-       padding: 20px;
+        margin: 0;
+        margin: 15px;
+        padding: 20px;
     }
     #edit {
         margin: 0;
@@ -97,10 +102,9 @@ th{
         margin: 15px;
         padding: 10px;
     }
-    h4{
+    h4 {
         font-size: 25px;
     }
-   
 }
 
 @media screen and (max-width: 370px) {
@@ -108,29 +112,27 @@ th{
         margin: 0;
         margin: 15px;
         padding: 20px;
-     }
-     #edit {
-         margin: 0;
-         margin: 15px;
-         padding: 20px;
-     }
-     #ctable {
-         padding: 0;
-         margin: 0.3em 0.3em;
-     }
-     th{
+    }
+    #edit {
+        margin: 0;
+        margin: 15px;
+        padding: 20px;
+    }
+    #ctable {
+        padding: 0;
+        margin: 0.3em 0.3em;
+    }
+    th {
         font-size: 12px;
         font-weight: 500;
     }
-    tr{
-        
-       font-size: 12px;
-       font-weight: 500;
+    tr {
+        font-size: 12px;
+        font-weight: 500;
     }
-    
 }
 
-#cprogress{
+#cprogress {
     /* visibility: hidden; */
     margin-top: 20%;
 }

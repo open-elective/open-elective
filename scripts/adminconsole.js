@@ -1,8 +1,7 @@
 const Auth = firebase.auth()
-async function getData()
-{
-document.getElementById("navname").innerHTML = await Auth.currentUser.photoURL;
-document.getElementById("navemail").innerHTML = await Auth.currentUser.email;
+async function getData() {
+    document.getElementById("navname").innerHTML = await Auth.currentUser.photoURL;
+    document.getElementById("navemail").innerHTML = await Auth.currentUser.email;
 }
 function logout() {
     Auth.signOut().then(() => {
@@ -15,11 +14,10 @@ function logout() {
 
 //auth change
 Auth.onAuthStateChanged((user) => {
-    if (user && document.getElementById("navname").innerHTML!=""){
+    if (user && document.getElementById("navname").innerHTML != "") {
         getData();
     }
-    else if(!user)
-    {
+    else if (!user) {
         window.location.href = "/index.html";
     }
 });
@@ -40,7 +38,7 @@ Auth.onAuthStateChanged((user) => {
                     }
                 }
                 else if (data.Allow == 2) {
-                         
+
                     if (window.location.href.slice(-16) != "studwaiting.html") {
                         window.location.href = "/student/studwaiting.html";
                     }
@@ -53,16 +51,14 @@ Auth.onAuthStateChanged((user) => {
             }).catch((error) => {
                 console.log("Error getting document:", error);
             });
-            
+
         }
-        else if(Auth.currentUser.displayName == "Admin")
-        {
+        else if (Auth.currentUser.displayName == "Admin") {
             getData();
         }
         //console.log(Auth.currentUser)
     }
-    if(!user || !Auth.currentUser.emailVerified )
-    {
+    if (!user || !Auth.currentUser.emailVerified) {
         if (window.location.href.slice(-10) != "index.html" && window.location.href.slice(-11) != "signup.html") {
             window.location.href = "/index.html";
         }

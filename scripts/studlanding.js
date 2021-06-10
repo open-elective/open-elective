@@ -9,8 +9,8 @@ async function checkState() {
             }
         }
         else if (data.Allow == 2) {
-             //allocation phase
-             if (window.location.href.slice(-16) != "studwaiting.html") {
+            //allocation phase
+            if (window.location.href.slice(-16) != "studwaiting.html") {
                 window.location.href = "/student/studwaiting.html";
             }
         }

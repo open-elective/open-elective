@@ -360,7 +360,7 @@ async function deletecourse() {
         }
         if (confirm('Are you sure you want to delete ' + subjectname + "?")) {
             await db.collection("courseData").doc(cno.toString()).delete().then(() => {
-                console.log("Document successfully deleted!");
+                //console.log("Document successfully deleted!");
                 updateschooldata()
             }).catch((error) => {
                 console.error("Error removing document: ", error);
@@ -396,7 +396,7 @@ async function updateschooldata() {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                SCET.push(doc.id.toString()+"~"+doc.data().Name)
+                SCET.push(doc.id.toString() + "~" + doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
@@ -407,7 +407,7 @@ async function updateschooldata() {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                SEE.push(doc.id.toString()+"~"+doc.data().Name)
+                SEE.push(doc.id.toString() + "~" + doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
@@ -418,7 +418,7 @@ async function updateschooldata() {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                SCE.push(doc.id.toString()+"~"+doc.data().Name)
+                SCE.push(doc.id.toString() + "~" + doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
@@ -429,7 +429,7 @@ async function updateschooldata() {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                SMCEM.push(doc.id.toString()+"~"+doc.data().Name)
+                SMCEM.push(doc.id.toString() + "~" + doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
@@ -440,7 +440,7 @@ async function updateschooldata() {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                SMCEC.push(doc.id.toString()+"~"+doc.data().Name)
+                SMCEC.push(doc.id.toString() + "~" + doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
@@ -451,11 +451,11 @@ async function updateschooldata() {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                SCET.push(doc.id.toString()+"~"+doc.data().Name)
-                SEE.push(doc.id.toString()+"~"+doc.data().Name)
-                SCE.push(doc.id.toString()+"~"+doc.data().Name)
-                SMCEM.push(doc.id.toString()+"~"+doc.data().Name)
-                SMCEC.push(doc.id.toString()+"~"+doc.data().Name)
+                SCET.push(doc.id.toString() + "~" + doc.data().Name)
+                SEE.push(doc.id.toString() + "~" + doc.data().Name)
+                SCE.push(doc.id.toString() + "~" + doc.data().Name)
+                SMCEM.push(doc.id.toString() + "~" + doc.data().Name)
+                SMCEC.push(doc.id.toString() + "~" + doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
@@ -463,41 +463,41 @@ async function updateschooldata() {
             console.log("Error getting documents: ", error);
         });
     //console.log(SCET, SEE, SCE, SMCEM, SMCEC)
-    await db.collection("Schools").doc("SCET").set({SCET})
-    .then(() => {
-        console.log("Document successfully written!");
-    })
-    .catch((error) => {
-        console.error("Error writing document: ", error);
-    });
-    await db.collection("Schools").doc("SEE").set({SEE})
-    .then(() => {
-        console.log("Document successfully written!");
-    })
-    .catch((error) => {
-        console.error("Error writing document: ", error);
-    });
-    await db.collection("Schools").doc("SCE").set({SCE})
-    .then(() => {
-        console.log("Document successfully written!");
-    })
-    .catch((error) => {
-        console.error("Error writing document: ", error);
-    });
-    await db.collection("Schools").doc("SMCEM").set({SMCEM})
-    .then(() => {
-        console.log("Document successfully written!");
-    })
-    .catch((error) => {
-        console.error("Error writing document: ", error);
-    });
-    await db.collection("Schools").doc("SMCEC").set({SMCEC})
-    .then(() => {
-        console.log("Document successfully written!");
-    })
-    .catch((error) => {
-        console.error("Error writing document: ", error);
-    });
-    
+    await db.collection("Schools").doc("SCET").set({ SCET })
+        .then(() => {
+            //console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    await db.collection("Schools").doc("SEE").set({ SEE })
+        .then(() => {
+            //console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    await db.collection("Schools").doc("SCE").set({ SCE })
+        .then(() => {
+            //console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    await db.collection("Schools").doc("SMCEM").set({ SMCEM })
+        .then(() => {
+            //console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    await db.collection("Schools").doc("SMCEC").set({ SMCEC })
+        .then(() => {
+            //console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+
     progress.style.visibility = "hidden";
 }

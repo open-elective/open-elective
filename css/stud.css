@@ -1,60 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap');
-
-body{
-    font-family: 'Roboto',sans-serif;
-    padding: 0;
-    margin: 0;
-   
+body {
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin: 0;
 }
 
-h4{
-    margin: 0;
-    padding-top: 10px;
-    color: white;
+h4 {
+  margin: 0;
+  padding-top: 10px;
+  color: white;
 }
 
-.btn{
-    border-radius: 10px;
-    text-transform: none;
-    font-size: 15px !important;
-    font-weight: bold !important;
-    position: -2px;
-    
+.btn {
+  border-radius: 10px;
+  text-transform: none;
+  font-size: 15px !important;
+  font-weight: bold !important;
+  position: -2px;
 }
+
 .top-nav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    padding-bottom: 6px;
-    overflow: hidden;
-    background-color:  #1976d2;
-    position: -webkit-sticky; /* Safari */    
-    position: sticky;
-    top: 0;
-    z-index: 2
-  }
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 6px;
+  overflow: hidden;
+  background-color: #1976d2;
+  position: -webkit-sticky;
+  /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 2
+}
+
 .top-nav li {
-    float: right;
-    cursor: pointer;
-    margin-right: 23px;
-  }
-  
+  float: right;
+  cursor: pointer;
+  margin-right: 23px;
+}
+
 .top-nav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-.top-nav h4{
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.top-nav h4 {
   padding-left: 150px;
-} 
+}
 
 @media screen and (max-width: 900px) {
-  .top-nav h4{
+  .top-nav h4 {
     padding-left: 60px;
-  } 
+  }
 }
-.progress{
+
+.progress {
   background-color: #90bce9;
 }

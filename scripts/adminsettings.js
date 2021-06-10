@@ -84,20 +84,19 @@ var progress = document.getElementsByClassName("determinate")[0]
 // }
 async function deleteallstud() {
     document.getElementsByClassName("progress")[0].style.visibility = "visible";
-    
-    
+
+
     const tempref = await db.collection("studentData");
     const temp = await tempref.get();
     const len = temp.docs.length
-    for(i=0;i<len;i++)
-    {
+    for (i = 0; i < len; i++) {
         await db.collection("studentData").doc(temp.docs[i].id).delete().then(() => {
             //console.log("Document successfully deleted!");
         }).catch((error) => {
             console.error("Error removing document: ", error);
         });
         var percent = (i * 100) / (len - 1)
-            progress.style = "width:" + percent.toString() + "%";
+        progress.style = "width:" + percent.toString() + "%";
     }
 
     document.getElementsByClassName("progress")[0].style.visibility = "hidden";
@@ -109,29 +108,27 @@ async function deleteallpref() {
     const temp = await tempref.get();
 
     const len = temp.docs.length
-    for(i=0;i<temp.docs.length;i++)
-    {
+    for (i = 0; i < temp.docs.length; i++) {
         await db.collection("studentprefs").doc(temp.docs[i].id).delete().then(() => {
             //console.log("Document successfully deleted!");
         }).catch((error) => {
             console.error("Error removing document: ", error);
         });
         var percent = (i * 100) / (len - 1)
-            progress.style = "width:" + percent.toString() + "%";
+        progress.style = "width:" + percent.toString() + "%";
     }
     document.getElementsByClassName("progress")[0].style.visibility = "hidden";
     progress.style = "width:0%";
 }
 async function deleteallcourse() {
     document.getElementsByClassName("progress")[0].style.visibility = "visible";
-    
+
 
     const tempref = await db.collection("courseData");
     const temp = await tempref.get();
 
     const len = temp.docs.length
-    for(i=0;i<temp.docs.length;i++)
-    {
+    for (i = 0; i < temp.docs.length; i++) {
         await db.collection("courseData").doc(temp.docs[i].id).delete().then(() => {
             //console.log("Document successfully deleted!");
         }).catch((error) => {
@@ -145,15 +142,14 @@ async function deleteallcourse() {
     const tempref1 = await db.collection("Schools");
     const temp1 = await tempref1.get();
 
-    for(i=0;i<temp.docs.length;i++)
-    {
+    for (i = 0; i < temp.docs.length; i++) {
         await db.collection("Schools").doc(temp1.docs[i].id).delete().then(() => {
             //console.log("Document successfully deleted!");
         }).catch((error) => {
             console.error("Error removing document: ", error);
         });
         var percent = (i * 50) / (len - 1)
-        progress.style = "width:" + (percent+50).toString() + "%";
+        progress.style = "width:" + (percent + 50).toString() + "%";
     }
     document.getElementsByClassName("progress")[0].style.visibility = "hidden";
     progress.style = "width:0%";
@@ -172,7 +168,7 @@ async function downloadexcel() {
         Title: "Entire Allocation Data",
         Subject: "Data",
         Author: "Open-Elective-Devlopers",
-        CreatedDate: new Date(today.getFullYear(), today.getMonth()+1, today.getDate())
+        CreatedDate: new Date(today.getFullYear(), today.getMonth() + 1, today.getDate())
     };
 
     const ref1 = await db.collection("studentData").orderBy("CGPA", "desc");
@@ -190,10 +186,10 @@ async function downloadexcel() {
 
     //course data sheet
     var ws_data = [];
-    ws_data.push(["Course ID","Course Name", "Internal Capacity","Internal Filled","External Capacity", "External Filled", "Course school", "Course Allowed"]);
+    ws_data.push(["Course ID", "Course Name", "Internal Capacity", "Internal Filled", "External Capacity", "External Filled", "Course school", "Course Allowed"]);
     for (i = 0; i < storedatacd.docs.length; i++) {
         data = storedatacd.docs[i].data()
-        var temp=""
+        var temp = ""
         if (data.All) {
             temp = "All"
         }
@@ -214,7 +210,7 @@ async function downloadexcel() {
                 temp = temp + "SCE" + ", "
             }
         }
-        ws_data.push([storedatacd.docs[i].id,data.Name, data.InternalCap, data.Intfill, data.Extfill, data.ExternalCap, data.School, temp]);
+        ws_data.push([storedatacd.docs[i].id, data.Name, data.InternalCap, data.Intfill, data.Extfill, data.ExternalCap, data.School, temp]);
     }
     var ws = XLSX.utils.aoa_to_sheet(ws_data);
     wb.SheetNames.push("Course Data");
@@ -237,7 +233,7 @@ async function downloadexcel() {
     //student pref sheet
     var ws_data = [];
 
-    ws_data.push(["PRN", "School","Preferences"]);
+    ws_data.push(["PRN", "School", "Preferences"]);
     for (i = 0; i < storedatasp.docs.length; i++) {
         var myprefstr = storedatasp.docs[i].data().mypref;
         myprefstr.splice(0, 0, storedatasd.docs[i].data().School)
@@ -256,7 +252,7 @@ async function downloadexcel() {
     ws_data.push(["School", "Allowed Course"]);
     for (i = 0; i < storedatass.docs.length; i++) {
         var school = storedatass.docs[i].data()[storedatass.docs[i].id];
-        school.splice(0,0,storedatass.docs[i].id)
+        school.splice(0, 0, storedatass.docs[i].id)
         ws_data.push(school);
     }
     var ws = XLSX.utils.aoa_to_sheet(ws_data);
@@ -266,7 +262,7 @@ async function downloadexcel() {
 
 
     var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
-    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'EntireData'+dateTime+'.xlsx');
+    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'EntireData' + dateTime + '.xlsx');
     progress.className = "determinate blue darken-2"
     document.getElementsByClassName("progress")[0].style.visibility = "hidden";
 }

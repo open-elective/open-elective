@@ -15,66 +15,67 @@
   <link rel="stylesheet" href="/css/adminhomepage.css">
 </head>
 <!-- nav bar -->
+
 <body>
   <ul class="top-nav">
     <li><a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a></li>
     <h4 class="center">Schedule</h4>
   </ul>
-  
-    <ul id="slide-out" class="sidenav blue darken-2">
-      <li>
-        <div class="user-view">
-          <div class="background">
-            <img id="test" src="/assets/bg.jpg">
-          </div>
-          <a href="#user"><img class="circle" src="/assets/user.png"></a>
-          <a href="#name"><span class="black-text name" id="navname"><b>John Doe</b></span></a>
-          <a href="#email"><span class="black-text email" id="navemail">jdandturk@gmail.com</span></a>
+
+  <ul id="slide-out" class="sidenav blue darken-2">
+    <li>
+      <div class="user-view">
+        <div class="background">
+          <img id="test" src="/assets/bg.jpg">
+        </div>
+        <a href="#user"><img class="circle" src="/assets/user.png"></a>
+        <a href="#name"><span class="black-text name" id="navname"><b>Admin</b></span></a>
+        <a href="#email"><span class="black-text email" id="navemail">admin@admin.com</span></a>
+      </div>
+    </li>
+    <li><a href="/admin/adminhomepage.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">schedule</i>Schedule</a></li>
+    <li><a href="/admin/courses.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">book</i>Courses Setting</a></li>
+    <li><a href="/admin/allocation.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">check_box</i>Allocation</a></li>
+    <li><a href="/admin/studdata.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">data_usage</i>Student Data</a></li>
+    <li><a href="/admin/adminsettings.html" class="waves-effect waves-light white-text"><i
+          class="material-icons white-text">settings</i>Admin Settings</a></li>
+    <li>
+      <div class="divider white-text"></div>
+    </li>
+    <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
+  </ul>
+
+  <!-- Stpes Text -->
+  <div class="schedule">
+    <ul class="timeline" id="timeline">
+      <li class="li">
+        <div class="status">
+          <h5>Closed State</h5>
         </div>
       </li>
-      <li><a href="/admin/adminhomepage.html" class="waves-effect waves-light white-text"><i
-            class="material-icons white-text">schedule</i>Schedule</a></li>
-      <li><a href="/admin/courses.html" class="waves-effect waves-light white-text"><i
-            class="material-icons white-text">book</i>Courses Setting</a></li>
-      <li><a href="/admin/allocation.html" class="waves-effect waves-light white-text"><i
-            class="material-icons white-text">check_box</i>Allocation</a></li>
-      <li><a href="/admin/studdata.html" class="waves-effect waves-light white-text"><i
-            class="material-icons white-text">data_usage</i>Student Data</a></li>
-      <li><a href="/admin/adminsettings.html" class="waves-effect waves-light white-text"><i
-            class="material-icons white-text">settings</i>Admin Settings</a></li>
-      <li>
-        <div class="divider white-text"></div>
+      <li class="li">
+        <div class="status">
+          <h5>Open Portal</h5>
+        </div>
       </li>
-      <li><a class="waves-effect waves-light btn black-text white" id="studlogout" onclick="logout()">Logout</a></li>
+      <li class="li">
+        <div class="status">
+          <h5>Close Registration</h5>
+        </div>
+      </li>
+      <li class="li">
+        <div class="status">
+          <h5>Publish</h5>
+        </div>
+      </li>
     </ul>
-    
-    <!-- Stpes Text -->
-    <div class="schedule">
-      <ul class="timeline" id="timeline">
-        <li class="li">
-          <div class="status">
-            <h5>Closed State</h5>
-          </div>
-        </li>
-        <li class="li">
-          <div class="status">
-            <h5>Open Portal</h5>
-          </div>
-        </li>
-        <li class="li">
-          <div class="status">
-            <h5>Close Registration</h5>
-          </div>
-        </li>
-        <li class="li">
-          <div class="status">
-            <h5>Publish</h5>
-          </div>
-        </li>
-      </ul>
-    </div>
+  </div>
 
-    <div class="grid">
+  <div class="grid">
     <div id="open-portal" class="stage0">
       <div class="card white">
         <span class="card-title center">
@@ -95,7 +96,8 @@
         </span>
         <div class="card-content">
           <div class="center">
-            <a class="waves-effect waves-light btn blue darken-2" id="closeregistration" onclick="closeregistration()">Close
+            <a class="waves-effect waves-light btn blue darken-2" id="closeregistration"
+              onclick="closeregistration()">Close
               Registration</a>
           </div>
         </div>
@@ -150,12 +152,12 @@
       </div>
       <div class="content">
         <div id="wrap1">
-        <iframe id="frame1" src="/iframe/p1.html" title="description"></iframe>
-      </div>
+          <iframe id="frame1" src="/iframe/p1.html" title="description"></iframe>
+        </div>
       </div>
     </div>
   </div>
- 
+
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

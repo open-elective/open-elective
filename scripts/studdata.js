@@ -281,10 +281,10 @@ async function editstud(e) {
             school = "SMCEM"
         else if (c5.checked)
             school = "SMCEC"
-        else if ( c6.checked)
+        else if (c6.checked)
             school = "SCE"
 
-        if (!editname || !editprn || !editcgpa || school =="") {
+        if (!editname || !editprn || !editcgpa || school == "") {
             throw {
                 message: "Please fill All details",
                 error: new Error()
@@ -303,26 +303,23 @@ async function editstud(e) {
         }).catch((error) => {
             console.log("Error getting document:", error);
         });
-        var exist=false;
+        var exist = false;
         await db.collection("studentData").doc(editprn.toString()).get().then((doc) => {
             if (doc.exists) {
                 if (!confirm('This PRN already exist. Are you sure you want to edit the student data?')) {
                     edit = false;
                 }
-                else
-                {
+                else {
                     exist = true;
                     console.log(exist)
                 }
             }
-            else
-            {
+            else {
                 if (!confirm("This PRN Doesn't exist. Are you sure you want to add the student data?")) {
                     edit = false;
                     exist = false;
                 }
-                else
-                {
+                else {
                     exist = false;
                 }
             }
@@ -335,8 +332,7 @@ async function editstud(e) {
                 error: new Error()
             };
         }
-        if(exist)
-        {
+        if (exist) {
             await db.collection("studentData").doc(editprn.toString()).update({
                 Name: editname.toString(),
                 CGPA: parseFloat(editcgpa.toString()),
@@ -348,8 +344,7 @@ async function editstud(e) {
                     console.error("Error adding Data in database: ", error);
                 });
         }
-        else
-        {
+        else {
             await db.collection("studentData").doc(editprn.toString()).set({
                 Name: editname.toString(),
                 CGPA: parseFloat(editcgpa.toString()),
@@ -366,7 +361,7 @@ async function editstud(e) {
             e.preventDefault()
             M.Modal.getInstance(myModal[0]).close()
         }
-            
+
     }
     catch (err) {
         window.alert(err.message)

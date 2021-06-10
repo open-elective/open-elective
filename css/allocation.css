@@ -1,4 +1,4 @@
-.progress{
+.progress {
     visibility: hidden;
 }
 
@@ -7,24 +7,27 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color:white !important;
+    background-color: white !important;
     color: white;
     text-align: center;
- }
-nav{
-    height:50px;
+}
+
+nav {
+    height: 50px;
     max-width: 60%;
-    margin:2% 2% 1% 20%;
+    margin: 2% 2% 1% 20%;
     background-color: white;
 }
-nav .nav-wrapper i{
+
+nav .nav-wrapper i {
     line-height: 50px;
 }
 
-#buttons a{
+#buttons a {
     margin: 5px 10px;
 }
-#upload{
+
+#upload {
     max-width: 10%;
 }
 
@@ -33,18 +36,20 @@ nav .nav-wrapper i{
     width: 0.1px;
     height: 0.1px;
     position: absolute;
-  }
-#ctable{
+}
+
+#ctable {
     border: 1px solid #1d72bc;
     grid-area: ctable;
     margin: 2em 2em 10em 2em;
     border-radius: 10px;
 }
 
-td{
+td {
     padding: 3px;
 }
-th{
+
+th {
     border-bottom: 2px solid #1976d2;
 }
 
@@ -58,48 +63,46 @@ th{
 }
 
 .dropdown-content.select-dropdown li span {
-    color: #000; 
+    color: #000;
 }
+
 #checktext {
     padding: 0 !important;
     padding-left: 22px !important;
     padding-right: 22px !important;
     color: black;
 }
-.filter{
+
+.filter {
     display: inline-block;
     max-width: 50%;
     margin: 0px 15px;
-
 }
 
 @media screen and (max-width: 900px) {
-
-    nav{
+    nav {
         margin: auto;
         margin-top: 15px;
         margin-bottom: 15px;
         max-width: 90%;
     }
-    #ctable{
+    #ctable {
         margin: 0;
         margin: 20px 15px 150px 20px;
     }
-    h4{
+    h4 {
         font-size: 25px;
     }
-    .filter{
-
+    .filter {
         max-width: 40%;
         margin: 10px;
-    
     }
-    #ctable{
+    #ctable {
         margin: 0;
         margin: 0 10px 100px 10px;
     }
-  
 }
+
 select {
     display: block !important;
     border: 1px solid #1976d2;

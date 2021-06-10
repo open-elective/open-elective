@@ -108,8 +108,7 @@ async function filldata() {
     if (alloc != 0) {
         document.getElementById("myallocation").innerHTML = prefwithname[alloc]
     }
-    else
-    {
+    else {
         document.getElementById("myallocation").innerHTML = "No Allocation"
     }
     progress.style.visibility = "hidden";

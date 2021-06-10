@@ -256,13 +256,11 @@ tr {
     padding: 0;
     overflow: hidden;
   }
-  
   #frame1 {
     width: 200%;
     height: 580px;
     border: 1px solid black;
   }
-  
   #frame1 {
     -ms-zoom: 0.75;
     -moz-transform: scale(0.5);

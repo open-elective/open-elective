@@ -48,7 +48,7 @@ async function signup(e) {
 const sendVerificationEmail = () => {
     Auth.currentUser.sendEmailVerification()
         .then(() => {
-            console.log('Verification Email Sent Successfully !');
+            //console.log('Verification Email Sent Successfully !');
         })
         .catch(error => {
             console.error(error);

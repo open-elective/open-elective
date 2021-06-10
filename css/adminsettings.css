@@ -1,10 +1,11 @@
-body{
+body {
     overflow: hidden;
 }
 
-.data{
+.data {
     margin: 20px 20px;
 }
+
 .database-btn a {
     margin: 10px;
 }
@@ -14,40 +15,39 @@ body{
     margin-left: 5px;
 }
 
-.assign{
-    margin:auto;
+.assign {
+    margin: auto;
     width: 40%;
 }
 
-#adminname{
-    padding-left:10px;
+#adminname {
+    padding-left: 10px;
     border: 2px solid #1d72bc;
 }
 
-#adminemail{
-    padding-left:10px;
+#adminemail {
+    padding-left: 10px;
     border: 2px solid #1d72bc;
-
-}
-hr{
-    margin:20px 40px;
 }
 
-h5{
+hr {
+    margin: 20px 40px;
+}
+
+h5 {
     font-weight: bold;
 }
 
 @media only screen and (max-width:900px) {
-    .assign{
+    .assign {
         width: 90%;
         margin-left: 4%;
         margin-right: 6%;
     }
-    hr{
-        margin:30px 10px;
+    hr {
+        margin: 30px 10px;
     }
-    h4{
+    h4 {
         font-size: 25px;
     }
-    
 }

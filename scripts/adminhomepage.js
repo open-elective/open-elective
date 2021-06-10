@@ -55,7 +55,7 @@ async function openportal() {
                     Allow: 1
                 })
                     .then(() => {
-                        console.log("Document successfully written!");
+                        //console.log("Document successfully written!");
                         checkcurrentstate()
                     })
                     .catch((error) => {
@@ -69,7 +69,7 @@ async function openportal() {
                     Allow: 1
                 })
                     .then(() => {
-                        console.log("Document successfully written!");
+                        //console.log("Document successfully written!");
                         checkcurrentstate()
                     })
                     .catch((error) => {
@@ -83,7 +83,7 @@ async function openportal() {
                     Allow: 1
                 })
                     .then(() => {
-                        console.log("Document successfully written!");
+                        //console.log("Document successfully written!");
                         checkcurrentstate()
                     })
                     .catch((error) => {
@@ -105,7 +105,7 @@ async function closeregistration() {
                     Allow: 2
                 })
                     .then(() => {
-                        console.log("Document successfully written!");
+                        //console.log("Document successfully written!");
                         checkcurrentstate()
                     })
                     .catch((error) => {
@@ -125,7 +125,7 @@ async function publish() {
                     Allow: 3
                 })
                     .then(() => {
-                        console.log("Document successfully written!");
+                        //console.log("Document successfully written!");
                         checkcurrentstate()
                     })
                     .catch((error) => {
@@ -145,7 +145,7 @@ async function closeportal() {
                     Allow: 0
                 })
                     .then(() => {
-                        console.log("Document successfully written!");
+                        //console.log("Document successfully written!");
                         checkcurrentstate()
                     })
                     .catch((error) => {
