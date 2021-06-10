@@ -1,4 +1,6 @@
 var progress = document.getElementsByClassName("determinate")[0]
+var storedatasd = null;
+var storedatacd = null;
 // async function addadmin(e) {
 //     e.preventDefault()
 //     const email = document.getElementById("adminemail")
@@ -171,17 +173,22 @@ async function downloadexcel() {
         CreatedDate: new Date(today.getFullYear(), today.getMonth() + 1, today.getDate())
     };
 
-    const ref1 = await db.collection("studentData").orderBy("CGPA", "desc");
-    storedatasd = await ref1.get();
+    if (storedatasd == null) {
+        const ref1 = await db.collection("studentData").orderBy("CGPA", "desc");
+        storedatasd = await ref1.get();
+    }
 
-    const ref2 = await db.collection("courseData");
-    storedatacd = await ref2.get();
+    if (storedatacd == null) {
+        const ref2 = await db.collection("courseData");
+        storedatacd = await ref2.get();
+    }
 
     const ref3 = await db.collection("Schools");
-    storedatass = await ref3.get();
+    const storedatass = await ref3.get();
+
 
     const ref4 = await db.collection("studentprefs");
-    storedatasp = await ref4.get();
+    const storedatasp = await ref4.get();
 
 
     //course data sheet
@@ -271,4 +278,74 @@ function s2ab(s) {
     var view = new Uint8Array(buf);  //create uint8array as viewer
     for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
     return buf;
+}
+
+async function sendemail() {
+    try {
+        document.getElementsByClassName("progress")[0].style.visibility = "visible";
+        if (storedatasd == null) {
+            const ref1 = await db.collection("studentData").orderBy("CGPA", "desc");
+            storedatasd = await ref1.get();
+        }
+
+        if (storedatacd == null) {
+            const ref3 = await db.collection("courseData");
+            storedatacd = await ref3.get();
+        }
+        var coursewithname = {};
+        for (i = 0; i < storedatacd.docs.length; i++) {
+            coursewithname[storedatacd.docs[i].id] = storedatacd.docs[i].data().Name;
+        }
+        var len = storedatasd.docs.length
+        for (i = 0; i < len; i++) {
+
+            var email = "";
+            var pref = [];
+            var exist = false;
+            await db.collection("studentprefs").doc(storedatasd.docs[i].id).get().then((doc) => {
+                if (doc.exists) {
+                    exist = true;
+                    email = doc.data().email
+                    pref = doc.data().mypref
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+                exist = false;
+            });
+
+
+            if (exist) {
+                var body = "Hey " + storedatasd.docs[i].data().Name + ",<br/>";
+                body += "Your allocated Open Elective is " + coursewithname[storedatasd.docs[i].data().alloc] + "<br/>";
+                body += "<br/>Your Preferences :<br/>";
+                var table = '<table style="border: 2px solid black">'
+                for (j = 0; j < pref.length; j++) {
+                    table += '<tr><td style="border: 1px solid black">' + (j + 1).toString() + '</td><td style="border: 1px solid black">' + coursewithname[pref[j]] + "</td></tr>"
+
+                }
+                table += "</table><br/><br/>"
+                body += table
+                body += "Check your result <a href='https://openelective.mitaoe.ac.in/student/result.html'> here</a>"
+                await Email.send({
+                    Host: "smtp.gmail.com",
+                    Username: "open_elective_allocation@mitaoe.ac.in",
+                    Password: "vllkiklgsawlezwv",
+                    To: email,
+                    From: "open_elective_allocation@mitaoe.ac.in",
+                    Subject: "Results Announced!!!",
+                    Body: body,
+                })
+                    .then(function (message) {
+                        console.log("email sent")
+                    });
+            }
+            var percent = (i * 100) / (len - 1)
+            progress.style = "width:" + percent.toString() + "%";
+        }
+    }
+    catch (err) {
+        console.log(err)
+    }
+    document.getElementsByClassName("progress")[0].style.visibility = "hidden";
+    progress.style = "width:0%";
 }

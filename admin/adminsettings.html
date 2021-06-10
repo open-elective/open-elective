@@ -78,19 +78,34 @@
   <!-- database -->
   <div class="data center">
     <div>
-      <h5>Data</h5>
+      <h5> Delete</h5>
     </div>
 
     <div class="progress blue lighten-4" id="addadminprogress">
       <div class="determinate blue darken-2"></div>
     </div>
     <div class="database-btn">
-      <a class="waves-effect waves-light btn blue darken-2" onclick="downloadexcel()">Download Entire Data</a>
       <a class="waves-effect waves-light btn blue darken-2 modal-trigger" href="#modal1">Flush Students Data</a>
       <a class="waves-effect waves-light btn blue darken-2 modal-trigger" href="#modal2">Flush Preference Data</a>
       <a class="waves-effect waves-light btn blue darken-2 modal-trigger" href="#modal3">Flush Courses Data</a>
     </div>
+    <hr>
+    <div>
+      <h5>Download</h5>
+    </div>
+    <div class="database-btn">
+      <a class="waves-effect waves-light btn blue darken-2" onclick="downloadexcel()">Download Entire Data</a>
+    </div>
+    <hr>
+    <div>
+      <h5>Email</h5>
+    </div>
+    <div class="database-btn">
+      <a class="waves-effect waves-light btn blue darken-2" onclick="sendemail()">Send Email</a>
+    </div>
+
   </div>
+
 
   <!-- Modal 1 Structure -->
   <div id="modal1" class="modal">
@@ -176,6 +191,7 @@
 
   <script src="/scripts/adminsettings.js"></script>
   <script src="/scripts/adminconsole.js"></script>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
 </body>
 
 </html>

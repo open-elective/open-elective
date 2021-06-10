@@ -28,6 +28,16 @@ async function signup(e) {
             displayName: "User",
             photoURL: PRN.value
         });
+        
+        await firebase.firestore().collection("studentprefs").doc(PRN.value).set({
+            email: email.value,
+            mypref: []
+        })
+            .then(() => {
+            })
+            .catch((error) => {
+                console.error("Error adding Data in database: ", error);
+            });
         PRN.value = ""
         email.value = ""
         password.value = ""

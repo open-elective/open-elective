@@ -3,6 +3,7 @@ progress.style.visibility = "visible";
 var optionsfromdb;
 var mypref = []
 var prn = ""
+var namenew = ""
 window.addEventListener('DOMContentLoaded', () => initiate());
 async function checkState() {
 
@@ -81,6 +82,7 @@ async function assignDropdownOp() {
     }).catch((error) => {
         console.log("Error getting document:", error);
     });
+    namenew = name;
     document.getElementById("dispPRN").innerHTML += " " + prn;
     document.getElementById("dispname").innerHTML += " " + name;
     document.getElementById("dispcgpa").innerHTML += " " + CGPA;
@@ -92,7 +94,7 @@ async function assignDropdownOp() {
         console.log("Error getting document:", error);
     });
     optionsfromdb = options;
-    for (var option in options) {
+    for (var option in optionsfromdb) {
         var pair = options[option].split("~");
         var newOption = document.createElement("option");
         newOption.value = pair[0];
@@ -142,10 +144,11 @@ async function submitpref() {
     progress.style.visibility = "visible";
     try {
         if (mypref.length == optionsfromdb.length) {
-            await db.collection("studentprefs").doc(prn).set({
+            await db.collection("studentprefs").doc(prn).update({
                 mypref
             })
                 .then(() => {
+                    sendemail()
                     window.alert("Your Response is recorded")
                 })
                 .catch((error) => {
@@ -163,4 +166,48 @@ async function submitpref() {
         window.alert(err.message)
     }
     progress.style.visibility = "hidden";
+}
+async function sendemail() {
+    try {
+        var coursewithname = {}
+        for (var option in optionsfromdb) {
+            var pair = optionsfromdb[option].split("~");
+            coursewithname[pair[0]] = pair[1];
+        }
+        var email = "";
+        await db.collection("studentprefs").doc(prn).get().then((doc) => {
+            if (doc.exists) {
+                email = doc.data().email
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+
+        var body = "Hey " + namenew + ",<br/>";
+        body += "<br/>Your Preferences :<br/>";
+        var table = '<table style="border: 2px solid black">'
+        for (j = 0; j < mypref.length; j++) {
+            table += '<tr><td style="border: 1px solid black">' + (j + 1).toString() + '</td><td style="border: 1px solid black">' + coursewithname[mypref[j]] + "</td></tr>"
+
+        }
+        table += "</table><br/><br/>"
+        body += table
+        body += "You can refill the preferences if you are not happy with current preferences <a href='https://openelective.mitaoe.ac.in/student/result.html'> here</a>"
+        await Email.send({
+            Host: "smtp.gmail.com",
+            Username: "open_elective_allocation@mitaoe.ac.in",
+            Password: "vllkiklgsawlezwv",
+            To: email,
+            From: "open_elective_allocation@mitaoe.ac.in",
+            Subject: "Your Preferences",
+            Body: body,
+        })
+            .then(function (message) {
+                console.log("email sent")
+            });
+
+    }
+    catch (err) {
+        console.log(err)
+    }
 }
