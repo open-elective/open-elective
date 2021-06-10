@@ -32,7 +32,7 @@ async function checkState() {
             }
             else if (data.Allow == 1) {
                 //opened portal
-                assignDropdownOp()
+                fillpage()
             }
             else if (data.Allow == 2) {
                 //allocation phase
@@ -68,12 +68,17 @@ function initiate() {
             checkState();
         });
 }
-async function assignDropdownOp() {
-    var dd = document.getElementById("schooldd");
+async function fillpage() {
+
+
+    var preffortable;
+
     prn = await firebase.auth().currentUser.photoURL;
     var name = "";
     var school = "";
     var CGPA = 0;
+
+
     await db.collection("studentData").doc(prn).get().then((doc) => {
         const data = doc.data();
         school = data.School
@@ -87,6 +92,18 @@ async function assignDropdownOp() {
     document.getElementById("dispname").innerHTML += " " + name;
     document.getElementById("dispcgpa").innerHTML += " " + CGPA;
     document.getElementById("dispschool").innerHTML += " " + school;
+
+
+    //get pref is available
+    await firebase.firestore().collection("studentprefs").doc(prn).get().then((doc) => {
+        if (doc.exists) {
+            preffortable = doc.data().mypref;
+        }
+    }).catch((error) => {
+        console.log("Error getting document:", error);
+    });
+
+    //get course name
     var options = []
     await db.collection("Schools").doc(school).get().then((doc) => {
         options = doc.data()[school]
@@ -94,12 +111,29 @@ async function assignDropdownOp() {
         console.log("Error getting document:", error);
     });
     optionsfromdb = options;
-    for (var option in optionsfromdb) {
-        var pair = options[option].split("~");
-        var newOption = document.createElement("option");
-        newOption.value = pair[0];
-        newOption.innerHTML = pair[1];
-        dd.options.add(newOption);
+
+    if (preffortable[0] != null) {
+        console.log("yes")
+        coursedict = {}
+        for (var option in optionsfromdb) {
+            var pair = options[option].split("~");
+            coursedict[pair[0]] = pair[1];
+        }
+
+        for (i = 0; i < preffortable.length; i++) {
+            addCourseTable(i+1, coursedict[preffortable[i]])
+        }
+    }
+    else {
+        console.log("No")
+        var dd = document.getElementById("schooldd");
+        for (var option in optionsfromdb) {
+            var pair = options[option].split("~");
+            var newOption = document.createElement("option");
+            newOption.value = pair[0];
+            newOption.innerHTML = pair[1];
+            dd.options.add(newOption);
+        }
     }
 }
 function selectpref() {
