@@ -14,7 +14,6 @@ async function submitprn() {
                 error: new Error()
             };
         }
-        document.getElementById("signinPRN").disabled = true
         var found = false;
         await db.collection("studentData").doc(prn.value).get().then((doc) => {
             const data = doc.data();
@@ -26,8 +25,10 @@ async function submitprn() {
             window.alert("You are not in our database, Please contact concerning faculty")
             found = false
         });
-        if (found)
+        if (found) {
+            document.getElementById("signinPRN").disabled = true
             details.style.display = "block"
+        }
     }
     catch (err) {
         window.alert(err.message)
