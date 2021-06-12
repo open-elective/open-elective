@@ -230,7 +230,7 @@ async function sendemail() {
         }
         table += "</table><br/><br/>"
         body += table
-        body += "You can refill the preferences if you are not happy with current preferences <a href='https://openelective.mitaoe.ac.in/student/result.html'> here</a>"
+        body += "You can refill the preferences if you are not happy with current preferences <a href='https://openelective.mitaoe.ac.in/student/studhomepage.html'> here</a>"
         await Email.send({
             Host: "smtp.gmail.com",
             Username: "open_elective_allocation@mitaoe.ac.in",
