@@ -175,7 +175,7 @@ async function downloadexcel() {
     };
 
     if (storedatasd == null) {
-        const ref1 = await db.collection("studentData").orderBy("CGPA", "desc");
+        const ref1 = await db.collection("studentData").orderBy("CGPA", "desc").orderBy("Time");
         storedatasd = await ref1.get();
     }
 
@@ -286,7 +286,7 @@ async function sendemail() {
     try {
         document.getElementsByClassName("progress")[0].style.visibility = "visible";
         if (storedatasd == null) {
-            const ref1 = await db.collection("studentData").orderBy("CGPA", "desc");
+            const ref1 = await db.collection("studentData").orderBy("CGPA", "desc").orderBy("Time");
             storedatasd = await ref1.get();
         }
 
@@ -353,7 +353,7 @@ async function sendemail() {
 }
 async function getstudnotfilled() {
     if (storedatasd == null) {
-        const ref1 = await db.collection("studentData").orderBy("CGPA", "desc");
+        const ref1 = await db.collection("studentData").orderBy("CGPA", "desc").orderBy("Time");
         storedatasd = await ref1.get();
         getstudnotfilled();
         return;
