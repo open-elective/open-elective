@@ -158,6 +158,7 @@ async function deleteallcourse() {
 }
 async function downloadexcel() {
 
+    window.alert("Please wait while we prepare your excel file")
     progress.className = "indeterminate blue darken-2"
     document.getElementsByClassName("progress")[0].style.visibility = "visible";
 
@@ -227,9 +228,9 @@ async function downloadexcel() {
 
     //student data sheet
     var ws_data = [];
-    ws_data.push(["PRN", "Name", "CGPA", "School", "Allocation","Time"]);
+    ws_data.push(["PRN", "Name", "CGPA", "School", "Allocation", "Time"]);
     for (i = 0; i < storedatasd.docs.length; i++) {
-        ws_data.push([storedatasd.docs[i].id, storedatasd.docs[i].data().Name, storedatasd.docs[i].data().CGPA, storedatasd.docs[i].data().School, storedatasd.docs[i].data().alloc,storedatasd.docs[i].data().Time]);
+        ws_data.push([storedatasd.docs[i].id, storedatasd.docs[i].data().Name, storedatasd.docs[i].data().CGPA, storedatasd.docs[i].data().School, storedatasd.docs[i].data().alloc, storedatasd.docs[i].data().Time]);
     }
     var ws = XLSX.utils.aoa_to_sheet(ws_data);
     wb.SheetNames.push("Student Data");
@@ -240,7 +241,7 @@ async function downloadexcel() {
     //student pref sheet
     var ws_data = [];
 
-    ws_data.push(["PRN", "School","Time", "Preferences"]);
+    ws_data.push(["PRN", "School", "Time", "Preferences"]);
     for (i = 0; i < storedatasp.docs.length; i++) {
         var myprefstr = storedatasp.docs[i].data().mypref;
         myprefstr.splice(0, 0, storedatasp.docs[i].data().Time)
@@ -270,7 +271,7 @@ async function downloadexcel() {
 
 
     var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
-    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'EntireData' + dateTime + '.xlsx');
+    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'EntireData_' + dateTime + '.xlsx');
     progress.className = "determinate blue darken-2"
     document.getElementsByClassName("progress")[0].style.visibility = "hidden";
 }
@@ -349,4 +350,81 @@ async function sendemail() {
     }
     document.getElementsByClassName("progress")[0].style.visibility = "hidden";
     progress.style = "width:0%";
+}
+async function getstudnotfilled() {
+    if (storedatasd == null) {
+        const ref1 = await db.collection("studentData").orderBy("CGPA", "desc");
+        storedatasd = await ref1.get();
+        getstudnotfilled();
+        return;
+    }
+    else {
+        window.alert("Please wait while we prepare your excel file")
+        document.getElementsByClassName("progress")[0].style.visibility = "visible";
+
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date + ' ' + time;
+        var wb = XLSX.utils.book_new();
+        wb.Props = {
+            Title: "Student Not Filled",
+            Subject: "Data",
+            Author: "Open-Elective-Devlopers",
+            CreatedDate: new Date(today.getFullYear(), today.getMonth() + 1, today.getDate())
+        };
+
+        var ws_data = [];
+        ws_data.push(["PRN", "Student Name", "Status"]);
+        var ws_data1 = [];
+        ws_data1.push(["PRN", "Student Name", "Status"]);
+        var ws_data2 = [];
+        ws_data2.push(["PRN", "Student Name", "Status"]);
+        var len = storedatasd.docs.length;
+        for (var y = 0; y < len; y++) {
+
+            // doc.data() is never undefined for query doc snapshots
+            await db.collection("studentprefs").doc(storedatasd.docs[y].id).get().then((doc) => {
+                data = storedatasd.docs[y].data()
+                if (doc.exists) {
+                    if (doc.data().mypref.length > 0) {
+                        ws_data.push([doc.id, data.Name, "SIGNED IN & FILLED"]);
+                    }
+                    else {
+                        ws_data.push([doc.id, data.Name, "SIGNED IN BUT NOT FILLED"]);
+                        ws_data1.push([doc.id, data.Name, "SIGNED IN BUT NOT FILLED"]);
+                    }
+
+                } else {
+                    // doc.data() will be undefined in this case
+                    ws_data.push([doc.id, data.Name, "NEITHER SIGNED IN NOR FILLED"]);
+                    ws_data2.push([doc.id, data.Name, "NEITHER SIGNED IN NOR FILLED"]);
+                }
+            }).catch((error) => {
+                console.log("Error getting document:", error);
+            });
+            var percent = (y * 100) / (len - 1)
+            progress.style = "width:" + percent.toString() + "%";
+        }
+        var ws = XLSX.utils.aoa_to_sheet(ws_data);
+        wb.SheetNames.push("All Students");
+        wb.Sheets["All Students"] = ws;
+
+        var ws = XLSX.utils.aoa_to_sheet(ws_data1);
+        wb.SheetNames.push("Signed in");
+        wb.Sheets["Signed in"] = ws;
+
+        var ws = XLSX.utils.aoa_to_sheet(ws_data2);
+        wb.SheetNames.push("Not Signed in");
+        wb.Sheets["Not Signed in"] = ws;
+
+
+
+
+        var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+        saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'Defaulters_' + dateTime + '.xlsx');
+        progress.className = "determinate blue darken-2"
+        document.getElementsByClassName("progress")[0].style.visibility = "hidden";
+    }
+
 }
