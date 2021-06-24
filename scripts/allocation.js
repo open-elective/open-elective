@@ -134,19 +134,31 @@ async function allocation() {
 
         const timepref = await db.collection("studentprefs");
         timedata = await timepref.get();
-        
-        for(t=0;t<timedata.docs.length;t++)
-        {
-            await db.collection("studentData").doc(timedata.docs[t].id).update({
-               Time: timedata.docs[t].data().Time
-            })
-            .then(() => {
-                console.log("Document successfully written!");
-            })
-            .catch((error) => {
-                console.error("Error writing document: ", error);
-            });
-            
+
+        for (t = 0; t < timedata.docs.length; t++) {
+            if (timedata.docs[t].data().Time != null) {
+                await db.collection("studentData").doc(timedata.docs[t].id).update({
+                    Time: timedata.docs[t].data().Time
+                })
+                    .then(() => {
+                        console.log("Document successfully written!");
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+            }
+            else {
+                await db.collection("studentData").doc(timedata.docs[t].id).update({
+                    Time: 1777777777777
+                })
+                    .then(() => {
+                        console.log("Document successfully written!");
+                    })
+                    .catch((error) => {
+                        console.error("Error writing document: ", error);
+                    });
+            }
+
         }
         const ref = await db.collection("studentData").orderBy("CGPA", "desc").orderBy("Time");
         storedata = await ref.get();
