@@ -339,6 +339,7 @@ async function sendemail() {
                 })
                     .then(function (message) {
                         console.log("email sent"+storedatasd.docs[i].id)
+                        console.log(message)
                     });
             }
             var percent = (i * 100) / (len - 1)
