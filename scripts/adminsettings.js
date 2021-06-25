@@ -299,7 +299,7 @@ async function sendemail() {
             coursewithname[storedatacd.docs[i].id] = storedatacd.docs[i].data().Name;
         }
         var len = storedatasd.docs.length
-        for (i = 0; i < len; i++) {
+        for (i = 82; i < len; i++) {
 
             var email = "";
             var pref = [];
