@@ -241,11 +241,12 @@ async function downloadexcel() {
     //student pref sheet
     var ws_data = [];
 
-    ws_data.push(["PRN", "School", "Time", "Preferences"]);
+    ws_data.push(["PRN","email", "School", "Time", "Preferences"]);
     for (i = 0; i < storedatasp.docs.length; i++) {
         var myprefstr = storedatasp.docs[i].data().mypref;
         myprefstr.splice(0, 0, storedatasp.docs[i].data().Time)
         myprefstr.splice(0, 0, storedatasp.docs[i].data().School)
+        myprefstr.splice(0, 0, storedatasp.docs[i].data().email)
         myprefstr.splice(0, 0, storedatasp.docs[i].id);
         console.log()
         ws_data.push(myprefstr);
@@ -299,7 +300,7 @@ async function sendemail() {
             coursewithname[storedatacd.docs[i].id] = storedatacd.docs[i].data().Name;
         }
         var len = storedatasd.docs.length
-        for (i = 82; i < len; i++) {
+        for (i = 163; i < len; i++) {
 
             var email = "";
             var pref = [];
