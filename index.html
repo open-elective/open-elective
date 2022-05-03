@@ -8,11 +8,30 @@
     <title>Open Elective Allocation Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="icon" href="/assets/favicon/index.png" type="image/gif">
 </head>
 
 <body>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal modal-fixed-footer" style="height:80%; width:80%; top:0%; max-height:80%">
+        <div class="modal-content box" style="padding:20px">
+            <a href="/instructions.html" target="_blank"
+                style="font-size: 1.2rem; text-align: center; z-index: 1200; position: fixed; right:10px"
+                class="waves-effect waves-blue btn-floating btn-small blue"><i class="fa fa-external-link-square"
+                    aria-hidden="true"></i></a>
+            <a href="#!" style="text-align: center; z-index: 1200; position: fixed; left:10px"
+                class="modal-close waves-effect waves-blue btn-floating btn-small blue">x</a>
+            <h4 class="row header">Instructions</h4>
+            <iframe class="row content" src="./instructions.html" style=" width: 100%;"></iframe>
+        </div>
+        <div class="row footer modal-footer" style="text-align: center;">
+            <p>Developed by <a href="https://girhe.com" target="_blank">Niranjan Girhe</a> and <a href="https://my-links-97a35.web.app/" target="_blank">Pratik Kale</a></p>
+        </div>
+    </div>
+
 
     <div class="home-overlay"></div>
     <h3 class="center">Welcome to Open Elective Allocation Portal</h3>
@@ -37,7 +56,7 @@
                     <div class="center">
                         <a href="signup.html">Sign Up</a>
                     </div>
-                    <div id="breathing-button" class="center"><a href="/instructions.html" target="_blank"><i
+                    <div id="breathing-button" class="center"><a class="modal-trigger" href="#modal1"><i
                                 class="material-icons">info</i></a></div>
                     <div class="center">
                         <a class="waves-effect waves-light btn blue darken-2" id="login"
@@ -61,7 +80,7 @@
                     Girhe</a></li>
             <li><a href="https://my-links-97a35.web.app/" target="_blank" class="btn-floating ">Pratik Kale</a></li>
             <li><a href="/instructions.html" target="_blank" class="btn-floating "><i
-                        class="material-icons">help</i>Help</a></li>
+                        class="material-icons">info</i>Help</a></li>
         </ul>
     </div>
 
@@ -88,6 +107,21 @@
                 toolbarEnabled: true
             });
         });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems);
+            const myModal = document.querySelectorAll('.modal')
+            var instance = M.Modal.getInstance(myModal[0]);
+            if (typeof (Storage) !== "undefined") {
+                if (!localStorage.getItem("grouplink")) {
+                    localStorage.setItem("grouplink", "hello");
+                    instance.open();
+                }
+            }
+        });
+
     </script>
 
     <script>

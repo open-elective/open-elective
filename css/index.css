@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700;900&display=swap');
+
 body {
     background: url(../assets/campus.jpg) no-repeat center center fixed;
     background-size: cover;
@@ -116,14 +117,17 @@ label {
         -webkit-transform: scale(0.9);
         transform: scale(0.9);
     }
+
     25% {
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
     }
+
     60% {
         -webkit-transform: scale(0.9);
         transform: scale(0.9);
     }
+
     100% {
         -webkit-transform: scale(0.9);
         transform: scale(0.9);
@@ -136,16 +140,19 @@ label {
         -ms-transform: scale(0.9);
         transform: scale(0.9);
     }
+
     25% {
         -webkit-transform: scale(1.1);
         -ms-transform: scale(1.1);
         transform: scale(1.1);
     }
+
     60% {
         -webkit-transform: scale(0.9);
         -ms-transform: scale(0.9);
         transform: scale(0.9);
     }
+
     100% {
         -webkit-transform: scale(0.9);
         -ms-transform: scale(0.9);
@@ -210,6 +217,7 @@ h5 {
     h3 {
         font-size: 33px;
     }
+
     .login-card {
         margin: auto;
         width: 90%;
@@ -221,12 +229,38 @@ h5 {
     h3 {
         font-size: 33px;
     }
+
     .login-card {
         margin: auto;
         width: 90%;
         margin-top: 10%;
     }
+
     .home-overlay {
         height: 120%;
     }
+}
+
+.box {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}
+
+.row {
+    margin-bottom: 0px !important;
+}
+
+.box .row.header {
+    flex: 0 1 auto;
+    margin-bottom: 5px !important;
+}
+
+.box .row.content {
+    flex: 1 1 auto;
+    border: 2px double #1976D2;
+}
+
+.box .row.footer {
+    flex: 0 1 40px;
 }
