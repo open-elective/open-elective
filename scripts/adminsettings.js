@@ -241,11 +241,12 @@ async function downloadexcel() {
     //student pref sheet
     var ws_data = [];
 
-    ws_data.push(["PRN", "School", "Time", "Preferences"]);
+    ws_data.push(["PRN","email", "School", "Time", "Preferences"]);
     for (i = 0; i < storedatasp.docs.length; i++) {
         var myprefstr = storedatasp.docs[i].data().mypref;
         myprefstr.splice(0, 0, storedatasp.docs[i].data().Time)
         myprefstr.splice(0, 0, storedatasp.docs[i].data().School)
+        myprefstr.splice(0, 0, storedatasp.docs[i].data().email)
         myprefstr.splice(0, 0, storedatasp.docs[i].id);
         console.log()
         ws_data.push(myprefstr);
@@ -338,7 +339,8 @@ async function sendemail() {
                     Body: body,
                 })
                     .then(function (message) {
-                        console.log("email sent")
+                        console.log("email sent"+storedatasd.docs[i].id)
+                        console.log(message)
                     });
             }
             var percent = (i * 100) / (len - 1)
