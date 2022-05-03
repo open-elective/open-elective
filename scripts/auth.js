@@ -216,6 +216,20 @@ Auth.onAuthStateChanged((user) => {
         if (!(window.location.href.slice(-10) == "index.html" || window.location.href.slice(-11) == "signup.html" || window.location.href.slice(-10) == "reset.html")) {
             window.location.href = "/index.html";
         }
+        if(window.location.href.slice(-10) == "index.html")
+        {
+            const myModal = document.querySelectorAll('.modal')
+            var instance = M.Modal.getInstance(myModal[0]);
+            if (typeof (Storage) !== "undefined") {
+                if (!sessionStorage.getItem("grouplink")) {
+                    setTimeout(function () {
+                        sessionStorage.setItem("grouplink", "hello");
+                        instance.open();
+                    }, 1000);
+
+                }
+            }
+        }
     }
 });
 

@@ -28,7 +28,8 @@
             <iframe class="row content" src="./instructions.html" style=" width: 100%;"></iframe>
         </div>
         <div class="row footer modal-footer" style="text-align: center;">
-            <p>Developed by <a href="https://girhe.com" target="_blank">Niranjan Girhe</a> and <a href="https://my-links-97a35.web.app/" target="_blank">Pratik Kale</a></p>
+            <p>Developed by <a href="https://girhe.com" target="_blank">Niranjan Girhe</a> and <a
+                    href="https://my-links-97a35.web.app/" target="_blank">Pratik Kale</a></p>
         </div>
     </div>
 
@@ -112,14 +113,6 @@
         document.addEventListener('DOMContentLoaded', function () {
             var elems = document.querySelectorAll('.modal');
             var instances = M.Modal.init(elems);
-            const myModal = document.querySelectorAll('.modal')
-            var instance = M.Modal.getInstance(myModal[0]);
-            if (typeof (Storage) !== "undefined") {
-                if (!localStorage.getItem("grouplink")) {
-                    localStorage.setItem("grouplink", "hello");
-                    instance.open();
-                }
-            }
         });
 
     </script>
