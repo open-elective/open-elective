@@ -187,7 +187,7 @@ async function submitpref() {
                 .then(() => {
                     sendemail()
                     document.getElementById("submitprefbtn").className = "waves-effect waves-light btn blue darken-2 disabled"
-                    window.alert("Your Response is recorded, You may not receive any mail because of temperory issue but don't worry your rersponse is recorded")
+                    window.alert("Your Response is recorded, You may not receive any mail because of temporary issue but don't worry your response is recorded")
                 })
                 .catch((error) => {
                     console.error("Error adding Data in database: ", error);
