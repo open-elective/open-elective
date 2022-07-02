@@ -234,7 +234,7 @@ async function sendemail() {
         await Email.send({
             Host: "smtp.gmail.com",
             Username: "open_elective_allocation@mitaoe.ac.in",
-            Password: "vllkiklgsawlezwv",
+            Password: "eufyjtdhhlqzwnxo",
             To: email,
             From: "open_elective_allocation@mitaoe.ac.in",
             Subject: "Your Preferences",
