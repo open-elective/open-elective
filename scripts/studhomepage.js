@@ -187,7 +187,7 @@ async function submitpref() {
                 .then(() => {
                     sendemail()
                     document.getElementById("submitprefbtn").className = "waves-effect waves-light btn blue darken-2 disabled"
-                    window.alert("Your Response is recorded")
+                    window.alert("Your Response is recorded, You may not receive any mail because of temperory issue but don't worry your rersponse is recorded")
                 })
                 .catch((error) => {
                     console.error("Error adding Data in database: ", error);
@@ -234,7 +234,7 @@ async function sendemail() {
         await Email.send({
             Host: "smtp.gmail.com",
             Username: "open_elective_allocation@mitaoe.ac.in",
-            Password: "eufyjtdhhlqzwnxo",
+            Password: "EF6EB744FA074B1A52D17B3B62020988152E",
             To: email,
             From: "open_elective_allocation@mitaoe.ac.in",
             Subject: "Your Preferences",
@@ -242,7 +242,6 @@ async function sendemail() {
         })
             .then(function (message) {
                 console.log("email sent")
-                console.log(message)
             });
 
     }
