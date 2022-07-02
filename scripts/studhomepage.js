@@ -242,6 +242,7 @@ async function sendemail() {
         })
             .then(function (message) {
                 console.log("email sent")
+                console.log(message)
             });
 
     }
