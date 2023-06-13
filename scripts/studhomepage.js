@@ -231,28 +231,18 @@ async function sendemail() {
         table += "</table><br/><br/>"
         body += table
         body += "You can refill the preferences if you are not happy with current preferences <a href='https://openelective.mitaoe.ac.in/student/studhomepage.html'> here</a>"
-//         await Email.send({
-//             Host: "smtp.gmail.com",
-//             Username: "open_elective_allocation@mitaoe.ac.in",
-//             Password: "EF6EB744FA074B1A52D17B3B62020988152E",
-//             To: email,
-//             From: "open_elective_allocation@mitaoe.ac.in",
-//             Subject: "Your Preferences",
-//             Body: body,
-//         })
-//             .then(function (message) {
-//                 console.log("email sent")
-//             });
-        
-       await Email.send({
-            SecureToken : "333e30cb-d08f-40f1-8ef1-96a6610081da",
-            To : email,
-            From : "open_elective_allocation@mitaoe.ac.in",
-            Subject : "Your Preferences",
-            Body : body
-        }).then(
-           console.log("email sent")
-        );
+        // await Email.send({
+        //     Host: "smtp.gmail.com",
+        //     Username: "open_elective_allocation@mitaoe.ac.in",
+        //     Password: "EF6EB744FA074B1A52D17B3B62020988152E",
+        //     To: email,
+        //     From: "open_elective_allocation@mitaoe.ac.in",
+        //     Subject: "Your Preferences",
+        //     Body: body,
+        // })
+        //     .then(function (message) {
+        //         console.log("email sent")
+        //     });
 
     }
     catch (err) {

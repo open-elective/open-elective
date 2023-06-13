@@ -329,19 +329,19 @@ async function sendemail() {
                 table += "</table><br/><br/>"
                 body += table
                 body += "Check your result <a href='https://openelective.mitaoe.ac.in/student/result.html'> here</a>"
-                await Email.send({
-                    Host: "smtp.gmail.com",
-                    Username: "open_elective_allocation@mitaoe.ac.in",
-                    Password: "vllkiklgsawlezwv",
-                    To: email,
-                    From: "open_elective_allocation@mitaoe.ac.in",
-                    Subject: "Results Announced!!!",
-                    Body: body,
-                })
-                    .then(function (message) {
-                        console.log("email sent"+storedatasd.docs[i].id)
-                        console.log(message)
-                    });
+                // await Email.send({
+                //     Host: "smtp.gmail.com",
+                //     Username: "open_elective_allocation@mitaoe.ac.in",
+                //     Password: "vllkiklgsawlezwv",
+                //     To: email,
+                //     From: "open_elective_allocation@mitaoe.ac.in",
+                //     Subject: "Results Announced!!!",
+                //     Body: body,
+                // })
+                //     .then(function (message) {
+                //         console.log("email sent"+storedatasd.docs[i].id)
+                //         console.log(message)
+                //     });
             }
             var percent = (i * 100) / (len - 1)
             progress.style = "width:" + percent.toString() + "%";
