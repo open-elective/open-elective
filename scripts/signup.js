@@ -8,9 +8,9 @@ async function submitprn() {
         const name = document.getElementById("name")
         const school = document.getElementById("school")
         const CGPA = document.getElementById("CGPA")
-        if (prn.value.length != 10) {
+        if (prn.value.length < 9) {
             throw {
-                message: "Invalid PRN (PRN should be 10 digits)",
+                message: "Invalid PRN (PRN should be 10 or greater than 10 digits)",
                 error: new Error()
             };
         }

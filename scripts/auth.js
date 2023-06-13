@@ -16,9 +16,9 @@ async function signup(e) {
                 error: new Error()
             };
         }
-        if (PRN.value.length != 10) {
+        if (PRN.value.length < 9) {
             throw {
-                message: "Invalid PRN (PRN should be 10 digits)",
+                message: "Invalid PRN (PRN should be 10 or more than 10 digits)",
                 error: new Error()
             };
         }

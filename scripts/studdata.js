@@ -113,7 +113,7 @@ function checkValidity(data) {
     try {
         var i;
         for (i = 1; i < data.length; i++) {
-            if (data[i][0].toString().length != 9) {
+            if (data[i][0].toString().length < 9) {
                 throw {
                     message: "Invalid PRN at : row(" + (i + 1).toString() + ")  {" + data[i][0].toString() + ", " + data[i][1].toString() + ", " + data[i][2].toString() + ", " + data[i][3].toString() + "}",
                     error: new Error()
@@ -223,7 +223,7 @@ function searchforedit() {
 
     const res = document.getElementById("editprn").value
     document.getElementById("editprn").disabled = true
-    if (res.toString().length == 10) {
+    if (res.toString().length > 10) {
         db.collection("studentData").doc(res.toString())
             .get().then((doc) => {
                 if (doc.exists) {
