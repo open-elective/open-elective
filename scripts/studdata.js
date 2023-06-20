@@ -223,7 +223,7 @@ function searchforedit() {
 
     const res = document.getElementById("editprn").value
     document.getElementById("editprn").disabled = true
-    if (res.toString().length > 10) {
+    if (res.toString().length > 9) {
         db.collection("studentData").doc(res.toString())
             .get().then((doc) => {
                 if (doc.exists) {
