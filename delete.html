@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Account</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" href="/assets/favicon/reset.png" type="image/gif" sizes="16x16">
+</head>
+
+<body>
+  <div class="home-overlay"></div>
+  <main class="login-card">
+    <div class="card white">
+      <div class="card-content black-text">
+        <span class="card-title center">
+          <h4>Delete Account</h4>
+        </span>
+        <div>
+          <input id="loginemail" type="email" placeholder="Email ID">
+          <small>Enter Official Mail-ID</small>
+          <input id="loginpassword" type="password" placeholder="Password">
+        </div>
+        <div class="center">
+          <a class="waves-effect waves-light btn blue darken-2 modal-trigger" href="#modal1">Delete Account</a>
+        </div>
+      </div>
+      <div class="progress blue lighten-4" id="resetprogress">
+        <div class="indeterminate blue darken-2"></div>
+      </div>
+  </main>
+
+
+  <div class="fixed-action-btn toolbar">
+    <a class="btn-floating btn-large blue darken-2 ">
+      <i class="large material-icons">help</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating">Developed By</a></li>
+      <li><a href="https://niranjangirhe.github.io/Connect-with-me/" target="_blank" class="btn-floating">Niranjan
+          Girhe</a></li>
+      <li><a href="https://my-links-97a35.web.app/" target="_blank" class="btn-floating ">Pratik
+          Kale</a></li>
+      <li><a href="/instructions.html" target="_blank" class="btn-floating "><i class="material-icons">info</i>Help</a>
+      </li>
+    </ul>
+  </div>
+
+    <!-- Modal 1 Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <h4 class="black-text">Delete Your Account !!</h4>
+        <p style="color: red;">This will delete your preferences data</p>
+        <p>This will only delete your account. You can again make your account by signing up again</p>
+        <p>Are you sure you want to perform this action. This can not be reversed!!</p>
+      </div>
+      <div class="modal-footer blue darken-2">
+        <a href="#!" class="modal-close waves-effect waves-light btn white black-text">NO</a>
+        <a href="#!" class="modal-close waves-effect waves-light btn white black-text" onclick="deleteAccount()">YES</a>
+      </div>
+    </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.fixed-action-btn');
+      var instances = M.FloatingActionButton.init(elems, {
+        toolbarEnabled: true
+      });
+    });
+  </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  });
+</script>
+
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  <!--Firebase Connection-->
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js"></script>
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyD9BHz-HTQl518KmUr1GHHx0IXJGj7bJP8",
+      authDomain: "openelectiveallocation.firebaseapp.com",
+      projectId: "openelectiveallocation",
+      storageBucket: "openelectiveallocation.appspot.com",
+      messagingSenderId: "953116708866",
+      appId: "1:953116708866:web:69c0de0ba08dda4efc971b"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+  <script src="/scripts/delete.js"></script>
+</body>
+
+</html>
