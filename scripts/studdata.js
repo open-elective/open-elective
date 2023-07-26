@@ -197,7 +197,7 @@ function addStudentDataTable(prn, name, cgpa, school) {
 function searchtest() {
 
     const res = document.getElementById("search").value
-    if (res.toString().length == 10) {
+    if (res.toString().length > 9) {
         db.collection("studentData").doc(res.toString())
             .get().then((doc) => {
                 if (doc.exists) {
