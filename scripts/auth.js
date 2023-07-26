@@ -27,12 +27,10 @@ async function signup(e) {
         progress.style.visibility = "visible";
         btn.style.visibility = "hidden";
         const result = await Auth.createUserWithEmailAndPassword(email.value, password.value)
-        sendVerificationEmail()
         await result.user.updateProfile({
             displayName: "User",
             photoURL: PRN.value
         });
-        
         await firebase.firestore().collection("studentprefs").doc(PRN.value).set({
             email: email.value,
             mypref: [],
@@ -43,6 +41,8 @@ async function signup(e) {
             .catch((error) => {
                 console.error("Error adding Data in database: ", error);
             });
+
+        sendVerificationEmail()
         PRN.value = ""
         email.value = ""
         password.value = ""
