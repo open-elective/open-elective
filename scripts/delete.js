@@ -21,50 +21,18 @@ async function deleteAccount() {
             };
         }
         const result = await Auth.signInWithEmailAndPassword(email.value, password.value)
-        if (!Auth.currentUser.emailVerified) {
-            sendVerificationEmail()
-            throw {
-                message: "Email Id not verified.\nPlease check your inbox for verification email",
-                error: new Error()
-            };
-        }
         console.log("User logged in")
 
         email.value = ""
         password.value = ""
-        if (Auth.currentUser.displayName == "User") {
-            var imavaliduser = true;
-            await firebase.firestore().collection("studentData").doc(Auth.currentUser.photoURL).get().then((doc) => {
-                if (!doc.exists) {
-                    imavaliduser = false;
-                }
-            }).catch((error) => {
-                console.log("Error getting document:", error);
-            });
-            if (!imavaliduser) {
-                throw {
-                    message: "You are not in our database, Please contact concerning faculty",
-                    error: new Error()
-                };
-            }
-
-
-            //code here
-
-            Auth.currentUser.delete().then(() => {
-                // User deleted.
-                window.alert("Account Deleted Successfully")
-            }).catch((error) => {
-                // An error ocurred
-                // ...
-                throw {
-                    message: "Error deleting account",
-                    error: new Error()
-                };
-            });
-
-
-        }
+        Auth.currentUser.delete().then(() => {
+            window.alert("Account Deleted Successfully")
+        }).catch((error) => {
+            throw {
+                message: "Error deleting account",
+                error: new Error()
+            };
+        });
     }
     catch (err) {
         if (err.code == "auth/wrong-password") {
