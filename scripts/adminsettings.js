@@ -128,7 +128,6 @@ async function deleteallcourse() {
 
     const tempref = await db.collection("courseData");
     const temp = await tempref.get();
-
     const len = temp.docs.length
     for (i = 0; i < temp.docs.length; i++) {
         await db.collection("courseData").doc(temp.docs[i].id).delete().then(() => {
@@ -144,7 +143,7 @@ async function deleteallcourse() {
     const tempref1 = await db.collection("Schools");
     const temp1 = await tempref1.get();
 
-    for (i = 0; i < temp.docs.length; i++) {
+    for (i = 0; i < temp1.docs.length; i++) {
         await db.collection("Schools").doc(temp1.docs[i].id).delete().then(() => {
             //console.log("Document successfully deleted!");
         }).catch((error) => {
@@ -202,21 +201,43 @@ async function downloadexcel() {
             temp = "All"
         }
         else {
-            if (data.SCET) {
-                temp = temp + "SCET" + ", "
+            if (data.ComputerEngineering) {
+                temp = temp + "ComputerEngineering" + ", "
             }
-            if (data.SEE) {
-                temp = temp + "SEE" + ", "
+            if (data.SoftwareEngineering) {
+                temp = temp + "SoftwareEngineering" + ", "
             }
-            if (data.SMCEM) {
-                temp = temp + "SMCEM" + ", "
+            if (data.CSEAIML) {
+                temp = temp + "CSEAIML" + ", "
             }
-            if (data.SMCEC) {
-                temp = temp + "SMCEC" + ", "
+            if (data.CSEDS) {
+                temp = temp + "CSEDS" + ", "
             }
-            if (data.SCE) {
-                temp = temp + "SCE" + ", "
+            if (data.IT) {
+                temp = temp + "IT" + ", "
             }
+            if (data.ElectronicandTelecomunicationEngineering) {
+                temp = temp + "ElectronicandTelecomunicationEngineering" + ", "
+            }
+            if (data.CivilEngineering) {
+                temp = temp + "CivilEngineering" + ", "
+            }
+            if (data.MechanicalEngineering) {
+                temp = temp + "MechanicalEngineering" + ", "
+            }
+            if (data.EntrepreneurshipDevelopment) {
+                temp = temp + "EntrepreneurshipDevelopment" + ", "
+            }
+            if (data.SchoolOfDesign) {
+                temp = temp + "SchoolOfDesign" + ", "
+            }
+            if (data.ChemicalEngineering) {
+                temp = temp + "ChemicalEngineering" + ", "
+            }
+            if (data.ACSCBusinessManagement) {
+                temp = temp + "ACSCBusinessManagement" + ", "
+            }
+
         }
         ws_data.push([storedatacd.docs[i].id, data.Name, data.InternalCap, data.Intfill, data.Extfill, data.ExternalCap, data.School, temp]);
     }
@@ -241,7 +262,7 @@ async function downloadexcel() {
     //student pref sheet
     var ws_data = [];
 
-    ws_data.push(["PRN","email", "School", "Time", "Preferences"]);
+    ws_data.push(["PRN", "email", "School", "Time", "Preferences"]);
     for (i = 0; i < storedatasp.docs.length; i++) {
         var myprefstr = storedatasp.docs[i].data().mypref;
         myprefstr.splice(0, 0, storedatasp.docs[i].data().Time)

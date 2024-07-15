@@ -126,7 +126,31 @@ function checkValidity(data) {
                 };
             }
             var School = data[i][3].toString()
-            if (!(School == "SCET" || School == "SEE" || School == "SMCEM" || School == "SMCEC" || School == "SCE")) {
+            // document.getElementById("c1").checked = data.ComputerEngineering;
+            // document.getElementById("c2").checked = data.SoftwareEngineering;
+            // document.getElementById("c3").checked = data.CSEAIML;
+            // document.getElementById("c4").checked = data.CSEDS;
+            // document.getElementById("c5").checked = data.IT;
+            // document.getElementById("c6").checked = data.ElectronicandTelecomunicationEngineering;
+            // document.getElementById("c7").checked = data.CivilEngineering;
+            // document.getElementById("c8").checked = data.MechanicalEngineering;
+            // document.getElementById("c9").checked = data.EntrepreneurshipDevelopment;
+            // document.getElementById("c10").checked = data.SchoolOfDesign;
+            // document.getElementById("c11").checked = data.ChemicalEngineering;
+            // document.getElementById("c12").checked = data.ACSCBusinessManagement;
+            if (!(School == "ComputerEngineering"
+                || School == "SoftwareEngineering"
+                || School == "CSEAIML"
+                || School == "CSEDS"
+                || School == "IT"
+                || School == "ElectronicandTelecomunicationEngineering"
+                || School == "CivilEngineering"
+                || School == "MechanicalEngineering"
+                || School == "EntrepreneurshipDevelopment"
+                || School == "SchoolOfDesign"
+                || School == "ChemicalEngineering"
+                || School == "ACSCBusinessManagement"
+            )) {
                 throw {
                     message: "Invalid School at : row(" + (i + 1).toString() + ")  {" + data[i][0].toString() + ", " + data[i][1].toString() + ", " + data[i][2].toString() + ", " + data[i][3].toString() + "}",
                     error: new Error()
@@ -231,20 +255,41 @@ function searchforedit() {
                     document.getElementById("editname").value = d.Name;
                     document.getElementById("editcgpa").value = d.CGPA;
                     var schooltemp = doc.data().School;
-                    if (schooltemp == "SCET") {
+                    if (schooltemp == "ComputerEngineering") {
+                        document.getElementById("c1").checked = true
+                    }
+                    else if (schooltemp == "SoftwareEngineering") {
                         document.getElementById("c2").checked = true
                     }
-                    else if (schooltemp == "SEE") {
+                    else if (schooltemp == "CSEAIML") {
                         document.getElementById("c3").checked = true
                     }
-                    else if (schooltemp == "SCE") {
-                        document.getElementById("c6").checked = true
+                    else if (schooltemp == "CSEDS") {
+                        document.getElementById("c4").checked = true
                     }
-                    else if (schooltemp == "SMCEC") {
+                    else if (schooltemp == "IT") {
                         document.getElementById("c5").checked = true
                     }
-                    else if (schooltemp == "SMCEM") {
-                        document.getElementById("c4").checked = true
+                    else if (schooltemp == "ElectronicandTelecomunicationEngineering") {
+                        document.getElementById("c6").checked = true
+                    }
+                    else if (schooltemp == "CivilEngineering") {
+                        document.getElementById("c7").checked = true
+                    }
+                    else if (schooltemp == "MechanicalEngineering") {
+                        document.getElementById("c8").checked = true
+                    }
+                    else if (schooltemp == "EntrepreneurshipDevelopment") {
+                        document.getElementById("c9").checked = true
+                    }
+                    else if (schooltemp == "SchoolOfDesign") {
+                        document.getElementById("c10").checked = true
+                    }
+                    else if (schooltemp == "ChemicalEngineering") {
+                        document.getElementById("c11").checked = true
+                    }
+                    else if (schooltemp == "ACSCBusinessManagement") {
+                        document.getElementById("c12").checked = true
                     }
                     document.getElementsByTagName("label")[3].className = "active"
                     document.getElementsByTagName("label")[4].className = "active"
@@ -264,23 +309,44 @@ async function editstud(e) {
         var editname = document.getElementById("editname").value;
         var editprn = document.getElementById("editprn").value;
         var editcgpa = document.getElementById("editcgpa").value;
+        var c1 = document.getElementById("c1");
         var c2 = document.getElementById("c2");
         var c3 = document.getElementById("c3");
         var c4 = document.getElementById("c4");
         var c5 = document.getElementById("c5");
         var c6 = document.getElementById("c6");
+        var c7 = document.getElementById("c7");
+        var c8 = document.getElementById("c8");
+        var c9 = document.getElementById("c9");
+        var c10 = document.getElementById("c10");
+        var c11 = document.getElementById("c11");
+        var c12 = document.getElementById("c12");
         var school = ""
 
-        if (c2.checked)
-            school = "SCET"
+        if (c1.checked)
+            school = "ComputerEngineering"
+        else if (c2.checked)
+            school = "SoftwareEngineering"
         else if (c3.checked)
-            school = "SEE"
+            school = "CSEAIML"
         else if (c4.checked)
-            school = "SMCEM"
+            school = "CSEDS"
         else if (c5.checked)
-            school = "SMCEC"
+            school = "IT"
         else if (c6.checked)
-            school = "SCE"
+            school = "ElectronicandTelecomunicationEngineering"
+        else if (c7.checked)
+            school = "CivilEngineering"
+        else if (c8.checked)
+            school = "MechanicalEngineering"
+        else if (c9.checked)
+            school = "EntrepreneurshipDevelopment"
+        else if (c10.checked)
+            school = "SchoolOfDesign"
+        else if (c11.checked)
+            school = "ChemicalEngineering"
+        else if (c12.checked)
+            school = "ACSCBusinessManagement"
 
         if (!editname || !editprn || !editcgpa || school == "") {
             throw {

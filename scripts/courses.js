@@ -16,21 +16,43 @@ function retriveCourseData() {
                     temp = "All"
                 }
                 else {
-                    if (data.SCET) {
-                        temp = temp + "SCET" + ", "
+                    if (data.ComputerEngineering) {
+                        temp = temp + "ComputerEngineering" + ", "
                     }
-                    if (data.SEE) {
-                        temp = temp + "SEE" + ", "
+                    if (data.SoftwareEngineering) {
+                        temp = temp + "SoftwareEngineering" + ", "
                     }
-                    if (data.SMCEM) {
-                        temp = temp + "SMCEM" + ", "
+                    if (data.CSEAIML) {
+                        temp = temp + "CSEAIML" + ", "
                     }
-                    if (data.SMCEC) {
-                        temp = temp + "SMCEC" + ", "
+                    if (data.CSEDS) {
+                        temp = temp + "CSEDS" + ", "
                     }
-                    if (data.SCE) {
-                        temp = temp + "SCE" + ", "
+                    if (data.IT) {
+                        temp = temp + "IT" + ", "
                     }
+                    if (data.ElectronicandTelecomunicationEngineering) {
+                        temp = temp + "ElectronicandTelecomunicationEngineering" + ", "
+                    }
+                    if (data.CivilEngineering) {
+                        temp = temp + "CivilEngineering" + ", "
+                    }
+                    if (data.MechanicalEngineering) {
+                        temp = temp + "MechanicalEngineering" + ", "
+                    }
+                    if (data.EntrepreneurshipDevelopment) {
+                        temp = temp + "EntrepreneurshipDevelopment" + ", "
+                    }
+                    if (data.SchoolOfDesign) {
+                        temp = temp + "SchoolOfDesign" + ", "
+                    }
+                    if (data.ChemicalEngineering) {
+                        temp = temp + "ChemicalEngineering" + ", "
+                    }
+                    if (data.ACSCBusinessManagement) {
+                        temp = temp + "ACSCBusinessManagement" + ", "
+                    }
+
                 }
                 addCourseTable(doc.id, data.Name, data.InternalCap, data.ExternalCap, data.School, temp)
             });
@@ -40,7 +62,7 @@ function retriveCourseData() {
         });
     progress.style.visibility = "hidden";
 }
-const all = document.getElementById('c1')
+const all = document.getElementById('c0')
 all.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
         removeallcheck()
@@ -60,38 +82,15 @@ function ddchanged() {
     removeallcheck()
 
     //newlyadded
-    document.getElementById("c1").disabled = ""
-    document.getElementById("c1").checked = false;
+    document.getElementById("c0").disabled = ""
+    document.getElementById("c0").checked = false;
 
 
     var schooldd = document.getElementById("schooldd");
-    var dd = schooldd.selectedIndex;
-    if (dd == 1) {
-        document.getElementById("c2").checked = true;
-        document.getElementById("c2").disabled = "disabled"
-    }
-    else if (dd == 2) {
-        document.getElementById("c3").checked = true;
-        document.getElementById("c3").disabled = "disabled"
-    }
-    else if (dd == 3) {
-        document.getElementById("c4").checked = true;
-        document.getElementById("c4").disabled = "disabled"
-    }
-    else if (dd == 4) {
-        document.getElementById("c5").checked = true;
-        document.getElementById("c5").disabled = "disabled"
-    }
-    else if (dd == 5) {
-        document.getElementById("c6").disabled = "disabled"
-        document.getElementById("c6").checked = true;
-    }
-    else if (dd == 6) {
-        document.getElementById("c1").disabled = "disabled"
-        document.getElementById("c1").checked = true;
-        removeallcheck()
-        blockall("disabled")
-    }
+    var dd = schooldd.selectedIndex || -1;
+    document.getElementById("c" + dd).checked = true;
+    document.getElementById("c" + dd).disabled = "disabled"
+
 }
 async function addcourse() {
     try {
@@ -102,31 +101,65 @@ async function addcourse() {
         var cincapa = document.getElementById("cincapa").value;
         var cextcapa = document.getElementById("cextcapa").value;
         var schooldd = document.getElementById("schooldd");
+        var c0 = document.getElementById("c0");
         var c1 = document.getElementById("c1");
         var c2 = document.getElementById("c2");
         var c3 = document.getElementById("c3");
         var c4 = document.getElementById("c4");
         var c5 = document.getElementById("c5");
         var c6 = document.getElementById("c6");
+        var c7 = document.getElementById("c7");
+        var c8 = document.getElementById("c8");
+        var c9 = document.getElementById("c9");
+        var c10 = document.getElementById("c10");
+        var c11 = document.getElementById("c11");
+        var c12 = document.getElementById("c12");
         var dd = schooldd.selectedIndex;
         var school = ""
         //skip if All check box is selected
         var skip = false;
-        if (c2.checked && c3.checked && c4.checked && c5.checked && c6.checked) {
+        if (c1.checked && c2.checked && c3.checked && c4.checked && c5.checked && c6.checked && c7.checked && c8.checked && c9.checked && c10.checked && c11.checked && c12.checked) {
             skip = true;
         }
-        if (dd == 1)
-            school = "SCET"
-        else if (dd == 2)
-            school = "SEE"
-        else if (dd == 3)
-            school = "SMCEM"
-        else if (dd == 4)
-            school = "SMCEC"
-        else if (dd == 5)
-            school = "SCE"
-        else if (dd == 6)
-            school = "SHES"
+
+        switch (dd) {
+            case 1:
+                school = "Computer engineering";
+                break;
+            case 2:
+                school = "Software engineering";
+                break;
+            case 3:
+                school = "CSE AIML";
+                break;
+            case 4:
+                school = "CSE DS";
+                break;
+            case 5:
+                school = "IT";
+                break;
+            case 6:
+                school = "Electronic and Telecomunication engineering";
+                break;
+            case 7:
+                school = "Civil engineering";
+                break;
+            case 8:
+                school = "Mechancal Engineering";
+                break;
+            case 9:
+                school = "Entrepreneurship Development";
+                break;
+            case 10:
+                school = "School of design";
+                break;
+            case 11:
+                school = "Chemical engineering";
+                break;
+            case 12:
+                school = "ACSC Business management";
+                break;
+        }
 
         if (!cname || !cno || !cincapa || !cextcapa || !schooldd) {
             throw {
@@ -177,12 +210,19 @@ async function addcourse() {
             InternalCap: parseInt(cincapa),
             ExternalCap: parseInt(cextcapa),
             School: school,
-            All: c1.checked || skip,
-            SCET: c2.checked && !skip,
-            SEE: c3.checked && !skip,
-            SMCEM: c4.checked && !skip,
-            SMCEC: c5.checked && !skip,
-            SCE: c6.checked && !skip,
+            All: c0.checked || skip,
+            ComputerEngineering: c1.checked && !skip,
+            SoftwareEngineering: c2.checked && !skip,
+            CSEAIML: c3.checked && !skip,
+            CSEDS: c4.checked && !skip,
+            IT: c5.checked && !skip,
+            ElectronicandTelecomunicationEngineering: c6.checked && !skip,
+            CivilEngineering: c7.checked && !skip,
+            MechanicalEngineering: c8.checked && !skip,
+            EntrepreneurshipDevelopment: c9.checked && !skip,
+            SchoolOfDesign: c10.checked && !skip,
+            ChemicalEngineering: c11.checked && !skip,
+            ACSCBusinessManagement: c12.checked && !skip,
             Intfill: 0,
             Extfill: 0
         })
@@ -200,7 +240,7 @@ async function addcourse() {
         window.alert(err.message)
     }
     removeall()
-    document.getElementById("c1").disabled = "";
+    document.getElementById("c0").disabled = "";
     progress.style.visibility = "hidden";
 }
 function removeall() {
@@ -212,22 +252,36 @@ function removeall() {
     document.getElementById("cextcapa").value = "";
     document.getElementById("schooldd").M_FormSelect.input.value = "Choose your option"
     document.getElementById("schooldd").selectedIndex = 0;
-    document.getElementById("c1").checked = false;
+    document.getElementById("c0").checked = false;
     removeallcheck()
 }
 function removeallcheck() {
+    document.getElementById("c1").checked = false;
     document.getElementById("c2").checked = false;
     document.getElementById("c3").checked = false;
     document.getElementById("c4").checked = false;
     document.getElementById("c5").checked = false;
     document.getElementById("c6").checked = false;
+    document.getElementById("c7").checked = false;
+    document.getElementById("c8").checked = false;
+    document.getElementById("c9").checked = false;
+    document.getElementById("c10").checked = false;
+    document.getElementById("c11").checked = false;
+    document.getElementById("c12").checked = false;
 }
 function blockall(b) {
+    document.getElementById("c1").disabled = b;
     document.getElementById("c2").disabled = b;
     document.getElementById("c3").disabled = b;
     document.getElementById("c4").disabled = b;
     document.getElementById("c5").disabled = b;
     document.getElementById("c6").disabled = b;
+    document.getElementById("c7").disabled = b;
+    document.getElementById("c8").disabled = b;
+    document.getElementById("c9").disabled = b;
+    document.getElementById("c10").disabled = b;
+    document.getElementById("c11").disabled = b;
+    document.getElementById("c12").disabled = b;
 }
 
 function addCourseTable(cno, cname, intcap, extcap, cscl, open) {
@@ -263,45 +317,82 @@ async function editcourse() {
                 const data = doc.data();
                 var schooltemp = data.School;
                 var s = 0
-                if (schooltemp == "SCET") {
-                    document.getElementById("c2").disabled = "disabled"
-                    s = 1
-                }
-                else if (schooltemp == "SEE") {
-                    document.getElementById("c3").disabled = "disabled"
-                    s = 2
-                }
-                else if (schooltemp == "SCE") {
-                    document.getElementById("c6").disabled = "disabled"
-                    s = 5
-                }
-                else if (schooltemp == "SHES") {
-                    document.getElementById("c1").disabled = "disabled"
-                    s = 6
+
+                switch (schooltemp) {
+                    case "Computer engineering":
+                        document.getElementById("c1").disabled = "disabled"
+                        s = 1
+                        break;
+                    case "Software engineering":
+                        document.getElementById("c2").disabled = "disabled"
+                        s = 2
+                        break;
+                    case "CSE AIML":
+                        document.getElementById("c3").disabled = "disabled"
+                        s = 3
+                        break;
+                    case "CSE DS":
+                        document.getElementById("c4").disabled = "disabled"
+                        s = 4
+                        break;
+                    case "IT":
+                        document.getElementById("c5").disabled = "disabled"
+                        s = 5
+                        break;
+                    case "Electronic and Telecomunication engineering":
+                        document.getElementById("c6").disabled = "disabled"
+                        s = 6
+                        break;
+                    case "Civil engineering":
+                        document.getElementById("c7").disabled = "disabled"
+                        s = 7
+                        break;
+                    case "Mechancal Engineering":
+                        document.getElementById("c8").disabled = "disabled"
+                        s = 8
+                        break;
+                    case "Entrepreneurship Development":
+                        document.getElementById("c9").disabled = "disabled"
+                        s = 9
+                        break;
+                    case "School of design":
+                        document.getElementById("c10").disabled = "disabled"
+                        s = 10
+                        break;
+                    case "Chemical engineering":
+                        document.getElementById("c11").disabled = "disabled"
+                        s = 11
+                        break;
+                    case "ACSC Business management":
+                        document.getElementById("c12").disabled = "disabled"
+                        s = 12
+                        break;
                 }
 
-                if (schooltemp == "SMCEC") {
-                    schooltemp = "SMCE(Civil)"
-                    document.getElementById("c5").disabled = "disabled"
-                    s = 4
-                }
-                else if (schooltemp == "SMCEM") {
-                    schooltemp = "SMCE(Mechanical)"
-                    document.getElementById("c4").disabled = "disabled"
-                    s = 3
-                }
+
+
+
                 document.getElementById("cname").value = data.Name;
                 document.getElementById("cno").value = doc.id;
                 document.getElementById("cincapa").value = data.InternalCap;
                 document.getElementById("cextcapa").value = data.ExternalCap;
                 document.getElementById("schooldd").M_FormSelect.input.value = schooltemp;
                 document.getElementById("schooldd").selectedIndex = s;
-                document.getElementById("c1").checked = data.All;
-                document.getElementById("c2").checked = data.SCET;
-                document.getElementById("c3").checked = data.SEE;
-                document.getElementById("c4").checked = data.SMCEM;
-                document.getElementById("c5").checked = data.SMCEC;
-                document.getElementById("c6").checked = data.SCE;
+                document.getElementById("c0").checked = data.All;
+                document.getElementById("c1").checked = data.ComputerEngineering;
+                document.getElementById("c2").checked = data.SoftwareEngineering;
+                document.getElementById("c3").checked = data.CSEAIML;
+                document.getElementById("c4").checked = data.CSEDS;
+                document.getElementById("c5").checked = data.IT;
+                document.getElementById("c6").checked = data.ElectronicandTelecomunicationEngineering;
+                document.getElementById("c7").checked = data.CivilEngineering;
+                document.getElementById("c8").checked = data.MechanicalEngineering;
+                document.getElementById("c9").checked = data.EntrepreneurshipDevelopment;
+                document.getElementById("c10").checked = data.SchoolOfDesign;
+                document.getElementById("c11").checked = data.ChemicalEngineering;
+                document.getElementById("c12").checked = data.ACSCBusinessManagement;
+
+
                 if (data.All) {
                     removeallcheck()
                     blockall("disabled")
@@ -387,60 +478,146 @@ function removeextra() {
 async function updateschooldata() {
     var progress = document.getElementById("cprogress")
     progress.style.visibility = "visible";
-    var SCET = [];
-    var SEE = [];
-    var SCE = [];
-    var SMCEM = [];
-    var SMCEC = [];
-    await db.collection("courseData").where("SCET", "==", true)
+    var ComputerEngineering = [];
+    var SoftwareEngineering = [];
+    var CSEAIML = [];
+    var CSEDS = [];
+    var IT = [];
+    var ElectronicandTelecomunicationEngineering = [];
+    var CivilEngineering = [];
+    var MechanicalEngineering = [];
+    var EntrepreneurshipDevelopment = [];
+    var SchoolOfDesign = [];
+    var ChemicalEngineering = [];
+    var ACSCBusinessManagement = [];
+
+
+    await db.collection("courseData").where("ComputerEngineering", "==", true)
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                SCET.push(doc.id.toString() + "~" + doc.data().Name)
+                ComputerEngineering.push(doc.id.toString() + "~" + doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
-    await db.collection("courseData").where("SEE", "==", true)
+    await db.collection("courseData").where("SoftwareEngineering", "==", true)
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                SEE.push(doc.id.toString() + "~" + doc.data().Name)
+                SoftwareEngineering.push(doc.id.toString() + "~" + doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
-    await db.collection("courseData").where("SCE", "==", true)
+    await db.collection("courseData").where("CSEAIML", "==", true)
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                SCE.push(doc.id.toString() + "~" + doc.data().Name)
+                CSEAIML.push(doc.id.toString() + "~" + doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
-    await db.collection("courseData").where("SMCEM", "==", true)
+    await db.collection("courseData").where("CSEDS", "==", true)
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                SMCEM.push(doc.id.toString() + "~" + doc.data().Name)
+                CSEDS.push(doc.id.toString() + "~" + doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
-    await db.collection("courseData").where("SMCEC", "==", true)
+    await db.collection("courseData").where("IT", "==", true)
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                SMCEC.push(doc.id.toString() + "~" + doc.data().Name)
+                IT.push(doc.id.toString() + "~" + doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    await db.collection("courseData").where("ElectronicandTelecomunicationEngineering", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                ElectronicandTelecomunicationEngineering.push(doc.id.toString() + "~" + doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    await db.collection("courseData").where("CivilEngineering", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                CivilEngineering.push(doc.id.toString() + "~" + doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    await db.collection("courseData").where("MechanicalEngineering", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                MechanicalEngineering.push(doc.id.toString() + "~" + doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    await db.collection("courseData").where("EntrepreneurshipDevelopment", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                EntrepreneurshipDevelopment.push(doc.id.toString() + "~" + doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    await db.collection("courseData").where("SchoolOfDesign", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                SchoolOfDesign.push(doc.id.toString() + "~" + doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    await db.collection("courseData").where("ChemicalEngineering", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                ChemicalEngineering.push(doc.id.toString() + "~" + doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    await db.collection("courseData").where("ACSCBusinessManagement", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                ACSCBusinessManagement.push(doc.id.toString() + "~" + doc.data().Name)
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
@@ -451,53 +628,111 @@ async function updateschooldata() {
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                SCET.push(doc.id.toString() + "~" + doc.data().Name)
-                SEE.push(doc.id.toString() + "~" + doc.data().Name)
-                SCE.push(doc.id.toString() + "~" + doc.data().Name)
-                SMCEM.push(doc.id.toString() + "~" + doc.data().Name)
-                SMCEC.push(doc.id.toString() + "~" + doc.data().Name)
+                ComputerEngineering.push(doc.id.toString() + "~" + doc.data().Name)
+                SoftwareEngineering.push(doc.id.toString() + "~" + doc.data().Name)
+                CSEAIML.push(doc.id.toString() + "~" + doc.data().Name)
+                CSEDS.push(doc.id.toString() + "~" + doc.data().Name)
+                IT.push(doc.id.toString() + "~" + doc.data().Name)
+                ElectronicandTelecomunicationEngineering.push(doc.id.toString() + "~" + doc.data().Name)
+                CivilEngineering.push(doc.id.toString() + "~" + doc.data().Name)
+                MechanicalEngineering.push(doc.id.toString() + "~" + doc.data().Name)
+                EntrepreneurshipDevelopment.push(doc.id.toString() + "~" + doc.data().Name)
+                SchoolOfDesign.push(doc.id.toString() + "~" + doc.data().Name)
+                ChemicalEngineering.push(doc.id.toString() + "~" + doc.data().Name)
+                ACSCBusinessManagement.push(doc.id.toString() + "~" + doc.data().Name)
+
                 //console.log(doc.id, " => ", doc.data().Name);
             });
         })
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
-    //console.log(SCET, SEE, SCE, SMCEM, SMCEC)
-    await db.collection("Schools").doc("SCET").set({ SCET })
+
+    await db.collection("Schools").doc("ComputerEngineering").set({ ComputerEngineering })
         .then(() => {
             //console.log("Document successfully written!");
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
         });
-    await db.collection("Schools").doc("SEE").set({ SEE })
+    await db.collection("Schools").doc("SoftwareEngineering").set({ SoftwareEngineering })
         .then(() => {
             //console.log("Document successfully written!");
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
         });
-    await db.collection("Schools").doc("SCE").set({ SCE })
+    await db.collection("Schools").doc("CSEAIML").set({ CSEAIML })
         .then(() => {
             //console.log("Document successfully written!");
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
         });
-    await db.collection("Schools").doc("SMCEM").set({ SMCEM })
+    await db.collection("Schools").doc("CSEDS").set({ CSEDS })
         .then(() => {
             //console.log("Document successfully written!");
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
         });
-    await db.collection("Schools").doc("SMCEC").set({ SMCEC })
+    await db.collection("Schools").doc("IT").set({ IT })
         .then(() => {
             //console.log("Document successfully written!");
         })
         .catch((error) => {
             console.error("Error writing document: ", error);
         });
+    await db.collection("Schools").doc("ElectronicandTelecomunicationEngineering").set({ ElectronicandTelecomunicationEngineering })
+        .then(() => {
+            //console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    await db.collection("Schools").doc("CivilEngineering").set({ CivilEngineering })
+        .then(() => {
+            //console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    await db.collection("Schools").doc("MechanicalEngineering").set({ MechanicalEngineering })
+        .then(() => {
+            //console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    await db.collection("Schools").doc("EntrepreneurshipDevelopment").set({ EntrepreneurshipDevelopment })
+        .then(() => {
+            //console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    await db.collection("Schools").doc("SchoolOfDesign").set({ SchoolOfDesign })
+        .then(() => {
+            //console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    await db.collection("Schools").doc("ChemicalEngineering").set({ ChemicalEngineering })
+        .then(() => {
+            //console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    await db.collection("Schools").doc("ACSCBusinessManagement").set({ ACSCBusinessManagement })
+        .then(() => {
+            //console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+
 
     progress.style.visibility = "hidden";
 }
