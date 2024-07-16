@@ -89,7 +89,7 @@ function ddchanged() {
     var schooldd = document.getElementById("schooldd");
     var dd = schooldd.selectedIndex || -1;
     document.getElementById("c" + dd).checked = true;
-    document.getElementById("c" + dd).disabled = "disabled"
+    // document.getElementById("c" + dd).disabled = "disabled"
 
 }
 async function addcourse() {
