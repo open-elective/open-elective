@@ -1,90 +1,90 @@
 .progress {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: white !important;
-    color: white;
-    text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white !important;
+  color: white;
+  text-align: center;
 }
 
 nav {
-    height: 50px;
-    max-width: 60%;
-    margin: 2% 2% 1% 20%;
-    background-color: white;
+  height: 50px;
+  max-width: 60%;
+  margin: 2% 2% 1% 20%;
+  background-color: white;
 }
 
 nav .nav-wrapper i {
-    line-height: 50px;
+  line-height: 50px;
 }
 
 #buttons a {
-    margin: 5px 10px;
+  margin: 5px 10px;
 }
 
 #upload {
-    max-width: 10%;
+  max-width: 10%;
 }
 
 #exl {
-    opacity: 0;
-    width: 0.1px;
-    height: 0.1px;
-    position: absolute;
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
 }
 
 #ctable {
-    border: 2px solid #1d72bc;
-    grid-area: ctable;
-    margin: 2em 2em 10em 2em;
-    border-radius: 10px;
+  border: 2px solid #1d72bc;
+  grid-area: ctable;
+  margin: 2em 2em 10em 2em;
+  border-radius: 10px;
 }
 
 td {
-    padding: 3px;
+  padding: 3px;
 }
 
 th {
-    border-bottom: 2px solid #1976d2;
+  border-bottom: 2px solid #1976d2;
 }
 
-.input-field input:focus+label {
-    color: #1d72bc !important;
+.input-field input:focus + label {
+  color: #1d72bc !important;
 }
 
 .input-field input:focus {
-    border-bottom: 1px solid #1d72bc !important;
-    box-shadow: 0 1px 0 0 #1d72bc !important
+  border-bottom: 1px solid #1d72bc !important;
+  box-shadow: 0 1px 0 0 #1d72bc !important;
 }
 
 .dropdown-content.select-dropdown li span {
-    color: #000;
+  color: #000;
 }
 
-#checktext {
-    padding: 0 !important;
-    padding-left: 22px !important;
-    padding-right: 22px !important;
-    color: black;
+.checktext {
+  padding: 0 !important;
+  padding-left: 22px !important;
+  padding-right: 22px !important;
+  color: black;
 }
 
 @media screen and (max-width: 900px) {
-    nav {
-        margin: auto;
-        margin-top: 15px;
-        margin-bottom: 15px;
-        max-width: 90%;
-    }
-    #ctable {
-        margin: 0;
-        margin: 20px 15px 150px 20px;
-    }
-    h4 {
-        font-size: 25px;
-    }
+  nav {
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    max-width: 90%;
+  }
+  #ctable {
+    margin: 0;
+    margin: 20px 15px 150px 20px;
+  }
+  h4 {
+    font-size: 25px;
+  }
 }
