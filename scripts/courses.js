@@ -52,6 +52,12 @@ function retriveCourseData() {
                     if (data.ACSCBusinessManagement) {
                         temp = temp + "ACSCBusinessManagement" + ", "
                     }
+                    if (data.ElectronicsEngineering) {
+                        temp = temp + "ElectronicsEngineering" + ", "
+                    }
+                    if (data.SHES) {
+                        temp = temp + "SHES" + ", "
+                    }
 
                 }
                 addCourseTable(doc.id, data.Name, data.InternalCap, data.ExternalCap, data.School, temp)
@@ -114,11 +120,13 @@ async function addcourse() {
         var c10 = document.getElementById("c10");
         var c11 = document.getElementById("c11");
         var c12 = document.getElementById("c12");
+        var c13 = document.getElementById("c13");
+        var c14 = document.getElementById("c14");
         var dd = schooldd.selectedIndex;
         var school = ""
         //skip if All check box is selected
         var skip = false;
-        if (c1.checked && c2.checked && c3.checked && c4.checked && c5.checked && c6.checked && c7.checked && c8.checked && c9.checked && c10.checked && c11.checked && c12.checked) {
+        if (c1.checked && c2.checked && c3.checked && c4.checked && c5.checked && c6.checked && c7.checked && c8.checked && c9.checked && c10.checked && c11.checked && c12.checked && c13.checked && c14.checked) {
             skip = true;
         }
 
@@ -159,6 +167,14 @@ async function addcourse() {
             case 12:
                 school = "ACSC Business management";
                 break;
+            case 13:
+                school = "Electronics Engineering";
+                break;
+            case 14:
+                school = "SHES";
+                break;
+            default:
+                school = "";
         }
 
         if (!cname || !cno || !cincapa || !cextcapa || !schooldd) {
@@ -223,6 +239,8 @@ async function addcourse() {
             SchoolOfDesign: c10.checked && !skip,
             ChemicalEngineering: c11.checked && !skip,
             ACSCBusinessManagement: c12.checked && !skip,
+            ElectronicsEngineering: c13.checked && !skip,
+            SHES: c14.checked && !skip,
             Intfill: 0,
             Extfill: 0
         })
@@ -268,6 +286,8 @@ function removeallcheck() {
     document.getElementById("c10").checked = false;
     document.getElementById("c11").checked = false;
     document.getElementById("c12").checked = false;
+    document.getElementById("c13").checked = false;
+    document.getElementById("c14").checked = false;
 }
 function blockall(b) {
     document.getElementById("c1").disabled = b;
@@ -282,6 +302,8 @@ function blockall(b) {
     document.getElementById("c10").disabled = b;
     document.getElementById("c11").disabled = b;
     document.getElementById("c12").disabled = b;
+    document.getElementById("c13").disabled = b;
+    document.getElementById("c14").disabled = b;
 }
 
 function addCourseTable(cno, cname, intcap, extcap, cscl, open) {
@@ -367,6 +389,17 @@ async function editcourse() {
                         document.getElementById("c12").disabled = "disabled"
                         s = 12
                         break;
+                    case "Electronics Engineering":
+                        document.getElementById("c13").disabled = "disabled"
+                        s = 13
+                        break;
+                    case "SHES":
+                        document.getElementById("c14").disabled = "disabled"
+                        s = 14
+                        break;
+                    default:
+                        document.getElementById("c0").disabled = "disabled"
+                        s = 0;
                 }
 
 
@@ -391,6 +424,8 @@ async function editcourse() {
                 document.getElementById("c10").checked = data.SchoolOfDesign;
                 document.getElementById("c11").checked = data.ChemicalEngineering;
                 document.getElementById("c12").checked = data.ACSCBusinessManagement;
+                document.getElementById("c13").checked = data.ElectronicsEngineering;
+                document.getElementById("c14").checked = data.SHES;
 
 
                 if (data.All) {
@@ -490,6 +525,8 @@ async function updateschooldata() {
     var SchoolOfDesign = [];
     var ChemicalEngineering = [];
     var ACSCBusinessManagement = [];
+    var ElectronicsEngineering = [];
+    var SHES = [];
 
 
     await db.collection("courseData").where("ComputerEngineering", "==", true)
@@ -624,6 +661,29 @@ async function updateschooldata() {
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
+    await db.collection("courseData").where("ElectronicsEngineering", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                ElectronicsEngineering.push(doc.id.toString() + "~" + doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+    await db.collection("courseData").where("SHES", "==", true)
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                SHES.push(doc.id.toString() + "~" + doc.data().Name)
+                //console.log(doc.id, " => ", doc.data().Name);
+            });
+        })
+        .catch((error) => {
+            console.log("Error getting documents: ", error);
+        });
+
     await db.collection("courseData").where("All", "==", true)
         .get()
         .then((querySnapshot) => {
@@ -640,6 +700,8 @@ async function updateschooldata() {
                 SchoolOfDesign.push(doc.id.toString() + "~" + doc.data().Name)
                 ChemicalEngineering.push(doc.id.toString() + "~" + doc.data().Name)
                 ACSCBusinessManagement.push(doc.id.toString() + "~" + doc.data().Name)
+                ElectronicsEngineering.push(doc.id.toString() + "~" + doc.data().Name)
+                SHES.push(doc.id.toString() + "~" + doc.data().Name)
 
                 //console.log(doc.id, " => ", doc.data().Name);
             });
@@ -726,6 +788,20 @@ async function updateschooldata() {
             console.error("Error writing document: ", error);
         });
     await db.collection("Schools").doc("ACSCBusinessManagement").set({ ACSCBusinessManagement })
+        .then(() => {
+            //console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    await db.collection("Schools").doc("ElectronicsEngineering").set({ ElectronicsEngineering })
+        .then(() => {
+            //console.log("Document successfully written!");
+        })
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    await db.collection("Schools").doc("SHES").set({ SHES })
         .then(() => {
             //console.log("Document successfully written!");
         })

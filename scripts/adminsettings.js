@@ -237,6 +237,12 @@ async function downloadexcel() {
             if (data.ACSCBusinessManagement) {
                 temp = temp + "ACSCBusinessManagement" + ", "
             }
+            if (data.ElectronicsEngineering) {
+                temp = temp + "ElectronicsEngineering" + ", "
+            }
+            if (data.SHES) {
+                temp = temp + "SHES" + ", "
+            }
 
         }
         ws_data.push([storedatacd.docs[i].id, data.Name, data.InternalCap, data.Intfill, data.Extfill, data.ExternalCap, data.School, temp]);

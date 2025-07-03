@@ -138,6 +138,8 @@ function checkValidity(data) {
             // document.getElementById("c10").checked = data.SchoolOfDesign;
             // document.getElementById("c11").checked = data.ChemicalEngineering;
             // document.getElementById("c12").checked = data.ACSCBusinessManagement;
+            // document.getElementById("c13").checked = data.ElectronicsEngineering;
+            // document.getElementById("c14").checked = data.SHES;
             if (!(School == "ComputerEngineering"
                 || School == "SoftwareEngineering"
                 || School == "CSEAIML"
@@ -150,6 +152,8 @@ function checkValidity(data) {
                 || School == "SchoolOfDesign"
                 || School == "ChemicalEngineering"
                 || School == "ACSCBusinessManagement"
+                || School == "ElectronicsEngineering"
+                || School == "SHES"
             )) {
                 throw {
                     message: "Invalid School at : row(" + (i + 1).toString() + ")  {" + data[i][0].toString() + ", " + data[i][1].toString() + ", " + data[i][2].toString() + ", " + data[i][3].toString() + "}",
@@ -291,6 +295,12 @@ function searchforedit() {
                     else if (schooltemp == "ACSCBusinessManagement") {
                         document.getElementById("c12").checked = true
                     }
+                    else if (schooltemp == "ElectronicsEngineering") {
+                        document.getElementById("c13").checked = true
+                    }
+                    else if (schooltemp == "SHES") {
+                        document.getElementById("c14").checked = true
+                    }
                     document.getElementsByTagName("label")[3].className = "active"
                     document.getElementsByTagName("label")[4].className = "active"
                 } else {
@@ -321,6 +331,8 @@ async function editstud(e) {
         var c10 = document.getElementById("c10");
         var c11 = document.getElementById("c11");
         var c12 = document.getElementById("c12");
+        var c13 = document.getElementById("c13");
+        var c14 = document.getElementById("c14");
         var school = ""
 
         if (c1.checked)
@@ -347,6 +359,10 @@ async function editstud(e) {
             school = "ChemicalEngineering"
         else if (c12.checked)
             school = "ACSCBusinessManagement"
+        else if (c13.checked)
+            school = "ElectronicsEngineering"
+        else if (c14.checked)
+            school = "SHES"
 
         if (!editname || !editprn || !editcgpa || school == "") {
             throw {
