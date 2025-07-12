@@ -1,10 +1,22 @@
 {
   "hosting": {
-    "public": "/",
+    "public": ".",
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "**/*.log",
+      "firebase-debug.log",
+      "pglite-debug.log",
+      ".git/**",
+      "README.md",
+      "**/*.md"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   }
 }
