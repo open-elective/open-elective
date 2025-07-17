@@ -306,9 +306,6 @@ async function downloadcoursewisedata() {
 
     //Date and time intiate
     var today = new Date();
-    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    var dateTime = date + ' ' + time;
 
     //course wise
     var wb = XLSX.utils.book_new();
@@ -351,7 +348,7 @@ async function downloadcoursewisedata() {
     }
 
     var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
-    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'Course Wise Allocation Data' + dateTime + '.xlsx');
+    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'Course Wise Allocation Data.xlsx');
 
 
 
@@ -362,9 +359,6 @@ async function downloadSchoolwisedata() {
 
     //Date and time intiate
     var today = new Date();
-    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    var dateTime = date + ' ' + time;
 
     //School wise
     var wb = XLSX.utils.book_new();
@@ -415,7 +409,7 @@ async function downloadSchoolwisedata() {
     }
 
     var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
-    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'School Wise Allocation Data' + dateTime + '.xlsx');
+    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'School Wise Allocation Data.xlsx');
 
 
 
@@ -428,4 +422,3 @@ function s2ab(s) {
     for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
     return buf;
 }
-
