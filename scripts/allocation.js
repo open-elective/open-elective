@@ -306,6 +306,9 @@ async function downloadcoursewisedata() {
 
     //Date and time intiate
     var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date + ' ' + time;
 
     //course wise
     var wb = XLSX.utils.book_new();
@@ -343,12 +346,32 @@ async function downloadcoursewisedata() {
             }
         }
         var ws = XLSX.utils.aoa_to_sheet(ws_data);
-        wb.SheetNames.push(coursewithname[j][1].slice(0, 20) + "-" + coursewithname[j][0].slice(0, 9));
-        wb.Sheets[coursewithname[j][1].slice(0, 20) + "-" + coursewithname[j][0].slice(0, 9)] = ws;
+        
+        // Create sheet name with proper truncation to 30 characters max
+        var sheetName = coursewithname[j][1] + "-" + coursewithname[j][0];
+        if (sheetName.length > 30) {
+            var courseNamePart = coursewithname[j][1];
+            var courseIdPart = coursewithname[j][0];
+            var separator = "-";
+            var availableLength = 30 - separator.length - courseIdPart.length;
+            
+            if (availableLength > 0) {
+                var truncatedCourseName = courseNamePart.length > availableLength ? 
+                    courseNamePart.slice(0, Math.floor(availableLength/2)) + "..." + courseNamePart.slice(-Math.floor((availableLength-3)/2)) :
+                    courseNamePart;
+                sheetName = truncatedCourseName + separator + courseIdPart;
+            } else {
+                // If course ID is too long, truncate it too
+                sheetName = courseNamePart.slice(0, 12) + "..." + separator + courseIdPart.slice(0, 12);
+            }
+        }
+        
+        wb.SheetNames.push(sheetName);
+        wb.Sheets[sheetName] = ws;
     }
 
     var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
-    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'Course Wise Allocation Data.xlsx');
+    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'Course Wise Allocation Data' + dateTime + '.xlsx');
 
 
 
@@ -359,6 +382,9 @@ async function downloadSchoolwisedata() {
 
     //Date and time intiate
     var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date + ' ' + time;
 
     //School wise
     var wb = XLSX.utils.book_new();
@@ -404,12 +430,21 @@ async function downloadSchoolwisedata() {
             }
         }
         var ws = XLSX.utils.aoa_to_sheet(ws_data);
-        wb.SheetNames.push(schoolwithname[j]);
-        wb.Sheets[schoolwithname[j]] = ws;
+        
+        // Create sheet name with proper truncation to 30 characters max
+        var sheetName = schoolwithname[j];
+        if (sheetName.length > 30) {
+            // Truncate in the middle for school names longer than 30 characters
+            var halfLength = Math.floor((30 - 3) / 2); // 3 for "..."
+            sheetName = schoolwithname[j].slice(0, halfLength) + "..." + schoolwithname[j].slice(-halfLength);
+        }
+        
+        wb.SheetNames.push(sheetName);
+        wb.Sheets[sheetName] = ws;
     }
 
     var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
-    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'School Wise Allocation Data.xlsx');
+    saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), 'School Wise Allocation Data' + dateTime + '.xlsx');
 
 
 
