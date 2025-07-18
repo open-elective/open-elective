@@ -346,7 +346,7 @@ async function downloadcoursewisedata() {
             }
         }
         var ws = XLSX.utils.aoa_to_sheet(ws_data);
-        
+
         // Create sheet name with proper truncation to 30 characters max
         var sheetName = coursewithname[j][1] + "-" + coursewithname[j][0];
         if (sheetName.length > 30) {
@@ -354,9 +354,9 @@ async function downloadcoursewisedata() {
             var courseIdPart = coursewithname[j][0];
             var separator = "-";
             var availableLength = 30 - separator.length - courseIdPart.length;
-            
+
             if (availableLength > 0) {
-                var truncatedCourseName = courseNamePart.length > availableLength ? 
+                var truncatedCourseName = courseNamePart.length > availableLength ?
                     courseNamePart.slice(0, Math.floor(availableLength/2)) + "..." + courseNamePart.slice(-Math.floor((availableLength-3)/2)) :
                     courseNamePart;
                 sheetName = truncatedCourseName + separator + courseIdPart;
@@ -365,7 +365,7 @@ async function downloadcoursewisedata() {
                 sheetName = courseNamePart.slice(0, 12) + "..." + separator + courseIdPart.slice(0, 12);
             }
         }
-        
+
         wb.SheetNames.push(sheetName);
         wb.Sheets[sheetName] = ws;
     }
@@ -430,7 +430,7 @@ async function downloadSchoolwisedata() {
             }
         }
         var ws = XLSX.utils.aoa_to_sheet(ws_data);
-        
+
         // Create sheet name with proper truncation to 30 characters max
         var sheetName = schoolwithname[j];
         if (sheetName.length > 30) {
@@ -438,7 +438,7 @@ async function downloadSchoolwisedata() {
             var halfLength = Math.floor((30 - 3) / 2); // 3 for "..."
             sheetName = schoolwithname[j].slice(0, halfLength) + "..." + schoolwithname[j].slice(-halfLength);
         }
-        
+
         wb.SheetNames.push(sheetName);
         wb.Sheets[sheetName] = ws;
     }

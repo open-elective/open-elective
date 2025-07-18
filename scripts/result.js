@@ -105,8 +105,12 @@ async function filldata() {
     for (i = 0; i < pref.length; i++) {
         addCourseTable(i + 1, prefwithname[pref[i]])
     }
+    console.log(prefwithname);
+    console.log(alloc);
+
     if (alloc != 0) {
-        document.getElementById("myallocation").innerHTML = prefwithname[alloc]
+        const result = prefwithname[alloc] ? prefwithname[alloc] : prefwithname["0"+alloc];
+        document.getElementById("myallocation").innerHTML = result;
     }
     else {
         document.getElementById("myallocation").innerHTML = "No Allocation"
