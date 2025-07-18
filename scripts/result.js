@@ -105,8 +105,6 @@ async function filldata() {
     for (i = 0; i < pref.length; i++) {
         addCourseTable(i + 1, prefwithname[pref[i]])
     }
-    console.log(prefwithname);
-    console.log(alloc);
 
     if (alloc != 0) {
         const result = prefwithname[alloc] ? prefwithname[alloc] : prefwithname["0"+alloc];
