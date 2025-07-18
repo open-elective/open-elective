@@ -425,8 +425,11 @@ async function downloadSchoolwisedata() {
         var ws_data = [];
         ws_data.push(["PRN", "Name", "CGPA", "School", "Allocation"]);
         for (i = 0; i < storedatasd.docs.length; i++) {
+
+            const courseName = coursewithname[storedatasd.docs[i].data().alloc] ? coursewithname[storedatasd.docs[i].data().alloc] : coursewithname["0" + storedatasd.docs[i].data().alloc]
+
             if (storedatasd.docs[i].data().School == schoolwithname[j]) {
-                ws_data.push([storedatasd.docs[i].id, storedatasd.docs[i].data().Name, storedatasd.docs[i].data().CGPA, storedatasd.docs[i].data().School, coursewithname[storedatasd.docs[i].data().alloc]]);
+                ws_data.push([storedatasd.docs[i].id, storedatasd.docs[i].data().Name, storedatasd.docs[i].data().CGPA, storedatasd.docs[i].data().School, courseName]);
             }
         }
         var ws = XLSX.utils.aoa_to_sheet(ws_data);
